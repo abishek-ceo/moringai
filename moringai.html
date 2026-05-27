@@ -1,0 +1,2335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moringai — Pure Green Intelligence | moringai.in</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<style>
+  :root {
+    --moss: #2d4a1e;
+    --leaf: #4a7c2f;
+    --sprout: #7db356;
+    --lime: #b8e04a;
+    --cream: #f5f0e8;
+    --ivory: #faf8f3;
+    --earth: #8b6b3d;
+    --gold: #c9a84c;
+    --deep: #1a2e10;
+    --white: #ffffff;
+    --shadow: rgba(29,58,20,0.15);
+    --glow: rgba(120,179,86,0.25);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--ivory);
+    color: var(--deep);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--sprout);
+    border-radius: 50%;
+    position: fixed; top:0; left:0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    mix-blend-mode: multiply;
+  }
+  .cursor-trail {
+    width: 32px; height: 32px;
+    border: 1.5px solid var(--sprout);
+    border-radius: 50%;
+    position: fixed; top:0; left:0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.25s ease, width 0.2s, height 0.2s;
+    mix-blend-mode: multiply;
+  }
+
+  /* PAGE SYSTEM */
+  .page { display:none; min-height:100vh; }
+  .page.active { display:block; }
+
+  /* NAV */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:1000;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 22px 56px;
+    background: rgba(250,248,243,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(74,124,47,0.12);
+    transition: all 0.4s ease;
+  }
+  nav.scrolled {
+    padding: 14px 56px;
+    background: rgba(250,248,243,0.97);
+    box-shadow: 0 4px 40px var(--shadow);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 600;
+    color: var(--moss);
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo-leaf {
+    width:28px; height:28px;
+    background: linear-gradient(135deg, var(--sprout), var(--leaf));
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    display:inline-block;
+    animation: spinLeaf 8s linear infinite;
+  }
+  @keyframes spinLeaf { to { transform: rotate(360deg); } }
+
+  .nav-links {
+    display:flex; gap:36px; list-style:none; align-items:center;
+  }
+  .nav-links a {
+    font-size:0.85rem; font-weight:500; letter-spacing:0.08em;
+    text-transform: uppercase; color: var(--moss);
+    text-decoration:none; cursor:pointer;
+    position:relative; padding-bottom:2px;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content:''; position:absolute; bottom:0; left:0;
+    width:0; height:1.5px; background:var(--sprout);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover::after, .nav-links a.active::after { width:100%; }
+  .nav-links a:hover, .nav-links a.active { color:var(--leaf); }
+
+  .nav-actions { display:flex; gap:16px; align-items:center; }
+  .btn-cart {
+    background: var(--moss); color:var(--cream);
+    border:none; padding: 10px 24px;
+    font-family:'Outfit',sans-serif; font-size:0.82rem; font-weight:500;
+    letter-spacing:0.08em; text-transform:uppercase;
+    cursor:pointer; transition: all 0.3s ease;
+    position:relative;
+  }
+  .btn-cart:hover { background:var(--leaf); transform:translateY(-1px); }
+  .cart-count {
+    position:absolute; top:-6px; right:-6px;
+    background:var(--lime); color:var(--deep);
+    width:18px; height:18px; border-radius:50%;
+    font-size:0.65rem; font-weight:600;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  /* ===================== HOME PAGE ===================== */
+  /* HERO */
+  .hero {
+    height: 100vh; position:relative; overflow:hidden;
+    display:flex; align-items:center;
+    background: linear-gradient(160deg, var(--deep) 0%, var(--moss) 45%, var(--leaf) 100%);
+  }
+  .hero-bg-canvas {
+    position:absolute; inset:0; z-index:0;
+    opacity:0.18;
+  }
+  .hero-particles { position:absolute; inset:0; z-index:1; pointer-events:none; }
+  .particle {
+    position:absolute; border-radius:50%;
+    background: var(--lime); opacity:0;
+    animation: floatUp var(--dur, 8s) var(--delay, 0s) infinite ease-in-out;
+  }
+  @keyframes floatUp {
+    0% { opacity:0; transform:translateY(0) scale(0.5); }
+    20% { opacity:0.6; }
+    80% { opacity:0.3; }
+    100% { opacity:0; transform:translateY(-100vh) scale(1.2); }
+  }
+  .hero-content {
+    position:relative; z-index:10; padding: 0 56px;
+    max-width:700px;
+  }
+  .hero-tag {
+    display:inline-block; background:rgba(184,224,74,0.2);
+    border:1px solid var(--lime); color:var(--lime);
+    font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;
+    padding:6px 18px; margin-bottom:28px;
+    animation: fadeDown 1s 0.3s both;
+  }
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+  .hero h1 {
+    font-family:'Cormorant Garamond',serif;
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    font-weight:300; line-height:1.05;
+    color:var(--cream);
+    margin-bottom:24px;
+    animation: fadeUp 1s 0.5s both;
+  }
+  .hero h1 em { font-style:italic; color:var(--lime); }
+  .hero-sub {
+    font-size:1.05rem; font-weight:300; line-height:1.7;
+    color:rgba(245,240,232,0.75);
+    max-width:480px; margin-bottom:40px;
+    animation: fadeUp 1s 0.7s both;
+  }
+  .hero-ctas {
+    display:flex; gap:16px; flex-wrap:wrap;
+    animation: fadeUp 1s 0.9s both;
+  }
+  .btn-primary {
+    background: var(--lime); color:var(--deep);
+    border:none; padding:15px 36px;
+    font-family:'Outfit',sans-serif; font-size:0.9rem; font-weight:600;
+    letter-spacing:0.06em; text-transform:uppercase;
+    cursor:pointer; transition: all 0.3s ease;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%);
+  }
+  .btn-primary:hover { background:white; transform:translateY(-2px); box-shadow: 0 12px 36px rgba(184,224,74,0.4); }
+  .btn-outline {
+    background:transparent; color:var(--cream);
+    border: 1.5px solid rgba(245,240,232,0.4);
+    padding:15px 36px;
+    font-family:'Outfit',sans-serif; font-size:0.9rem; font-weight:400;
+    letter-spacing:0.06em; text-transform:uppercase;
+    cursor:pointer; transition: all 0.3s ease;
+  }
+  .btn-outline:hover { border-color:var(--lime); color:var(--lime); }
+
+  .hero-image {
+    position:absolute; right:-80px; bottom:0; z-index:5;
+    width:55%; max-width:720px; opacity:0.9;
+    animation: fadeIn 1.5s 0.4s both;
+  }
+
+  .scroll-hint {
+    position:absolute; bottom:36px; left:56px; z-index:20;
+    color:rgba(245,240,232,0.5); font-size:0.72rem; letter-spacing:0.2em;
+    text-transform:uppercase; display:flex; align-items:center; gap:12px;
+    animation: fadeIn 2s 1.5s both;
+  }
+  .scroll-line {
+    width:40px; height:1px; background:rgba(245,240,232,0.3);
+    position:relative; overflow:hidden;
+  }
+  .scroll-line::after {
+    content:''; position:absolute; left:-100%; top:0;
+    width:100%; height:100%; background:var(--lime);
+    animation: scrollLine 2s 2s infinite;
+  }
+  @keyframes scrollLine { to { left:200%; } }
+
+  /* MARQUEE */
+  .marquee-strip {
+    background:var(--moss); overflow:hidden;
+    padding: 16px 0; border-top:2px solid var(--sprout);
+  }
+  .marquee-track {
+    display:flex; gap:0; white-space:nowrap;
+    animation: marquee 25s linear infinite;
+  }
+  .marquee-item {
+    font-size:0.78rem; font-weight:500; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--cream);
+    padding:0 48px;
+  }
+  .marquee-dot {
+    color:var(--lime); font-size:1.2rem; line-height:1;
+  }
+  @keyframes marquee { to { transform:translateX(-50%); } }
+
+  /* FEATURES SECTION */
+  .features {
+    padding: 120px 56px;
+    background:var(--ivory);
+  }
+  .section-label {
+    font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--sprout); font-weight:500; margin-bottom:16px;
+    display:flex; align-items:center; gap:12px;
+  }
+  .section-label::before {
+    content:''; width:32px; height:1px; background:var(--sprout);
+  }
+  .features-heading {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(2.5rem,4vw,3.8rem); font-weight:300;
+    line-height:1.15; color:var(--moss); max-width:550px;
+    margin-bottom:72px;
+  }
+  .features-grid {
+    display:grid; grid-template-columns: repeat(4, 1fr);
+    gap:2px; background:var(--moss);
+  }
+  .feature-card {
+    background:var(--ivory); padding:48px 36px;
+    transition: all 0.4s ease;
+    position:relative; overflow:hidden;
+  }
+  .feature-card::before {
+    content:''; position:absolute; bottom:0; left:0;
+    width:0; height:3px; background:var(--lime);
+    transition: width 0.5s ease;
+  }
+  .feature-card:hover { background:var(--cream); transform:translateY(-4px); }
+  .feature-card:hover::before { width:100%; }
+  .feature-icon {
+    width:48px; height:48px; margin-bottom:24px;
+    background: linear-gradient(135deg, var(--leaf), var(--sprout));
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.4rem;
+  }
+  .feature-card h3 {
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.35rem; font-weight:600; color:var(--moss);
+    margin-bottom:12px;
+  }
+  .feature-card p { font-size:0.88rem; line-height:1.75; color:#5a6e4a; }
+
+  /* PRODUCTS PAGE */
+  .products-hero {
+    padding: 160px 56px 80px;
+    background: linear-gradient(180deg, var(--deep) 0%, var(--moss) 100%);
+    text-align:center; position:relative; overflow:hidden;
+  }
+  .products-hero::after {
+    content:''; position:absolute; bottom:0; left:0; right:0;
+    height:80px; background:var(--ivory);
+    clip-path: ellipse(60% 100% at 50% 100%);
+  }
+  .products-hero h2 {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(3rem,5vw,5rem); font-weight:300;
+    color:var(--cream); margin-bottom:16px;
+  }
+  .products-hero p { color:rgba(245,240,232,0.65); font-size:1rem; }
+
+  .filter-bar {
+    display:flex; gap:8px; padding:48px 56px 32px;
+    flex-wrap:wrap; align-items:center;
+  }
+  .filter-btn {
+    padding:9px 22px; border:1.5px solid rgba(74,124,47,0.25);
+    background:transparent; color:var(--moss);
+    font-family:'Outfit',sans-serif; font-size:0.8rem;
+    font-weight:500; letter-spacing:0.06em; text-transform:uppercase;
+    cursor:pointer; transition:all 0.3s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background:var(--moss); color:var(--cream);
+    border-color:var(--moss);
+  }
+
+  .products-grid {
+    display:grid; grid-template-columns: repeat(3, 1fr);
+    gap:28px; padding:0 56px 80px;
+  }
+  .product-card {
+    background:white; position:relative; overflow:hidden;
+    transition:all 0.4s ease; group cursor:pointer;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+  }
+  .product-card:hover { transform:translateY(-6px); box-shadow:0 20px 60px var(--shadow); }
+  .product-img-wrap {
+    height:300px; overflow:hidden; position:relative;
+    background: linear-gradient(135deg, #e8f5d8, #c8e8a0);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .product-emoji { font-size:5rem; transition:transform 0.5s ease; }
+  .product-card:hover .product-emoji { transform:scale(1.15) rotate(5deg); }
+  .product-badge {
+    position:absolute; top:16px; left:16px;
+    background:var(--lime); color:var(--deep);
+    font-size:0.68rem; font-weight:700; letter-spacing:0.1em;
+    text-transform:uppercase; padding:5px 12px;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 100%, 8px 100%);
+  }
+  .product-badge.organic { background:var(--moss); color:var(--cream); }
+  .product-badge.new { background:var(--gold); }
+  .product-info { padding:24px 28px 28px; }
+  .product-category {
+    font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase;
+    color:var(--sprout); font-weight:500; margin-bottom:8px;
+  }
+  .product-name {
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.45rem; font-weight:600; color:var(--deep);
+    margin-bottom:8px; line-height:1.25;
+  }
+  .product-desc {
+    font-size:0.82rem; color:#6b7c5a; line-height:1.65;
+    margin-bottom:20px;
+  }
+  .product-footer {
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .product-price {
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.6rem; font-weight:600; color:var(--moss);
+  }
+  .product-price .original {
+    font-size:1rem; color:#aaa; text-decoration:line-through;
+    margin-left:8px; font-weight:300;
+  }
+  .btn-add {
+    background:var(--moss); color:var(--cream);
+    border:none; padding:10px 20px;
+    font-family:'Outfit',sans-serif; font-size:0.78rem;
+    font-weight:500; letter-spacing:0.08em; text-transform:uppercase;
+    cursor:pointer; transition:all 0.3s;
+  }
+  .btn-add:hover { background:var(--leaf); transform:scale(1.04); }
+
+  /* ABOUT PAGE */
+  .about-split {
+    display:grid; grid-template-columns:1fr 1fr;
+    min-height:100vh;
+  }
+  .about-visual {
+    background: linear-gradient(160deg, var(--deep) 0%, var(--moss) 60%, #4a7c2f 100%);
+    position:relative; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+    padding: 100px 56px 60px;
+  }
+  .about-moringa-art {
+    font-size:12rem; opacity:0.12; position:absolute;
+    animation: slowSpin 20s linear infinite;
+    top:50%; left:50%; transform:translate(-50%,-50%);
+  }
+  @keyframes slowSpin { to { transform:translate(-50%,-50%) rotate(360deg); } }
+  .about-stat-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:2px;
+    position:relative; z-index:2; width:100%;
+  }
+  .about-stat {
+    background:rgba(255,255,255,0.06); padding:40px 32px;
+    border:1px solid rgba(255,255,255,0.08);
+    transition:background 0.3s;
+  }
+  .about-stat:hover { background:rgba(255,255,255,0.12); }
+  .about-stat-num {
+    font-family:'Cormorant Garamond',serif;
+    font-size:3.5rem; font-weight:300; color:var(--lime);
+    line-height:1;
+  }
+  .about-stat-label {
+    font-size:0.78rem; color:rgba(245,240,232,0.6);
+    letter-spacing:0.1em; text-transform:uppercase; margin-top:8px;
+  }
+  .about-content {
+    background:var(--ivory);
+    padding:120px 72px; display:flex;
+    flex-direction:column; justify-content:center;
+    padding-top: 140px;
+  }
+  .about-content h2 {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(2.8rem,4vw,4.2rem); font-weight:300;
+    line-height:1.1; color:var(--moss); margin-bottom:32px;
+  }
+  .about-content p {
+    font-size:0.95rem; line-height:1.85; color:#5a6e4a;
+    margin-bottom:20px; max-width:500px;
+  }
+  .about-timeline {
+    margin-top:48px; padding-top:48px;
+    border-top:1px solid rgba(74,124,47,0.2);
+  }
+  .timeline-item {
+    display:flex; gap:24px; margin-bottom:32px;
+    align-items:flex-start;
+  }
+  .timeline-year {
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.1rem; font-weight:600; color:var(--sprout);
+    min-width:52px;
+  }
+  .timeline-text h4 {
+    font-weight:600; font-size:0.9rem; color:var(--deep); margin-bottom:4px;
+  }
+  .timeline-text p { font-size:0.82rem; color:#7a8a6a; line-height:1.6; }
+
+  /* BLOG PAGE */
+  .blog-hero {
+    padding:160px 56px 80px;
+    background:var(--ivory); border-bottom:1px solid rgba(74,124,47,0.15);
+  }
+  .blog-hero h2 {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(3rem,5vw,5rem); font-weight:300;
+    color:var(--moss); margin-bottom:12px;
+  }
+  .blog-grid {
+    display:grid; grid-template-columns:1.5fr 1fr;
+    gap:28px; padding:56px 56px 100px;
+  }
+  .blog-featured {
+    background:white; overflow:hidden; cursor:pointer;
+    transition:transform 0.3s;
+    box-shadow:0 2px 20px rgba(0,0,0,0.06);
+  }
+  .blog-featured:hover { transform:translateY(-4px); }
+  .blog-img {
+    height:360px;
+    background:linear-gradient(135deg, var(--moss), var(--leaf), var(--sprout));
+    display:flex; align-items:center; justify-content:center;
+    font-size:7rem;
+    position:relative; overflow:hidden;
+  }
+  .blog-img::after {
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(26,46,16,0.6) 0%, transparent 60%);
+  }
+  .blog-body { padding:36px 36px 40px; }
+  .blog-tag {
+    display:inline-block; background:var(--lime); color:var(--deep);
+    font-size:0.68rem; font-weight:700; letter-spacing:0.12em;
+    text-transform:uppercase; padding:4px 12px; margin-bottom:16px;
+  }
+  .blog-title {
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.9rem; font-weight:600; color:var(--deep);
+    line-height:1.25; margin-bottom:14px;
+  }
+  .blog-excerpt { font-size:0.88rem; color:#6b7c5a; line-height:1.75; }
+  .blog-meta {
+    display:flex; gap:20px; margin-top:24px;
+    font-size:0.75rem; color:#9aaa8a;
+    letter-spacing:0.08em;
+  }
+  .blog-list { display:flex; flex-direction:column; gap:20px; }
+  .blog-small {
+    background:white; display:flex; gap:0; overflow:hidden;
+    cursor:pointer; transition:transform 0.3s;
+    box-shadow:0 2px 12px rgba(0,0,0,0.05);
+  }
+  .blog-small:hover { transform:translateX(4px); }
+  .blog-small-img {
+    width:120px; flex-shrink:0;
+    background:linear-gradient(135deg, var(--sprout), var(--lime));
+    display:flex; align-items:center; justify-content:center;
+    font-size:2.5rem;
+  }
+  .blog-small-body { padding:20px 24px; }
+  .blog-small-title {
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.1rem; font-weight:600; color:var(--deep);
+    margin-bottom:8px; line-height:1.3;
+  }
+  .blog-small-excerpt { font-size:0.78rem; color:#7a8a6a; line-height:1.6; }
+
+  /* CONTACT PAGE */
+  .contact-layout {
+    display:grid; grid-template-columns:1fr 1fr; min-height:100vh;
+  }
+  .contact-info {
+    background:linear-gradient(160deg, var(--deep), var(--moss));
+    padding:140px 64px 80px;
+    display:flex; flex-direction:column; justify-content:center;
+    position:relative; overflow:hidden;
+  }
+  .contact-bg-text {
+    position:absolute; font-family:'Cormorant Garamond',serif;
+    font-size:18rem; font-weight:600; color:rgba(255,255,255,0.03);
+    line-height:1; top:50%; left:-20px;
+    transform:translateY(-50%);
+    pointer-events:none; white-space:nowrap;
+  }
+  .contact-info h2 {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(2.5rem,4vw,4rem); font-weight:300;
+    color:var(--cream); margin-bottom:24px; line-height:1.1;
+    position:relative; z-index:2;
+  }
+  .contact-info p {
+    font-size:0.92rem; color:rgba(245,240,232,0.65);
+    line-height:1.8; max-width:380px; margin-bottom:48px;
+    position:relative; z-index:2;
+  }
+  .contact-details { position:relative; z-index:2; }
+  .contact-detail {
+    display:flex; gap:20px; align-items:flex-start;
+    margin-bottom:28px;
+  }
+  .contact-detail-icon {
+    width:44px; height:44px;
+    background:rgba(184,224,74,0.15);
+    border:1px solid rgba(184,224,74,0.3);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.1rem; flex-shrink:0;
+  }
+  .contact-detail-text strong {
+    display:block; font-size:0.78rem; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--lime); margin-bottom:4px;
+  }
+  .contact-detail-text span {
+    font-size:0.88rem; color:rgba(245,240,232,0.7);
+  }
+  .contact-form-wrap {
+    background:var(--ivory); padding:140px 72px 80px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .form-heading {
+    font-family:'Cormorant Garamond',serif;
+    font-size:2rem; font-weight:600; color:var(--moss);
+    margin-bottom:36px;
+  }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .form-group { margin-bottom:20px; }
+  .form-group label {
+    display:block; font-size:0.72rem; font-weight:600;
+    letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--moss); margin-bottom:8px;
+  }
+  .form-group input, .form-group textarea, .form-group select {
+    width:100%; background:white; border:1.5px solid rgba(74,124,47,0.2);
+    padding:13px 18px; font-family:'Outfit',sans-serif;
+    font-size:0.9rem; color:var(--deep); outline:none;
+    transition:border-color 0.3s;
+    -webkit-appearance:none;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color:var(--sprout); box-shadow:0 0 0 3px var(--glow);
+  }
+  .form-group textarea { height:120px; resize:vertical; }
+  .btn-submit {
+    background:var(--moss); color:var(--cream);
+    border:none; padding:16px 40px; width:100%;
+    font-family:'Outfit',sans-serif; font-size:0.9rem;
+    font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+    cursor:pointer; transition:all 0.3s; margin-top:8px;
+    position:relative; overflow:hidden;
+  }
+  .btn-submit::before {
+    content:''; position:absolute; left:-100%; top:0;
+    width:100%; height:100%;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition:left 0.5s;
+  }
+  .btn-submit:hover { background:var(--leaf); }
+  .btn-submit:hover::before { left:100%; }
+
+  /* CART SIDEBAR */
+  .cart-overlay {
+    position:fixed; inset:0; background:rgba(26,46,16,0.6);
+    z-index:2000; display:none; opacity:0;
+    transition:opacity 0.3s;
+    backdrop-filter:blur(4px);
+  }
+  .cart-overlay.open { display:flex; opacity:1; justify-content:flex-end; }
+  .cart-panel {
+    width:420px; background:var(--ivory); height:100%;
+    display:flex; flex-direction:column;
+    transform:translateX(100%); transition:transform 0.4s ease;
+    box-shadow:-20px 0 60px rgba(0,0,0,0.2);
+  }
+  .cart-overlay.open .cart-panel { transform:translateX(0); }
+  .cart-header {
+    padding:32px 32px 24px;
+    border-bottom:1px solid rgba(74,124,47,0.15);
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .cart-header h3 {
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.6rem; font-weight:600; color:var(--moss);
+  }
+  .cart-close {
+    background:none; border:none; font-size:1.4rem;
+    cursor:pointer; color:var(--moss); padding:4px;
+    transition:transform 0.2s;
+  }
+  .cart-close:hover { transform:rotate(90deg); }
+  .cart-items { flex:1; overflow-y:auto; padding:24px 32px; }
+  .cart-item {
+    display:flex; gap:16px; padding:20px 0;
+    border-bottom:1px solid rgba(74,124,47,0.1);
+    align-items:flex-start;
+  }
+  .cart-item-img {
+    width:70px; height:70px;
+    background:linear-gradient(135deg, #e8f5d8, #c8e8a0);
+    display:flex; align-items:center; justify-content:center;
+    font-size:2rem; flex-shrink:0;
+  }
+  .cart-item-name {
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.05rem; font-weight:600; color:var(--deep);
+    margin-bottom:4px;
+  }
+  .cart-item-price { font-size:0.88rem; color:var(--sprout); font-weight:500; }
+  .cart-item-qty {
+    display:flex; align-items:center; gap:12px; margin-top:8px;
+  }
+  .qty-btn {
+    width:26px; height:26px; border:1px solid rgba(74,124,47,0.3);
+    background:none; cursor:pointer; display:flex; align-items:center;
+    justify-content:center; font-size:1rem; color:var(--moss);
+    transition:all 0.2s;
+  }
+  .qty-btn:hover { background:var(--moss); color:white; }
+  .cart-footer {
+    padding:24px 32px; border-top:1px solid rgba(74,124,47,0.15);
+  }
+  .cart-total {
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:16px;
+  }
+  .cart-total span:first-child {
+    font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--moss);
+  }
+  .cart-total-price {
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.8rem; font-weight:600; color:var(--moss);
+  }
+  .btn-checkout {
+    width:100%; background:var(--moss); color:var(--cream);
+    border:none; padding:16px; font-family:'Outfit',sans-serif;
+    font-size:0.9rem; font-weight:600; letter-spacing:0.1em;
+    text-transform:uppercase; cursor:pointer; transition:all 0.3s;
+  }
+  .btn-checkout:hover { background:var(--leaf); }
+
+  /* FOOTER */
+  footer {
+    background:var(--deep); color:rgba(245,240,232,0.65);
+    padding:80px 56px 40px;
+  }
+  .footer-grid {
+    display:grid; grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:56px; margin-bottom:64px;
+  }
+  .footer-brand .logo { color:var(--cream); margin-bottom:20px; display:flex; }
+  .footer-brand p { font-size:0.85rem; line-height:1.8; max-width:280px; }
+  .footer-col h4 {
+    font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--lime); font-weight:600; margin-bottom:20px;
+  }
+  .footer-col ul { list-style:none; }
+  .footer-col li {
+    font-size:0.85rem; margin-bottom:12px;
+    cursor:pointer; transition:color 0.2s;
+  }
+  .footer-col li:hover { color:var(--cream); }
+  .footer-bottom {
+    border-top:1px solid rgba(255,255,255,0.08);
+    padding-top:32px; display:flex;
+    justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:16px;
+  }
+  .footer-bottom p { font-size:0.78rem; }
+  .footer-social { display:flex; gap:12px; }
+  .social-btn {
+    width:36px; height:36px;
+    border:1px solid rgba(255,255,255,0.15);
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.9rem; cursor:pointer;
+    transition:all 0.3s;
+  }
+  .social-btn:hover { background:var(--leaf); border-color:var(--leaf); }
+
+  /* NOTIFICATION TOAST */
+  .toast {
+    position:fixed; bottom:36px; right:36px; z-index:3000;
+    background:var(--moss); color:var(--cream);
+    padding:16px 24px; display:flex; gap:12px; align-items:center;
+    transform:translateY(100px); opacity:0;
+    transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    box-shadow:0 12px 40px rgba(0,0,0,0.25);
+    max-width:320px;
+  }
+  .toast.show { transform:translateY(0); opacity:1; }
+  .toast-icon { font-size:1.2rem; }
+  .toast-text { font-size:0.85rem; line-height:1.4; }
+
+  /* RESPONSIVE TWEAKS */
+  @media (max-width:900px) {
+    nav { padding:18px 24px; }
+    .nav-links { display:none; }
+    .hero-content { padding:0 24px; }
+    .features, .products-grid { padding-left:24px; padding-right:24px; }
+    .features-grid { grid-template-columns:1fr 1fr; }
+    .products-grid { grid-template-columns:1fr 1fr; }
+    .about-split, .contact-layout { grid-template-columns:1fr; }
+    .blog-grid { grid-template-columns:1fr; }
+    .footer-grid { grid-template-columns:1fr 1fr; }
+    .form-row { grid-template-columns:1fr; }
+  }
+
+  /* SCROLL ANIMATIONS */
+  .reveal {
+    opacity:0; transform:translateY(30px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* 5D DEPTH EFFECTS */
+  .parallax-layer {
+    transform-style: preserve-3d;
+    transition: transform 0.1s linear;
+  }
+  .depth-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .depth-card:hover {
+    transform: perspective(1000px) rotateY(-3deg) rotateX(3deg) translateZ(20px);
+    box-shadow: 20px 20px 60px var(--shadow);
+  }
+
+  /* HERO 5D BLOB */
+  .blob-5d {
+    position:absolute; right:5%; top:50%; transform:translateY(-50%);
+    width:50vw; max-width:600px; z-index:3;
+    animation: float5d 6s ease-in-out infinite;
+  }
+  @keyframes float5d {
+    0%,100% { transform:translateY(-50%) rotateX(0deg) rotateY(0deg); }
+    25% { transform:translateY(-53%) rotateX(5deg) rotateY(-5deg); }
+    50% { transform:translateY(-47%) rotateX(-3deg) rotateY(5deg); }
+    75% { transform:translateY(-52%) rotateX(5deg) rotateY(3deg); }
+  }
+
+  .empty-cart {
+    text-align:center; padding:60px 20px;
+    color:#9aaa8a; font-family:'Cormorant Garamond',serif;
+    font-size:1.3rem;
+  }
+
+  /* NEWSLETTER SECTION */
+  .newsletter {
+    background:var(--moss); padding:80px 56px;
+    text-align:center;
+  }
+  .newsletter h2 {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(2rem,3.5vw,3rem); font-weight:300;
+    color:var(--cream); margin-bottom:16px;
+  }
+  .newsletter p { color:rgba(245,240,232,0.65); margin-bottom:36px; }
+  .newsletter-form {
+    display:flex; gap:0; max-width:480px; margin:0 auto;
+  }
+  .newsletter-input {
+    flex:1; background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.2);
+    border-right:none; padding:14px 20px;
+    color:white; font-family:'Outfit',sans-serif;
+    font-size:0.9rem; outline:none;
+  }
+  .newsletter-input::placeholder { color:rgba(255,255,255,0.4); }
+  .newsletter-input:focus { border-color:var(--lime); }
+  .newsletter-btn {
+    background:var(--lime); color:var(--deep);
+    border:none; padding:14px 28px;
+    font-family:'Outfit',sans-serif; font-size:0.82rem;
+    font-weight:700; letter-spacing:0.1em;
+    text-transform:uppercase; cursor:pointer;
+    transition:background 0.3s;
+  }
+  .newsletter-btn:hover { background:white; }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    padding:100px 56px; background:var(--cream);
+  }
+  .testimonials-grid {
+    display:grid; grid-template-columns:repeat(3,1fr);
+    gap:24px; margin-top:56px;
+  }
+  .testimonial-card {
+    background:white; padding:36px; position:relative;
+    box-shadow:0 2px 20px rgba(0,0,0,0.05);
+    transition:transform 0.3s;
+  }
+  .testimonial-card:hover { transform:translateY(-4px); }
+  .testimonial-card::before {
+    content:'"'; font-family:'Cormorant Garamond',serif;
+    font-size:5rem; color:var(--lime); line-height:1;
+    position:absolute; top:-10px; left:24px; font-weight:300;
+  }
+  .testimonial-text {
+    font-size:0.9rem; line-height:1.8; color:#5a6e4a;
+    margin-bottom:24px; padding-top:20px;
+  }
+  .testimonial-author {
+    display:flex; align-items:center; gap:12px;
+  }
+  .author-avatar {
+    width:40px; height:40px; border-radius:50%;
+    background:linear-gradient(135deg,var(--leaf),var(--sprout));
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.1rem; color:white; font-weight:600;
+    font-family:'Cormorant Garamond',serif;
+  }
+  .author-name { font-weight:600; font-size:0.85rem; color:var(--deep); }
+  .author-loc { font-size:0.75rem; color:#9aaa8a; }
+  .stars { color:var(--gold); font-size:0.8rem; margin-bottom:4px; }
+
+  /* ===================== CHECKOUT MODAL ===================== */
+  .checkout-overlay {
+    position:fixed; inset:0; z-index:4000;
+    background:rgba(26,46,16,0.7); backdrop-filter:blur(6px);
+    display:none; align-items:center; justify-content:center;
+    opacity:0; transition:opacity 0.35s;
+  }
+  .checkout-overlay.open { display:flex; opacity:1; }
+  .checkout-modal {
+    background:var(--ivory); width:100%; max-width:560px;
+    max-height:92vh; overflow-y:auto;
+    transform:translateY(40px) scale(0.97);
+    transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    box-shadow:0 40px 100px rgba(0,0,0,0.3);
+    position:relative;
+  }
+  .checkout-overlay.open .checkout-modal { transform:translateY(0) scale(1); }
+  .checkout-modal-header {
+    background:linear-gradient(135deg, var(--deep), var(--moss));
+    padding:32px 36px 28px;
+    display:flex; justify-content:space-between; align-items:flex-start;
+  }
+  .checkout-modal-header h3 {
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.8rem; font-weight:300; color:var(--cream);
+  }
+  .checkout-modal-header p { font-size:0.78rem; color:rgba(245,240,232,0.55); margin-top:4px; }
+  .checkout-modal-close {
+    background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15);
+    color:var(--cream); width:36px; height:36px;
+    cursor:pointer; font-size:1rem; flex-shrink:0;
+    transition:all 0.2s; display:flex; align-items:center; justify-content:center;
+  }
+  .checkout-modal-close:hover { background:rgba(255,255,255,0.2); transform:rotate(90deg); }
+  .checkout-modal-body { padding:32px 36px; }
+  .checkout-steps {
+    display:flex; margin-bottom:32px;
+    border-bottom:2px solid rgba(74,124,47,0.15);
+  }
+  .checkout-step {
+    flex:1; padding:12px 0; text-align:center;
+    font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;
+    color:#9aaa8a; font-weight:500;
+    border-bottom:2px solid transparent; margin-bottom:-2px; transition:all 0.3s;
+  }
+  .checkout-step.active { color:var(--leaf); border-bottom-color:var(--leaf); }
+  .checkout-step.done { color:var(--sprout); }
+  .modal-order-item {
+    display:flex; align-items:center; gap:14px;
+    padding:12px 0; border-bottom:1px solid rgba(74,124,47,0.1);
+  }
+  .modal-item-img {
+    width:48px; height:48px;
+    background:linear-gradient(135deg,#e8f5d8,#c8e8a0);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.4rem; flex-shrink:0;
+  }
+  .modal-item-name { flex:1; font-size:0.88rem; font-weight:500; color:var(--deep); }
+  .modal-item-qty { font-size:0.75rem; color:#9aaa8a; margin-top:2px; }
+  .modal-item-price { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:600; color:var(--moss); }
+  .modal-total-row { display:flex; justify-content:space-between; padding:8px 0; font-size:0.85rem; color:#5a6e4a; }
+  .modal-total-row.grand {
+    border-top:1.5px solid rgba(74,124,47,0.2); margin-top:8px; padding-top:14px;
+    font-weight:600; font-size:1rem; color:var(--moss);
+  }
+  .modal-grand-price { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; color:var(--moss); }
+  .promo-row { display:flex; gap:8px; margin-bottom:20px; }
+  .promo-input {
+    flex:1; background:white; border:1.5px solid rgba(74,124,47,0.2);
+    padding:11px 16px; font-family:'Outfit',sans-serif; font-size:0.85rem;
+    color:var(--deep); outline:none; transition:border-color 0.3s;
+  }
+  .promo-input:focus { border-color:var(--sprout); }
+  .promo-apply {
+    background:var(--moss); color:var(--cream); border:none; padding:11px 20px;
+    font-family:'Outfit',sans-serif; font-size:0.78rem; font-weight:600;
+    letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; transition:background 0.3s;
+  }
+  .promo-apply:hover { background:var(--leaf); }
+  .promo-success { font-size:0.78rem; color:var(--sprout); font-weight:500; display:none; margin-top:4px; }
+  .checkout-form-section { display:none; }
+  .checkout-form-section.active { display:block; }
+  .cform-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .cform-group { margin-bottom:16px; }
+  .cform-group label {
+    display:block; font-size:0.68rem; font-weight:700;
+    letter-spacing:0.14em; text-transform:uppercase; color:var(--moss); margin-bottom:6px;
+  }
+  .cform-group input, .cform-group select {
+    width:100%; background:white; border:1.5px solid rgba(74,124,47,0.2);
+    padding:12px 16px; font-family:'Outfit',sans-serif; font-size:0.88rem;
+    color:var(--deep); outline:none; transition:border-color 0.3s, box-shadow 0.3s;
+  }
+  .cform-group input:focus, .cform-group select:focus { border-color:var(--sprout); box-shadow:0 0 0 3px var(--glow); }
+  .cform-group input.error { border-color:#e05555; }
+  .payment-methods { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+  .payment-method {
+    display:flex; align-items:center; gap:14px; padding:16px 20px;
+    border:1.5px solid rgba(74,124,47,0.2); cursor:pointer;
+    transition:all 0.25s; background:white;
+  }
+  .payment-method:hover { border-color:var(--sprout); background:var(--ivory); }
+  .payment-method.selected { border-color:var(--leaf); background:rgba(120,179,86,0.06); }
+  .payment-method input[type=radio] { accent-color:var(--leaf); width:16px; height:16px; }
+  .payment-method-label { flex:1; }
+  .payment-method-label strong { font-size:0.9rem; color:var(--deep); display:block; }
+  .payment-method-label span { font-size:0.75rem; color:#9aaa8a; }
+  .payment-method-icon { font-size:1.4rem; }
+  .razorpay-badge {
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    margin-top:16px; padding:10px;
+    background:rgba(74,124,47,0.05); border:1px solid rgba(74,124,47,0.1);
+  }
+  .razorpay-badge span { font-size:0.72rem; color:#9aaa8a; letter-spacing:0.06em; }
+  .checkout-actions { display:flex; gap:12px; margin-top:24px; }
+  .btn-back-step {
+    background:transparent; border:1.5px solid rgba(74,124,47,0.25); color:var(--moss);
+    padding:14px 24px; font-family:'Outfit',sans-serif; font-size:0.82rem;
+    font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
+    cursor:pointer; transition:all 0.3s;
+  }
+  .btn-back-step:hover { border-color:var(--moss); background:var(--cream); }
+  .btn-next-step {
+    flex:1; background:var(--moss); color:var(--cream); border:none; padding:14px;
+    font-family:'Outfit',sans-serif; font-size:0.9rem; font-weight:600;
+    letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; transition:all 0.3s;
+  }
+  .btn-next-step:hover { background:var(--leaf); }
+  .btn-next-step.loading { pointer-events:none; opacity:0.7; }
+  .btn-next-step .spinner {
+    display:none; width:18px; height:18px;
+    border:2px solid rgba(255,255,255,0.3); border-top-color:white;
+    border-radius:50%; animation:spin 0.7s linear infinite; margin:0 auto;
+  }
+  .btn-next-step.loading .spinner { display:block; }
+  .btn-next-step.loading .btn-label { display:none; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .checkout-success { text-align:center; padding:40px 20px; display:none; }
+  .success-icon {
+    width:72px; height:72px; background:linear-gradient(135deg,var(--sprout),var(--lime));
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-size:2rem; margin:0 auto 24px;
+    animation:popIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes popIn { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
+  .success-title { font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:600; color:var(--moss); margin-bottom:12px; }
+  .success-sub { font-size:0.9rem; color:#5a6e4a; line-height:1.7; margin-bottom:28px; }
+  .success-order-id {
+    background:white; border:1px solid rgba(74,124,47,0.2);
+    padding:14px 24px; display:inline-block;
+    font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--moss); margin-bottom:28px;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast">
+  <span class="toast-icon">🌿</span>
+  <span class="toast-text" id="toastText">Added to cart!</span>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="checkout-overlay" id="checkoutOverlay">
+  <div class="checkout-modal" id="checkoutModal">
+    <div class="checkout-modal-header">
+      <div>
+        <h3>Checkout</h3>
+        <p>moringai.in · Secure Payment via Razorpay</p>
+      </div>
+      <button class="checkout-modal-close" onclick="closeCheckout()">✕</button>
+    </div>
+    <div class="checkout-modal-body">
+      <!-- Steps indicator -->
+      <div class="checkout-steps">
+        <div class="checkout-step active" id="step-tab-1">🛒 Review</div>
+        <div class="checkout-step" id="step-tab-2">📋 Details</div>
+        <div class="checkout-step" id="step-tab-3">💳 Payment</div>
+      </div>
+
+      <!-- STEP 1: Order Review -->
+      <div class="checkout-form-section active" id="step-1">
+        <div id="modalOrderItems"></div>
+        <div style="margin-top:16px;">
+          <!-- Promo Code -->
+          <div class="promo-row">
+            <input type="text" class="promo-input" id="promoInput" placeholder="Promo code (try MORINGA10)">
+            <button class="promo-apply" onclick="applyPromo()">Apply</button>
+          </div>
+          <div class="promo-success" id="promoSuccess">🎉 MORINGA10 applied — 10% off!</div>
+          <!-- Totals -->
+          <div class="modal-total-row"><span>Subtotal</span><span id="modalSubtotal">₹0</span></div>
+          <div class="modal-total-row" id="discountRow" style="display:none;color:var(--sprout)"><span>Discount (10%)</span><span id="modalDiscount">−₹0</span></div>
+          <div class="modal-total-row"><span>Shipping</span><span id="modalShipping">₹49</span></div>
+          <div class="modal-total-row grand">
+            <span>Total</span>
+            <span class="modal-grand-price" id="modalGrandTotal">₹0</span>
+          </div>
+        </div>
+        <div class="checkout-actions">
+          <button class="btn-next-step" onclick="goToStep(2)"><span class="btn-label">Continue to Details →</span><div class="spinner"></div></button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Customer Details -->
+      <div class="checkout-form-section" id="step-2">
+        <div class="cform-row">
+          <div class="cform-group">
+            <label>First Name *</label>
+            <input type="text" id="cf-fname" placeholder="Priya">
+          </div>
+          <div class="cform-group">
+            <label>Last Name *</label>
+            <input type="text" id="cf-lname" placeholder="Krishnamurthy">
+          </div>
+        </div>
+        <div class="cform-group">
+          <label>Email Address *</label>
+          <input type="email" id="cf-email" placeholder="priya@example.com">
+        </div>
+        <div class="cform-group">
+          <label>Phone Number *</label>
+          <input type="tel" id="cf-phone" placeholder="+91 98765 43210">
+        </div>
+        <div class="cform-group">
+          <label>Delivery Address *</label>
+          <input type="text" id="cf-address" placeholder="House No., Street, Area">
+        </div>
+        <div class="cform-row">
+          <div class="cform-group">
+            <label>City *</label>
+            <input type="text" id="cf-city" placeholder="Puducherry">
+          </div>
+          <div class="cform-group">
+            <label>Pincode *</label>
+            <input type="text" id="cf-pin" placeholder="605001">
+          </div>
+        </div>
+        <div class="cform-group">
+          <label>State *</label>
+          <select id="cf-state">
+            <option value="">Select State</option>
+            <option>Andhra Pradesh</option><option>Assam</option><option>Bihar</option>
+            <option>Chhattisgarh</option><option>Delhi</option><option>Goa</option>
+            <option>Gujarat</option><option>Haryana</option><option>Himachal Pradesh</option>
+            <option>Jharkhand</option><option>Karnataka</option><option>Kerala</option>
+            <option>Madhya Pradesh</option><option>Maharashtra</option><option>Manipur</option>
+            <option>Odisha</option><option selected>Puducherry</option><option>Punjab</option>
+            <option>Rajasthan</option><option>Tamil Nadu</option><option>Telangana</option>
+            <option>Uttar Pradesh</option><option>Uttarakhand</option><option>West Bengal</option>
+          </select>
+        </div>
+        <div class="checkout-actions">
+          <button class="btn-back-step" onclick="goToStep(1)">← Back</button>
+          <button class="btn-next-step" onclick="goToStep(3)"><span class="btn-label">Continue to Payment →</span><div class="spinner"></div></button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Payment -->
+      <div class="checkout-form-section" id="step-3">
+        <p style="font-size:0.82rem;color:#7a8a6a;margin-bottom:20px;line-height:1.7">
+          Select your preferred payment method. You'll be securely redirected to Razorpay — India's most trusted payment gateway.
+        </p>
+        <div class="payment-methods">
+          <label class="payment-method selected" id="pm-all">
+            <input type="radio" name="paymethod" value="all" checked onchange="selectPayMethod(this.parentElement)">
+            <div class="payment-method-icon">📱</div>
+            <div class="payment-method-label">
+              <strong>All Options (Recommended)</strong>
+              <span>UPI, Cards, Net Banking, Wallets, EMI</span>
+            </div>
+          </label>
+          <label class="payment-method" id="pm-upi">
+            <input type="radio" name="paymethod" value="upi" onchange="selectPayMethod(this.parentElement)">
+            <div class="payment-method-icon">⚡</div>
+            <div class="payment-method-label">
+              <strong>UPI</strong>
+              <span>GPay, PhonePe, Paytm, BHIM & more</span>
+            </div>
+          </label>
+          <label class="payment-method" id="pm-card">
+            <input type="radio" name="paymethod" value="card" onchange="selectPayMethod(this.parentElement)">
+            <div class="payment-method-icon">💳</div>
+            <div class="payment-method-label">
+              <strong>Credit / Debit Card</strong>
+              <span>Visa, Mastercard, RuPay, Amex</span>
+            </div>
+          </label>
+          <label class="payment-method" id="pm-netbanking">
+            <input type="radio" name="paymethod" value="netbanking" onchange="selectPayMethod(this.parentElement)">
+            <div class="payment-method-icon">🏦</div>
+            <div class="payment-method-label">
+              <strong>Net Banking</strong>
+              <span>All major Indian banks supported</span>
+            </div>
+          </label>
+          <label class="payment-method" id="pm-cod">
+            <input type="radio" name="paymethod" value="cod" onchange="selectPayMethod(this.parentElement)">
+            <div class="payment-method-icon">💵</div>
+            <div class="payment-method-label">
+              <strong>Cash on Delivery</strong>
+              <span>Pay when your order arrives</span>
+            </div>
+          </label>
+        </div>
+
+        <!-- Order summary recap -->
+        <div style="background:white;border:1px solid rgba(74,124,47,0.15);padding:16px 20px;margin-bottom:0">
+          <div class="modal-total-row" style="padding:4px 0"><span>Order Total</span><span class="modal-grand-price" id="payGrandTotal" style="font-size:1.2rem">₹0</span></div>
+        </div>
+
+        <div class="razorpay-badge">
+          <span>🔒 Secured by</span>
+          <strong style="font-size:0.82rem;color:#528FF0;letter-spacing:0.04em">Razorpay</strong>
+          <span>· SSL Encrypted · PCI DSS Compliant</span>
+        </div>
+
+        <div class="checkout-actions">
+          <button class="btn-back-step" onclick="goToStep(2)">← Back</button>
+          <button class="btn-next-step" id="payNowBtn" onclick="initiateRazorpay()">
+            <span class="btn-label">🔒 Pay Now</span>
+            <div class="spinner"></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- SUCCESS SCREEN -->
+      <div class="checkout-success" id="checkoutSuccess">
+        <div class="success-icon">✓</div>
+        <div class="success-title">Order Placed!</div>
+        <p class="success-sub">
+          Thank you for choosing Moringai. Your order has been confirmed and will be dispatched within 24 hours.<br>
+          A confirmation has been sent to your email.
+        </p>
+        <div class="success-order-id" id="successOrderId">Order #MRG-000000</div>
+        <button class="btn-next-step" style="max-width:240px;margin:0 auto;display:block" onclick="closeCheckout();showPage('products')">Continue Shopping</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cartOverlay">
+  <div class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="cart-close" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="empty-cart">Your cart is empty<br><small style="font-size:0.9rem;color:#bbb;font-family:Outfit">Add some green goodness 🌿</small></div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total">
+        <span>Total</span>
+        <span class="cart-total-price" id="cartTotal">₹0</span>
+      </div>
+      <button class="btn-checkout" onclick="closeCart(); openCheckout()">Proceed to Checkout →</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav id="mainNav">
+  <div class="logo" onclick="showPage('home')">
+    <div class="logo-leaf"></div>
+    Moringai
+  </div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
+    <li><a onclick="showPage('products')" id="nav-products">Shop</a></li>
+    <li><a onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a onclick="showPage('blog')" id="nav-blog">Journal</a></li>
+    <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-cart" onclick="openCart()">
+      🛒 Cart
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- =================== HOME PAGE =================== -->
+<div class="page active" id="page-home">
+
+  <section class="hero" id="heroSection">
+    <canvas class="hero-bg-canvas" id="heroCanvas"></canvas>
+    <div class="hero-particles" id="heroParticles"></div>
+
+    <div class="hero-content parallax-layer" id="heroContent">
+      <div class="hero-tag">🌿 100% Organic · From the Heart of India</div>
+      <h1>
+        Pure Green<br>
+        <em>Intelligence</em><br>
+        of Nature
+      </h1>
+      <p class="hero-sub">
+        Discover the miraculous Moringa — the world's most nutrient-dense superfood, ethically harvested from sun-drenched farms across Tamil Nadu and Andhra Pradesh.
+      </p>
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="showPage('products')">Shop Collection</button>
+        <button class="btn-outline" onclick="showPage('about')">Our Story</button>
+      </div>
+    </div>
+
+    <!-- 5D SVG Hero Visual -->
+    <div class="blob-5d">
+      <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 30px 60px rgba(120,179,86,0.4))">
+        <defs>
+          <radialGradient id="bg1" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#7db356" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#2d4a1e" stop-opacity="0.05"/>
+          </radialGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="8" result="blur"/>
+            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+          </filter>
+        </defs>
+        <!-- Circular rings -->
+        <circle cx="250" cy="250" r="220" fill="none" stroke="rgba(184,224,74,0.15)" stroke-width="1.5"/>
+        <circle cx="250" cy="250" r="180" fill="none" stroke="rgba(184,224,74,0.1)" stroke-width="1"/>
+        <circle cx="250" cy="250" r="140" fill="url(#bg1)"/>
+        <!-- Moringa branches -->
+        <g fill="none" stroke="rgba(184,224,74,0.6)" stroke-width="2">
+          <path d="M250 250 L250 80" stroke-linecap="round"/>
+          <path d="M250 150 Q230 130 210 140" stroke-linecap="round"/>
+          <path d="M250 150 Q270 130 290 140" stroke-linecap="round"/>
+          <path d="M250 200 Q225 175 195 185" stroke-linecap="round"/>
+          <path d="M250 200 Q275 175 305 185" stroke-linecap="round"/>
+          <path d="M250 120 Q235 105 220 110" stroke-linecap="round"/>
+          <path d="M250 120 Q265 105 280 110" stroke-linecap="round"/>
+        </g>
+        <!-- Leaves -->
+        <g fill="rgba(120,179,86,0.8)" filter="url(#glow)">
+          <ellipse cx="210" cy="140" rx="14" ry="8" transform="rotate(-20,210,140)"/>
+          <ellipse cx="290" cy="140" rx="14" ry="8" transform="rotate(20,290,140)"/>
+          <ellipse cx="195" cy="185" rx="16" ry="9" transform="rotate(-30,195,185)"/>
+          <ellipse cx="305" cy="185" rx="16" ry="9" transform="rotate(30,305,185)"/>
+          <ellipse cx="220" cy="110" rx="12" ry="7" transform="rotate(-25,220,110)"/>
+          <ellipse cx="280" cy="110" rx="12" ry="7" transform="rotate(25,280,110)"/>
+          <ellipse cx="250" cy="80" rx="13" ry="8"/>
+        </g>
+        <!-- Pods -->
+        <g fill="none" stroke="rgba(201,168,76,0.7)" stroke-width="2">
+          <path d="M250 300 Q240 330 250 360 Q260 330 250 300" stroke-linecap="round"/>
+          <path d="M210 310 Q195 335 200 360 Q215 340 210 310" transform="rotate(-15,210,310)"/>
+          <path d="M290 310 Q305 335 300 360 Q285 340 290 310" transform="rotate(15,290,310)"/>
+        </g>
+        <!-- Center glow -->
+        <circle cx="250" cy="250" r="30" fill="rgba(184,224,74,0.12)"/>
+        <circle cx="250" cy="250" r="15" fill="rgba(184,224,74,0.25)"/>
+        <circle cx="250" cy="250" r="6" fill="rgba(184,224,74,0.8)"/>
+        <!-- Floating particles -->
+        <circle cx="150" cy="200" r="3" fill="rgba(184,224,74,0.5)" opacity="0.7">
+          <animate attributeName="cy" values="200;185;200" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="350" cy="160" r="4" fill="rgba(120,179,86,0.5)" opacity="0.6">
+          <animate attributeName="cy" values="160;145;160" dur="4s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="180" cy="320" r="2.5" fill="rgba(184,224,74,0.6)">
+          <animate attributeName="cy" values="320;305;320" dur="3.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="370" cy="290" r="3.5" fill="rgba(120,179,86,0.4)">
+          <animate attributeName="cy" values="290;275;290" dur="2.8s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      Scroll to explore
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span class="marquee-item">Organic Certified <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Free Shipping above ₹499 <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">100% Natural <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Sustainably Harvested <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Lab Tested <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">No Preservatives <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Made in India <span class="marquee-dot">✦</span></span>
+      <!-- Duplicate for seamless loop -->
+      <span class="marquee-item">Organic Certified <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Free Shipping above ₹499 <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">100% Natural <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Sustainably Harvested <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Lab Tested <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">No Preservatives <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Made in India <span class="marquee-dot">✦</span></span>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="section-label">Why Moringai</div>
+    <h2 class="features-heading">Nature's most powerful superfood, perfected.</h2>
+    <div class="features-grid">
+      <div class="feature-card reveal depth-card">
+        <div class="feature-icon">🌿</div>
+        <h3>Farm to Table</h3>
+        <p>Direct partnerships with 200+ organic farmers in Tamil Nadu, ensuring freshness and fair trade at every step of the journey.</p>
+      </div>
+      <div class="feature-card reveal depth-card" style="transition-delay:0.1s">
+        <div class="feature-icon">🔬</div>
+        <h3>Lab Verified</h3>
+        <p>Every batch tested at NABL-certified labs for purity, potency, and absence of heavy metals, pesticides, and contaminants.</p>
+      </div>
+      <div class="feature-card reveal depth-card" style="transition-delay:0.2s">
+        <div class="feature-icon">📦</div>
+        <h3>Swift Delivery</h3>
+        <p>Delivered across India in 2–5 business days in eco-friendly packaging that preserves freshness and honours our planet.</p>
+      </div>
+      <div class="feature-card reveal depth-card" style="transition-delay:0.3s">
+        <div class="feature-icon">♻️</div>
+        <h3>Zero Waste</h3>
+        <p>Our entire supply chain is designed around minimal waste. Packaging is biodegradable and we plant a tree per order.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-label">Voices of Wellness</div>
+    <h2 class="features-heading" style="margin-bottom:0">Loved by thousands across India</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">I've been using Moringai powder for 3 months and my energy levels have completely transformed. Pure quality, amazing taste when blended into smoothies!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">P</div>
+          <div>
+            <div class="author-name">Priya Krishnamurthy</div>
+            <div class="author-loc">Chennai, Tamil Nadu</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal" style="transition-delay:0.15s">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">As a nutritionist I'm very picky about supplements. Moringai's capsules are the real deal — clean label, no fillers, and the results speak for themselves.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div>
+            <div class="author-name">Dr. Amit Sharma</div>
+            <div class="author-loc">Bengaluru, Karnataka</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal" style="transition-delay:0.3s">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">The moringa oil is exceptional — I use it for cooking and skincare. The packaging is gorgeous and delivery was faster than expected. Highly recommend!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">S</div>
+          <div>
+            <div class="author-name">Sunita Verma</div>
+            <div class="author-loc">Puducherry</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+    <div class="section-label" style="justify-content:center; color:rgba(184,224,74,0.8)">Stay Green</div>
+    <h2>Join the Moringai Circle</h2>
+    <p>Wellness tips, exclusive offers, and farm-fresh updates delivered to your inbox.</p>
+    <div class="newsletter-form">
+      <input type="email" class="newsletter-input" placeholder="your@email.com">
+      <button class="newsletter-btn" onclick="showToast('🌿 Welcome to the Moringai Circle!')">Subscribe</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><div class="logo-leaf" style="width:22px;height:22px;"></div> Moringai</div>
+        <p>Bringing the miracle of Moringa from Indian farms to your doorstep — pure, potent, and planet-loving since 2021.</p>
+        <p style="margin-top:12px;font-size:0.78rem;color:rgba(245,240,232,0.4)">moringai.in</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li onclick="showPage('products')">Powders & Supplements</li>
+          <li onclick="showPage('products')">Moringa Oils</li>
+          <li onclick="showPage('products')">Teas & Infusions</li>
+          <li onclick="showPage('products')">Skincare Range</li>
+          <li onclick="showPage('products')">Gift Sets</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li onclick="showPage('about')">Our Story</li>
+          <li onclick="showPage('blog')">Green Journal</li>
+          <li onclick="showPage('contact')">Contact Us</li>
+          <li>Wholesale</li>
+          <li>Careers</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li>Track Order</li>
+          <li>Returns Policy</li>
+          <li>Shipping Info</li>
+          <li>FAQ</li>
+          <li>Privacy Policy</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Moringai. All rights reserved. moringai.in</p>
+      <div class="footer-social">
+        <div class="social-btn">𝕏</div>
+        <div class="social-btn">in</div>
+        <div class="social-btn">📷</div>
+        <div class="social-btn">▶</div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- =================== PRODUCTS PAGE =================== -->
+<div class="page" id="page-products">
+  <div class="products-hero">
+    <div class="section-label" style="justify-content:center;color:var(--lime)">The Collection</div>
+    <h2>Pure Moringa, Every Form</h2>
+    <p>From farm-fresh powder to cold-pressed oil — nature's superfood in every expression.</p>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterProducts(this,'all')">All Products</button>
+    <button class="filter-btn" onclick="filterProducts(this,'powder')">Powders</button>
+    <button class="filter-btn" onclick="filterProducts(this,'capsule')">Capsules</button>
+    <button class="filter-btn" onclick="filterProducts(this,'oil')">Oils</button>
+    <button class="filter-btn" onclick="filterProducts(this,'tea')">Teas</button>
+    <button class="filter-btn" onclick="filterProducts(this,'skin')">Skincare</button>
+  </div>
+
+  <div class="products-grid" id="productsGrid">
+    <!-- Products injected by JS -->
+  </div>
+
+  <footer>
+    <div class="footer-bottom" style="border:none;padding-top:0">
+      <p>© 2025 Moringai · moringai.in</p>
+      <div class="footer-social">
+        <div class="social-btn">𝕏</div>
+        <div class="social-btn">in</div>
+        <div class="social-btn">📷</div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- =================== ABOUT PAGE =================== -->
+<div class="page" id="page-about">
+  <div class="about-split" style="padding-top:80px">
+    <div class="about-visual">
+      <div class="about-moringa-art">🌿</div>
+      <div class="about-stat-grid">
+        <div class="about-stat reveal">
+          <div class="about-stat-num">200+</div>
+          <div class="about-stat-label">Farming Families</div>
+        </div>
+        <div class="about-stat reveal" style="transition-delay:0.1s">
+          <div class="about-stat-num">47</div>
+          <div class="about-stat-label">Nutrients</div>
+        </div>
+        <div class="about-stat reveal" style="transition-delay:0.2s">
+          <div class="about-stat-num">50K+</div>
+          <div class="about-stat-label">Happy Customers</div>
+        </div>
+        <div class="about-stat reveal" style="transition-delay:0.3s">
+          <div class="about-stat-num">3</div>
+          <div class="about-stat-label">States Sourced</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="section-label">Our Story</div>
+      <h2>Growing from the<br><em style="font-style:italic;color:var(--leaf)">roots of India</em></h2>
+      <p>
+        Moringai was born from a simple conviction: India's most ancient superfood deserved a world-class platform. Our founders, raised in the moringa-rich villages of Tamil Nadu, watched this miraculous tree — the "Tree of Life" — be overlooked by modern wellness markets.
+      </p>
+      <p>
+        We set out to change that. By building direct relationships with organic farmers, establishing rigorous quality standards, and creating beautiful, honest products, we've grown Moringai into India's most trusted moringa brand.
+      </p>
+      <div class="about-timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2021</div>
+          <div class="timeline-text">
+            <h4>Founded in Puducherry</h4>
+            <p>Started with 12 farming families and a single moringa powder product.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2022</div>
+          <div class="timeline-text">
+            <h4>First Lab Certification</h4>
+            <p>Received NABL lab certification. Expanded to 5 products and 50+ farmers.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2023</div>
+          <div class="timeline-text">
+            <h4>Nationwide Distribution</h4>
+            <p>Pan-India shipping launched. Crossed 10,000 customers milestone.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2025</div>
+          <div class="timeline-text">
+            <h4>50,000 Happy Customers</h4>
+            <p>200+ farming families, 18 products, and a growing community of wellness seekers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="newsletter">
+    <h2>Taste the Difference</h2>
+    <p>Try Moringai risk-free. 30-day satisfaction guarantee on all products.</p>
+    <button class="btn-primary" style="margin:0 auto;display:block" onclick="showPage('products')">Explore Products</button>
+  </section>
+
+  <footer>
+    <div class="footer-bottom" style="border:none;padding-top:0">
+      <p>© 2025 Moringai · moringai.in</p>
+    </div>
+  </footer>
+</div>
+
+<!-- =================== BLOG PAGE =================== -->
+<div class="page" id="page-blog">
+  <div class="blog-hero" style="padding-top:120px">
+    <div class="section-label">Wellness Intelligence</div>
+    <h2>The Green Journal</h2>
+    <p style="color:#5a6e4a;font-size:1rem">Insights, recipes, and stories from the world of Moringa.</p>
+  </div>
+
+  <div class="blog-grid">
+    <div class="blog-featured reveal depth-card">
+      <div class="blog-img">🌿</div>
+      <div class="blog-body">
+        <span class="blog-tag">Feature</span>
+        <h2 class="blog-title">Why Moringa is Called the Tree of Life — A Deep Dive into 47 Nutrients</h2>
+        <p class="blog-excerpt">From ancient Ayurvedic texts to modern nutritional science, moringa's profile is staggering. We break down every vitamin, mineral, and antioxidant that makes this tree extraordinary.</p>
+        <div class="blog-meta">
+          <span>🗓 May 2025</span>
+          <span>📖 8 min read</span>
+          <span>👁 12.4K views</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="blog-list">
+      <div class="blog-small reveal">
+        <div class="blog-small-img">🥗</div>
+        <div class="blog-small-body">
+          <span class="blog-tag" style="font-size:0.6rem;padding:3px 8px">Recipe</span>
+          <h3 class="blog-small-title">5 Moringa Smoothie Recipes That Actually Taste Amazing</h3>
+          <p class="blog-small-excerpt">Blend your way to better health with these chef-tested combinations that mask moringa's earthy notes beautifully.</p>
+          <div class="blog-meta" style="margin-top:10px">
+            <span>Apr 2025 · 4 min</span>
+          </div>
+        </div>
+      </div>
+      <div class="blog-small reveal" style="transition-delay:0.1s">
+        <div class="blog-small-img" style="background:linear-gradient(135deg,var(--earth),var(--gold))">💊</div>
+        <div class="blog-small-body">
+          <span class="blog-tag" style="font-size:0.6rem;padding:3px 8px;background:var(--gold)">Health</span>
+          <h3 class="blog-small-title">Moringa vs Spirulina vs Chlorella: The Ultimate Superfood Showdown</h3>
+          <p class="blog-small-excerpt">A rigorous nutritional comparison to help you choose the right superfood for your specific health goals.</p>
+          <div class="blog-meta" style="margin-top:10px">
+            <span>Apr 2025 · 6 min</span>
+          </div>
+        </div>
+      </div>
+      <div class="blog-small reveal" style="transition-delay:0.2s">
+        <div class="blog-small-img" style="background:linear-gradient(135deg,var(--moss),var(--deep))">🌍</div>
+        <div class="blog-small-body">
+          <span class="blog-tag" style="font-size:0.6rem;padding:3px 8px;background:var(--moss)">Sustainability</span>
+          <h3 class="blog-small-title">How Our Farming Model is Fighting Climate Change, One Tree at a Time</h3>
+          <p class="blog-small-excerpt">Each Moringai purchase plants a tree. Here's the full story of our reforestation initiative and its real-world impact.</p>
+          <div class="blog-meta" style="margin-top:10px">
+            <span>Mar 2025 · 5 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-bottom" style="border:none;padding-top:0">
+      <p>© 2025 Moringai · moringai.in</p>
+    </div>
+  </footer>
+</div>
+
+<!-- =================== CONTACT PAGE =================== -->
+<div class="page" id="page-contact">
+  <div class="contact-layout">
+    <div class="contact-info">
+      <div class="contact-bg-text">Moringai</div>
+      <div class="section-label" style="color:rgba(184,224,74,0.7)">Get in Touch</div>
+      <h2>Let's talk<br>wellness.</h2>
+      <p>Whether it's a product question, wholesale inquiry, or just a desire to connect — we love hearing from our community.</p>
+      <div class="contact-details">
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📍</div>
+          <div class="contact-detail-text">
+            <strong>Address</strong>
+            <span>12 Green Valley Road, Puducherry 605001, India</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📧</div>
+          <div class="contact-detail-text">
+            <strong>Email</strong>
+            <span>hello@moringai.in</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📱</div>
+          <div class="contact-detail-text">
+            <strong>WhatsApp</strong>
+            <span>+91 98765 43210</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🕐</div>
+          <div class="contact-detail-text">
+            <strong>Hours</strong>
+            <span>Mon–Sat, 9 AM – 6 PM IST</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-wrap">
+      <h3 class="form-heading">Send us a message</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Priya">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Sharma">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="priya@example.com">
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <select>
+          <option>General Inquiry</option>
+          <option>Order Issue</option>
+          <option>Wholesale / B2B</option>
+          <option>Product Question</option>
+          <option>Partnership</option>
+          <option>Press & Media</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us how we can help you..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="showToast('✅ Message sent! We\'ll reply within 24 hours.')">Send Message</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-bottom" style="border:none;padding-top:0">
+      <p>© 2025 Moringai · moringai.in</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+// ============================================================
+// PRODUCT DATA
+// ============================================================
+const PRODUCTS = [
+  {
+    id:1, name:"Premium Moringa Powder", category:"powder",
+    emoji:"🌿", price:349, original:499,
+    desc:"Cold-processed from sun-dried leaves. 200g of pure vitality — no fillers, no additives.",
+    badge:"Best Seller", badgeClass:""
+  },
+  {
+    id:2, name:"Moringa Capsules (90 caps)", category:"capsule",
+    emoji:"💊", price:549, original:699,
+    desc:"500mg per capsule, HPMC vegetarian shell. Ideal for daily supplementation.",
+    badge:"Organic", badgeClass:"organic"
+  },
+  {
+    id:3, name:"Cold-Pressed Moringa Oil", category:"oil",
+    emoji:"🫙", price:799, original:999,
+    desc:"First cold press from mature seeds. For skin, hair, and cooking — 100ml.",
+    badge:"New", badgeClass:"new"
+  },
+  {
+    id:4, name:"Moringa Green Tea", category:"tea",
+    emoji:"🍵", price:299, original:399,
+    desc:"Moringa leaves blended with whole-leaf green tea. 50 pyramid bags.",
+    badge:"", badgeClass:""
+  },
+  {
+    id:5, name:"Moringa Face Serum", category:"skin",
+    emoji:"✨", price:899, original:1199,
+    desc:"Moringa oil + hyaluronic acid + vitamin C. For luminous, hydrated skin. 30ml.",
+    badge:"New", badgeClass:"new"
+  },
+  {
+    id:6, name:"Moringa Protein Blend", category:"powder",
+    emoji:"💪", price:699, original:899,
+    desc:"20g plant protein per serving. Moringa + pea protein + adaptogens. 500g.",
+    badge:"", badgeClass:""
+  },
+  {
+    id:7, name:"Moringa Leaf Extract", category:"capsule",
+    emoji:"🌱", price:649, original:799,
+    desc:"4:1 concentrated extract for maximum bioavailability. 60 capsules.",
+    badge:"Organic", badgeClass:"organic"
+  },
+  {
+    id:8, name:"Moringa Hair Oil", category:"oil",
+    emoji:"💆", price:499, original:649,
+    desc:"Moringa seed oil infused with brahmi and amla. Deep nourishment. 100ml.",
+    badge:"", badgeClass:""
+  },
+  {
+    id:9, name:"Moringa Wellness Gift Set", category:"skin",
+    emoji:"🎁", price:1499, original:2099,
+    desc:"Curated set: powder, capsules, oil & tea. Perfect gift for health-lovers.",
+    badge:"Best Seller", badgeClass:""
+  }
+];
+
+// ============================================================
+// CART STATE
+// ============================================================
+let cart = [];
+
+function addToCart(product) {
+  const existing = cart.find(i => i.id === product.id);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ ...product, qty: 1 });
+  }
+  updateCartUI();
+  showToast(`🌿 ${product.name} added to cart!`);
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(i => i.id !== id);
+  updateCartUI();
+  renderCartItems();
+}
+
+function changeQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) { removeFromCart(id); return; }
+  updateCartUI();
+  renderCartItems();
+}
+
+function updateCartUI() {
+  const count = cart.reduce((s,i) => s+i.qty, 0);
+  document.getElementById('cartCount').textContent = count;
+}
+
+function renderCartItems() {
+  const el = document.getElementById('cartItems');
+  const footer = document.getElementById('cartFooter');
+  if (!cart.length) {
+    el.innerHTML = '<div class="empty-cart">Your cart is empty<br><small style="font-size:0.9rem;color:#bbb;font-family:Outfit">Add some green goodness 🌿</small></div>';
+    footer.style.display = 'none';
+    return;
+  }
+  footer.style.display = 'block';
+  el.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <div class="cart-item-img">${item.emoji}</div>
+      <div style="flex:1">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">₹${item.price.toLocaleString('en-IN')}</div>
+        <div class="cart-item-qty">
+          <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
+          <span style="font-weight:600;font-size:0.9rem">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+          <button onclick="removeFromCart(${item.id})" style="margin-left:8px;background:none;border:none;color:#c9a84c;cursor:pointer;font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase">Remove</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
+  document.getElementById('cartTotal').textContent = '₹' + total.toLocaleString('en-IN');
+}
+
+function openCart() {
+  renderCartItems();
+  const overlay = document.getElementById('cartOverlay');
+  overlay.style.display = 'flex';
+  setTimeout(() => overlay.classList.add('open'), 10);
+}
+
+function closeCart() {
+  const overlay = document.getElementById('cartOverlay');
+  overlay.classList.remove('open');
+  setTimeout(() => overlay.style.display = 'none', 400);
+}
+
+// ============================================================
+// RENDER PRODUCTS
+// ============================================================
+function renderProducts(products) {
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = products.map(p => `
+    <div class="product-card depth-card reveal">
+      <div class="product-img-wrap">
+        <div class="product-emoji">${p.emoji}</div>
+        ${p.badge ? `<span class="product-badge ${p.badgeClass}">${p.badge}</span>` : ''}
+      </div>
+      <div class="product-info">
+        <div class="product-category">${p.category.charAt(0).toUpperCase()+p.category.slice(1)}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-footer">
+          <div class="product-price">
+            ₹${p.price.toLocaleString('en-IN')}
+            ${p.original ? `<span class="original">₹${p.original.toLocaleString('en-IN')}</span>` : ''}
+          </div>
+          <button class="btn-add" onclick='addToCart(${JSON.stringify(p)})'>Add +</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  observeReveal();
+}
+
+function filterProducts(btn, cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const filtered = cat === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === cat);
+  renderProducts(filtered);
+}
+
+// ============================================================
+// PAGE NAVIGATION
+// ============================================================
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  const nav = document.getElementById('nav-'+name);
+  if (nav) nav.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if (name === 'products') renderProducts(PRODUCTS);
+  setTimeout(observeReveal, 100);
+}
+
+// ============================================================
+// SCROLL REVEAL
+// ============================================================
+function observeReveal() {
+  const reveals = document.querySelectorAll('.reveal:not(.visible)');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold:0.15 });
+  reveals.forEach(el => observer.observe(el));
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+let toastTimer;
+function showToast(msg) {
+  clearTimeout(toastTimer);
+  document.getElementById('toastText').textContent = msg;
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+}
+
+// ============================================================
+// CUSTOM CURSOR
+// ============================================================
+const cursor = document.getElementById('cursor');
+const trail = document.getElementById('cursorTrail');
+let mx=0, my=0, tx=0, ty=0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.transform = `translate(${mx-6}px,${my-6}px)`;
+});
+function animateTrail() {
+  tx += (mx - tx) * 0.15;
+  ty += (my - ty) * 0.15;
+  trail.style.transform = `translate(${tx-16}px,${ty-16}px)`;
+  requestAnimationFrame(animateTrail);
+}
+animateTrail();
+document.querySelectorAll('button,a').forEach(el => {
+  el.addEventListener('mouseenter', () => { trail.style.width='48px'; trail.style.height='48px'; trail.style.borderColor='var(--lime)'; });
+  el.addEventListener('mouseleave', () => { trail.style.width='32px'; trail.style.height='32px'; trail.style.borderColor='var(--sprout)'; });
+});
+
+// ============================================================
+// NAV SCROLL
+// ============================================================
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ============================================================
+// HERO CANVAS BACKGROUND
+// ============================================================
+const canvas = document.getElementById('heroCanvas');
+const ctx = canvas.getContext('2d');
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function drawHeroCanvas() {
+  const t = Date.now() * 0.0005;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let i=0;i<6;i++){
+    const x = canvas.width*(0.1+i*0.15+Math.sin(t+i)*0.05);
+    const y = canvas.height*(0.2+Math.cos(t*0.7+i)*0.3);
+    const r = 80+Math.sin(t+i*2)*30;
+    const g = ctx.createRadialGradient(x,y,0,x,y,r);
+    g.addColorStop(0,'rgba(120,179,86,0.6)');
+    g.addColorStop(1,'transparent');
+    ctx.beginPath();
+    ctx.arc(x,y,r,0,Math.PI*2);
+    ctx.fillStyle = g;
+    ctx.fill();
+  }
+  requestAnimationFrame(drawHeroCanvas);
+}
+drawHeroCanvas();
+
+// ============================================================
+// HERO PARTICLES
+// ============================================================
+const particleContainer = document.getElementById('heroParticles');
+for(let i=0;i<30;i++){
+  const p = document.createElement('div');
+  p.className = 'particle';
+  const size = 3 + Math.random()*6;
+  p.style.cssText = `
+    width:${size}px; height:${size}px;
+    left:${Math.random()*100}%;
+    bottom:${Math.random()*20}%;
+    --dur:${6+Math.random()*10}s;
+    --delay:${Math.random()*8}s;
+  `;
+  particleContainer.appendChild(p);
+}
+
+// ============================================================
+// 5D PARALLAX
+// ============================================================
+document.addEventListener('mousemove', (e) => {
+  const pct = { x: (e.clientX/window.innerWidth - 0.5)*2, y: (e.clientY/window.innerHeight - 0.5)*2 };
+  const heroContent = document.getElementById('heroContent');
+  if (heroContent) {
+    heroContent.style.transform = `translateX(${pct.x*8}px) translateY(${pct.y*5}px)`;
+  }
+  const blob = document.querySelector('.blob-5d');
+  if (blob) {
+    blob.style.transform = `translateY(-50%) translateX(${pct.x*-12}px) rotateY(${pct.x*8}deg) rotateX(${-pct.y*5}deg)`;
+  }
+});
+
+// ============================================================
+// RAZORPAY CHECKOUT
+// ============================================================
+
+// ⚠️  REPLACE WITH YOUR ACTUAL RAZORPAY KEY ID FROM dashboard.razorpay.com
+const RAZORPAY_KEY = 'rzp_test_YourKeyHere';
+
+let promoApplied = false;
+let currentStep = 1;
+
+function openCheckout() {
+  if (!cart.length) { showToast('🌿 Add products to cart first!'); return; }
+  promoApplied = false;
+  document.getElementById('promoSuccess').style.display = 'none';
+  document.getElementById('discountRow').style.display = 'none';
+  document.getElementById('promoInput').value = '';
+  renderModalSummary();
+  const overlay = document.getElementById('checkoutOverlay');
+  overlay.style.display = 'flex';
+  requestAnimationFrame(() => overlay.classList.add('open'));
+  goToStep(1, true);
+}
+
+function closeCheckout() {
+  const overlay = document.getElementById('checkoutOverlay');
+  overlay.classList.remove('open');
+  setTimeout(() => { overlay.style.display = 'none'; }, 400);
+}
+
+function getOrderTotals() {
+  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const discount = promoApplied ? Math.round(subtotal * 0.1) : 0;
+  const shipping = (subtotal - discount) >= 499 ? 0 : 49;
+  const grand = subtotal - discount + shipping;
+  return { subtotal, discount, shipping, grand };
+}
+
+function renderModalSummary() {
+  const itemsEl = document.getElementById('modalOrderItems');
+  itemsEl.innerHTML = cart.map(i => `
+    <div class="modal-order-item">
+      <div class="modal-item-img">${i.emoji}</div>
+      <div style="flex:1">
+        <div class="modal-item-name">${i.name}</div>
+        <div class="modal-item-qty">Qty: ${i.qty}</div>
+      </div>
+      <div class="modal-item-price">₹${(i.price * i.qty).toLocaleString('en-IN')}</div>
+    </div>
+  `).join('');
+  updateModalTotals();
+}
+
+function updateModalTotals() {
+  const { subtotal, discount, shipping, grand } = getOrderTotals();
+  document.getElementById('modalSubtotal').textContent = '₹' + subtotal.toLocaleString('en-IN');
+  document.getElementById('modalShipping').textContent = shipping === 0 ? '🎉 FREE' : '₹' + shipping;
+  document.getElementById('modalGrandTotal').textContent = '₹' + grand.toLocaleString('en-IN');
+  document.getElementById('payGrandTotal').textContent = '₹' + grand.toLocaleString('en-IN');
+  if (promoApplied) {
+    document.getElementById('modalDiscount').textContent = '−₹' + discount.toLocaleString('en-IN');
+    document.getElementById('discountRow').style.display = 'flex';
+  }
+}
+
+function applyPromo() {
+  const code = document.getElementById('promoInput').value.trim().toUpperCase();
+  if (code === 'MORINGA10') {
+    promoApplied = true;
+    document.getElementById('promoSuccess').style.display = 'block';
+    updateModalTotals();
+    showToast('🎉 Promo code applied! 10% off.');
+  } else if (code === '') {
+    showToast('Enter a promo code first.');
+  } else {
+    showToast('❌ Invalid promo code. Try MORINGA10');
+  }
+}
+
+function goToStep(n, silent) {
+  currentStep = n;
+  // Validate step 2 before proceeding to 3
+  if (n === 3 && !validateDetails()) return;
+
+  [1,2,3].forEach(i => {
+    const sec = document.getElementById('step-'+i);
+    const tab = document.getElementById('step-tab-'+i);
+    sec.classList.toggle('active', i === n);
+    tab.classList.remove('active','done');
+    if (i === n) tab.classList.add('active');
+    else if (i < n) tab.classList.add('done');
+  });
+  document.getElementById('checkoutSuccess').style.display = 'none';
+  document.getElementById('checkoutModal').scrollTop = 0;
+}
+
+function validateDetails() {
+  const fields = ['cf-fname','cf-lname','cf-email','cf-phone','cf-address','cf-city','cf-pin','cf-state'];
+  let valid = true;
+  fields.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el.value.trim()) {
+      el.classList.add('error');
+      valid = false;
+    } else {
+      el.classList.remove('error');
+    }
+  });
+  if (!valid) { showToast('⚠️ Please fill all required fields.'); }
+  // Email format
+  const email = document.getElementById('cf-email').value;
+  if (valid && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    document.getElementById('cf-email').classList.add('error');
+    showToast('⚠️ Enter a valid email address.'); return false;
+  }
+  // Phone format
+  const phone = document.getElementById('cf-phone').value.replace(/\s/g,'');
+  if (valid && !/^(\+91)?[6-9]\d{9}$/.test(phone)) {
+    document.getElementById('cf-phone').classList.add('error');
+    showToast('⚠️ Enter a valid 10-digit Indian mobile number.'); return false;
+  }
+  return valid;
+}
+
+function selectPayMethod(el) {
+  document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function initiateRazorpay() {
+  const method = document.querySelector('input[name=paymethod]:checked').value;
+
+  // Cash on Delivery flow
+  if (method === 'cod') {
+    handleCOD();
+    return;
+  }
+
+  const { grand } = getOrderTotals();
+  const fname = document.getElementById('cf-fname').value;
+  const lname = document.getElementById('cf-lname').value;
+  const email = document.getElementById('cf-email').value;
+  const phone = document.getElementById('cf-phone').value.replace(/\s/g,'');
+
+  const btn = document.getElementById('payNowBtn');
+  btn.classList.add('loading');
+
+  // Build Razorpay options
+  const options = {
+    key: RAZORPAY_KEY,
+    amount: grand * 100,       // Razorpay takes paise
+    currency: 'INR',
+    name: 'Moringai',
+    description: `Order from moringai.in (${cart.length} item${cart.length>1?'s':''})`,
+    image: 'https://moringai.in/logo.png',  // replace with your logo URL
+    // order_id: 'order_XXXX',   // ← add your backend order_id here
+    prefill: {
+      name: fname + ' ' + lname,
+      email: email,
+      contact: phone,
+    },
+    notes: {
+      address: document.getElementById('cf-address').value,
+      city: document.getElementById('cf-city').value,
+      state: document.getElementById('cf-state').value,
+      pincode: document.getElementById('cf-pin').value,
+    },
+    theme: {
+      color: '#2d4a1e',
+      backdrop_color: 'rgba(26,46,16,0.8)',
+    },
+    method: method === 'all' ? undefined : { [method]: true },
+    modal: {
+      ondismiss: function() {
+        btn.classList.remove('loading');
+        showToast('Payment cancelled. Your cart is safe 🌿');
+      }
+    },
+    handler: function(response) {
+      // ✅ Payment success
+      // In production, verify response.razorpay_payment_id on your backend
+      btn.classList.remove('loading');
+      handlePaymentSuccess(response.razorpay_payment_id);
+    }
+  };
+
+  // Check if Razorpay script is loaded
+  if (typeof Razorpay === 'undefined') {
+    btn.classList.remove('loading');
+    showToast('⚠️ Razorpay not loaded. Check your internet connection.');
+    return;
+  }
+
+  // Check if test key is still placeholder
+  if (RAZORPAY_KEY === 'rzp_test_YourKeyHere') {
+    btn.classList.remove('loading');
+    simulatePaymentSuccess();
+    return;
+  }
+
+  const rzp = new Razorpay(options);
+  rzp.on('payment.failed', function(response) {
+    btn.classList.remove('loading');
+    showToast('❌ Payment failed: ' + response.error.description);
+  });
+  rzp.open();
+}
+
+function handleCOD() {
+  const orderId = 'MRG-' + Math.floor(100000 + Math.random() * 900000);
+  showSuccessScreen(orderId);
+}
+
+function handlePaymentSuccess(paymentId) {
+  const orderId = 'MRG-' + paymentId.slice(-6).toUpperCase();
+  // Here you'd POST to your backend: { paymentId, cart, customerDetails }
+  showSuccessScreen(orderId);
+}
+
+function simulatePaymentSuccess() {
+  // Demo mode: simulate a successful payment when key is placeholder
+  showToast('🔑 Demo mode — add your Razorpay key for live payments!');
+  setTimeout(() => {
+    const orderId = 'MRG-' + Math.floor(100000 + Math.random() * 900000);
+    showSuccessScreen(orderId);
+  }, 1200);
+}
+
+function showSuccessScreen(orderId) {
+  // Hide all steps
+  [1,2,3].forEach(i => {
+    document.getElementById('step-'+i).classList.remove('active');
+    document.getElementById('step-tab-'+i).classList.add('done');
+    document.getElementById('step-tab-'+i).classList.remove('active');
+  });
+  document.getElementById('successOrderId').textContent = 'Order #' + orderId;
+  document.getElementById('checkoutSuccess').style.display = 'block';
+  document.getElementById('checkoutModal').scrollTop = 0;
+
+  // Clear cart after success
+  cart = [];
+  updateCartUI();
+  renderCartItems();
+
+  showToast('🎉 Order placed successfully! Order #' + orderId);
+}
+
+// Close checkout on overlay click
+document.getElementById('checkoutOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeCheckout();
+});
+
+
+observeReveal();
+renderProducts(PRODUCTS);
+
+// Close cart on overlay click
+document.getElementById('cartOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeCart();
+});
+</script>
+</body>
+</html>
