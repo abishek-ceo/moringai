@@ -7,10 +7,11 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const ORDERS_FILE = path.join(__dirname, 'data', 'orders.json');
-const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'moringai123';
+const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'moringai2026';
 const WA_TOKEN = process.env.WHATSAPP_TOKEN || '';
 const WA_PHONE_ID = process.env.WHATSAPP_PHONE_ID || '';
 const WA_NOTIFY_NUMBER = process.env.NOTIFY_WHATSAPP || '';
+const RAZORPAY_KEY_SECRET = process.env.RAZORPAY_KEY_SECRET || '';
 const PORT = process.env.PORT || 3000;
 
 function readOrders() {
@@ -80,7 +81,7 @@ app.get('/api/orders', (req, res) => {
   res.json({ orders: readOrders() });
 });
 
-// PATCH /api/orders/:id (update status)
+// PATCH /api/orders/:id
 app.patch('/api/orders/:id', (req, res) => {
   const auth = req.headers['x-admin-password'];
   if (auth !== ADMIN_PASS) return res.status(401).json({ error: 'Unauthorized' });
@@ -92,7 +93,7 @@ app.patch('/api/orders/:id', (req, res) => {
   res.json({ success: true, order: orders[idx] });
 });
 
-// Admin HTML
+// Admin panel
 app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
@@ -100,7 +101,7 @@ app.get('/admin', (req, res) => {
 // Health check
 app.get('/health', (req, res) => res.json({ status: 'ok', time: new Date().toISOString() }));
 
-// Fallback: serve index.html
+// Fallback
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });

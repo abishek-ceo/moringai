@@ -1,50 +1,42 @@
-# 🌿 Moringai — Full-Stack E-commerce
+# 🌿 Moringai – Pure Murungai Powder E-commerce Store
 
-Pure Murungai | India's Moringa Store
+A complete mobile-first e-commerce website for Moringai, built with Node.js + Express.
 
-## Stack
-- **Frontend**: Vanilla HTML/CSS/JS (single page app)
-- **Backend**: Node.js + Express
-- **Payments**: Razorpay
-- **Notifications**: WhatsApp Cloud API
-- **Deployment**: Render
+## Features
+- 🛍️ Product catalog with cart functionality
+- 💳 Razorpay online payment integration
+- 🚚 Cash on Delivery support
+- 📱 Mobile-first responsive design
+- 💬 WhatsApp order notifications
+- 🔐 Admin panel to manage orders
+- 📦 Free shipping on orders above ₹499
 
 ## Setup
 
-```bash
-npm install
-cp .env.example .env
-# Edit .env with your keys
-npm start
-```
+1. Clone the repo
+2. Run `npm install`
+3. Copy `.env.example` to `.env` and fill in your keys
+4. Run `npm start`
 
 ## Environment Variables
 
-| Variable | Description |
-|---|---|
-| `PORT` | Server port (default: 3000) |
-| `ADMIN_PASSWORD` | Admin dashboard password |
-| `RAZORPAY_KEY_ID` | Razorpay API key |
-| `RAZORPAY_KEY_SECRET` | Razorpay secret |
-| `WHATSAPP_TOKEN` | WhatsApp Cloud API token |
-| `WHATSAPP_PHONE_ID` | WhatsApp phone number ID |
-| `NOTIFY_WHATSAPP` | Your WhatsApp number for order alerts |
+```
+ADMIN_PASSWORD=your_admin_password
+WHATSAPP_TOKEN=your_whatsapp_token
+WHATSAPP_PHONE_ID=your_phone_id
+NOTIFY_WHATSAPP=your_notify_number
+RAZORPAY_KEY_SECRET=your_razorpay_secret
+PORT=3000
+```
 
-## API Endpoints
+## Razorpay Setup
+Replace `YOUR_RAZORPAY_KEY_ID` in `public/app.js` with your actual Razorpay Key ID.
 
-| Endpoint | Method | Description |
-|---|---|---|
-| `/api/orders` | POST | Place new order |
-| `/api/orders` | GET | Get all orders (admin) |
-| `/api/orders/:id` | PATCH | Update order status (admin) |
-| `/admin` | GET | Admin dashboard |
-| `/health` | GET | Health check |
+## Admin Panel
+Visit `/admin` to manage orders. Default password: `moringai2026`
 
-## Admin Dashboard
-Visit `/admin` on your deployed URL and enter your `ADMIN_PASSWORD`.
+## Deployment
+This project is configured for [Render](https://render.com) via `render.yaml`.
 
-## Deploy on Render
-1. Push this repo to GitHub
-2. Go to [render.com](https://render.com) → New Web Service → Connect repo
-3. Add environment variables in the Render dashboard
-4. Deploy!
+---
+Made with 💚 in Tamil Nadu
