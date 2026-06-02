@@ -2,6 +2,30 @@ let cart = [];
 let countersAnimated = false;
 let navOpen = false;
 
+/* ---- SCROLL REVEAL ---- */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
+
+/* ---- SPARKLE CURSOR ---- */
+const sparkleEmojis = ['✨','🌿','🌟','💚','⚡','🍃'];
+let lastSparkle = 0;
+document.addEventListener('mousemove', e => {
+  const now = Date.now();
+  if (now - lastSparkle < 120) return;
+  lastSparkle = now;
+  const s = document.createElement('div');
+  s.className = 'sparkle';
+  s.textContent = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
+  s.style.left = e.clientX - 10 + 'px';
+  s.style.top = e.clientY - 10 + 'px';
+  document.body.appendChild(s);
+  setTimeout(() => s.remove(), 650);
+});
+
 function toggleCart() {
   const panel = document.getElementById('cartPanel');
   const bg = document.getElementById('cartBg');
@@ -124,17 +148,17 @@ window.addEventListener('scroll', () => {
 function createParticles() {
   const container = document.getElementById('particles');
   if (!container) return;
-  const emojis = ['🌿', '✨', '🍃', '💚', '🌱'];
-  for (let i = 0; i < 18; i++) {
+  const emojis = ['🌿', '✨', '🍃', '💚', '🌱', '⭐', '💛'];
+  for (let i = 0; i < 22; i++) {
     const p = document.createElement('div');
     p.className = 'particle';
     p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
     p.style.cssText = [
       `left:${Math.random() * 100}%`,
-      `top:${40 + Math.random() * 55}%`,
-      `font-size:${0.8 + Math.random() * 1.2}rem`,
-      `--dur:${5 + Math.random() * 8}s`,
-      `animation-delay:${Math.random() * 6}s`,
+      `top:${30 + Math.random() * 65}%`,
+      `font-size:${0.7 + Math.random() * 1.4}rem`,
+      `--dur:${4 + Math.random() * 9}s`,
+      `animation-delay:${Math.random() * 7}s`,
       'opacity:0'
     ].join(';');
     container.appendChild(p);
@@ -169,6 +193,38 @@ if (heroStats && 'IntersectionObserver' in window) {
 } else {
   animateCounters();
 }
+
+/* ---- ADD REVEAL CLASSES TO SECTIONS ---- */
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.benefit-card').forEach((el, i) => {
+    el.classList.add('reveal');
+    el.style.transitionDelay = (i * 0.08) + 's';
+  });
+  document.querySelectorAll('.product-card').forEach((el, i) => {
+    el.classList.add('reveal');
+    el.style.transitionDelay = (i * 0.1) + 's';
+  });
+  document.querySelectorAll('.review-card').forEach((el, i) => {
+    el.classList.add('reveal');
+    el.style.transitionDelay = (i * 0.1) + 's';
+  });
+  document.querySelectorAll('.howto-step').forEach((el, i) => {
+    el.classList.add('reveal');
+    el.style.transitionDelay = (i * 0.12) + 's';
+  });
+  document.querySelectorAll('.section-title').forEach(el => el.classList.add('reveal'));
+  document.querySelectorAll('.contact-card').forEach((el, i) => {
+    el.classList.add('reveal-left');
+    el.style.transitionDelay = (i * 0.1) + 's';
+  });
+  document.querySelectorAll('.contact-form').forEach(el => el.classList.add('reveal-right'));
+  document.querySelectorAll('.trust-item').forEach((el, i) => {
+    el.classList.add('reveal');
+    el.style.transitionDelay = (i * 0.07) + 's';
+  });
+  // Re-init observer for dynamically added classes
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
+});
 
 createParticles();
 renderCart();
