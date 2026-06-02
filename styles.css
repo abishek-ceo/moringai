@@ -13,8 +13,8 @@
   --shadow-lg:0 20px 60px rgba(15,77,37,.14);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden}
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
+body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;max-width:100%}
 a{text-decoration:none;color:inherit}
 .container{width:min(1200px,calc(100% - 32px));margin:0 auto}
 
@@ -27,7 +27,7 @@ a{text-decoration:none;color:inherit}
 .reveal-right.visible{opacity:1;transform:translateX(0)}
 
 /* ===================== TICKER ===================== */
-.ticker-wrap{background:linear-gradient(90deg,var(--green-d),#1a5c2e,var(--green-d));color:#fff;overflow:hidden;padding:10px 0;font-size:.84rem;position:relative}
+.ticker-wrap{background:linear-gradient(90deg,var(--green-d),#1a5c2e,var(--green-d));color:#fff;overflow:hidden;padding:10px 0;font-size:.84rem;position:relative;width:100%}
 .ticker-wrap::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.06) 0%,transparent 50%,rgba(255,255,255,.06) 100%);animation:shimmerTicker 3s linear infinite}
 @keyframes shimmerTicker{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
 .ticker-track{display:flex;gap:0;white-space:nowrap;animation:ticker 28s linear infinite}
@@ -114,7 +114,7 @@ a{text-decoration:none;color:inherit}
 .hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
 
 .hero-particles{position:absolute;inset:0;pointer-events:none}
-.hero-content{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;max-width:1200px;margin:0 auto;padding:80px 24px 40px;width:100%;position:relative;z-index:2}
+.hero-content{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;max-width:1200px;margin:0 auto;padding:80px 16px 40px;width:100%;position:relative;z-index:2;overflow:hidden}
 .hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(8px);border-radius:50px;padding:10px 18px;font-size:.82rem;font-weight:700;margin-bottom:20px;position:relative;overflow:hidden}
 .hero-tag::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:tagShimmer 3s infinite}
 @keyframes tagShimmer{0%{left:-100%}100%{left:200%}}
@@ -155,7 +155,7 @@ a{text-decoration:none;color:inherit}
 @keyframes floatUp{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
 /* ===================== HERO STATS ===================== */
-.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:1200px;margin:0 auto;position:relative;z-index:2;padding:0 24px}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:1200px;margin:0 auto;position:relative;z-index:2;padding:0 16px}
 .stat-item{background:rgba(255,255,255,.08);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12);padding:20px;text-align:center;border-right:1px solid rgba(255,255,255,.1);transition:.3s;position:relative;overflow:hidden}
 .stat-item::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(126,232,162,.6),transparent);transform:scaleX(0);transition:.4s}
 .stat-item:hover::before{transform:scaleX(1)}
@@ -402,7 +402,7 @@ a{text-decoration:none;color:inherit}
   .footer-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:900px){
-  .hero-content{grid-template-columns:1fr;text-align:center;padding:60px 20px 30px}
+  .hero-content{grid-template-columns:1fr;text-align:center;padding:60px 16px 30px}
   .hero-sub{margin:0 auto 28px}
   .hero-cta-row{justify-content:center}
   .hero-pills{justify-content:center}
