@@ -1,218 +1,733 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MoringaPure - Premium Organic Moringa Powder</title>
-  <meta name="description" content="Shop premium organic Moringa powder. Vegan, lab tested, eco-packed. Fast delivery across India." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moringai &mdash; Premium Organic Moringa Store</title>
+  <meta name="description" content="Moringai - India's premium organic moringa powder store. Shop now for the best quality moringa products.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="container nav">
-      <a href="#" class="brand">Moringa<span>Pure</span></a>
-      <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
-      <nav id="main-nav">
-        <a href="#benefits">Benefits</a>
-        <a href="#product">Product</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#contact">Contact</a>
-      </nav>
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar">
+  <p>&#127807; Free shipping on orders above &#8377;499 &nbsp;|&nbsp; Use code <strong>MORINGAI10</strong> for 10% off &nbsp;|&nbsp; &#128666; Ships within 24 hrs</p>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#" class="logo">
+      <span class="logo-icon">&#127807;</span>
+      <span class="logo-text">Moringai</span>
+    </a>
+    <nav class="nav-links" id="nav-links">
+      <a href="#home">Home</a>
+      <a href="#products">Shop</a>
+      <a href="#benefits">Benefits</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" onclick="toggleSearch()">&#128269;</button>
+      <button class="icon-btn cart-btn" onclick="toggleCart()">
+        &#128722;
+        <span class="cart-count" id="cart-count">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">&#9776;</button>
     </div>
-  </header>
+  </div>
+  <!-- Search Bar -->
+  <div class="search-bar" id="search-bar">
+    <div class="search-inner">
+      <input type="text" placeholder="Search for moringa products..." id="search-input">
+      <button onclick="toggleSearch()">&#10005;</button>
+    </div>
+  </div>
+</header>
 
-  <main>
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+<aside class="cart-sidebar" id="cart-sidebar">
+  <div class="cart-header">
+    <h3>&#128722; Your Cart</h3>
+    <button onclick="toggleCart()">&#10005;</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty">
+      <div class="empty-icon">&#128722;</div>
+      <p>Your cart is empty</p>
+      <a href="#products" class="btn btn-primary" onclick="toggleCart()">Shop Now</a>
+    </div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-total">
+      <span>Total:</span>
+      <strong id="cart-total">&#8377;0</strong>
+    </div>
+    <button class="btn btn-primary full" onclick="checkout()">Proceed to Checkout</button>
+    <button class="btn btn-outline full" onclick="toggleCart()">Continue Shopping</button>
+  </div>
+</aside>
 
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="badge">100% Natural &amp; Organic</span>
-          <h1>Premium Moringa Powder for Everyday Wellness</h1>
-          <p>Freshly packed moringa leaf powder made for smoothies, teas, and healthy daily routines. Clean, nutrient-rich, and crafted for modern lifestyles.</p>
-          <div class="hero-actions">
-            <a href="#product" class="btn btn-primary">Shop Now</a>
-            <a href="#benefits" class="btn btn-secondary">Learn More</a>
-          </div>
-          <div class="hero-stats">
-            <div><strong>4.8&#9733;</strong><span>Customer Rating</span></div>
-            <div><strong>10k+</strong><span>Happy Buyers</span></div>
-            <div><strong>100%</strong><span>Pure Leaves</span></div>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <div class="jar-wrap">
-            <div class="jar">
-              <div class="jar-cap"></div>
-              <div class="jar-label">Moringa<br>Powder</div>
-            </div>
-            <div class="leaves">&#127807;&#127807;&#127807;</div>
-          </div>
-        </div>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        India&rsquo;s #1 Organic Moringa Brand
       </div>
-    </section>
-
-    <div class="trust-strip">
-      <div class="container trust-items">
-        <span>&#127807; Vegan</span>
-        <span>&#128683; No Added Sugar</span>
-        <span>&#128300; Lab Tested</span>
-        <span>&#9851; Eco Packed</span>
+      <h1 class="hero-title">
+        Nature&rsquo;s Most<br>
+        <span class="highlight">Powerful</span><br>
+        Superfood
+      </h1>
+      <p class="hero-desc">100% pure, organic moringa powder sourced from the finest leaves. No fillers, no additives &mdash; just pure green goodness for your wellness journey.</p>
+      <div class="hero-btns">
+        <a href="#products" class="btn btn-primary btn-lg">&#128722; Shop Now</a>
+        <a href="#benefits" class="btn btn-ghost btn-lg">Learn More &#8594;</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item">
+          <strong>50,000+</strong>
+          <span>Happy Customers</span>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <strong>4.9 &#9733;</strong>
+          <span>Average Rating</span>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <strong>100%</strong>
+          <span>Organic Certified</span>
+        </div>
       </div>
     </div>
-
-    <section id="benefits" class="section light">
-      <div class="container">
-        <div class="section-head">
-          <h2>Why Choose Moringa?</h2>
-          <p>A superfood loved for its naturally occurring vitamins, minerals, and antioxidants.</p>
-        </div>
-        <div class="card-grid">
-          <article class="info-card">
-            <div class="icon">&#129367;</div>
-            <h3>Rich in Nutrients</h3>
-            <p>Naturally dense nutritional profile to support balanced everyday wellness.</p>
-          </article>
-          <article class="info-card">
-            <div class="icon">&#9889;</div>
-            <h3>Daily Energy</h3>
-            <p>A simple green addition to help you stay consistent with healthy habits.</p>
-          </article>
-          <article class="info-card">
-            <div class="icon">&#129380;</div>
-            <h3>Easy to Use</h3>
-            <p>Blend into juices, teas, soups, or smoothies in seconds &mdash; no prep needed.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="product" class="section">
-      <div class="container product-section">
-        <div class="product-image-wrap">
-          <div class="jar-wrap big-wrap">
-            <div class="jar big">
-              <div class="jar-cap"></div>
-              <div class="jar-label">Premium<br>Moringa</div>
+    <div class="hero-visual">
+      <div class="product-showcase">
+        <div class="glow-ring"></div>
+        <div class="product-jar">
+          <div class="jar-body">
+            <div class="jar-lid"></div>
+            <div class="jar-content">
+              <div class="jar-brand">Moringai</div>
+              <div class="jar-name">Organic<br>Moringa<br>Powder</div>
+              <div class="jar-weight">250g</div>
             </div>
-            <div class="leaves">&#127807;&#127807;&#127807;&#127807;</div>
           </div>
         </div>
-        <div class="product-details">
-          <span class="badge soft">&#11088; Best Seller</span>
-          <h2>Organic Moringa Powder &ndash; 250g</h2>
-          <p class="subtitle">Fine-textured, vibrant green powder sourced from premium quality moringa leaves, freshly packed for maximum potency.</p>
-          <div class="price-row">
+        <div class="floating-badge fb1">&#9989; FSSAI Certified</div>
+        <div class="floating-badge fb2">&#127807; 100% Organic</div>
+        <div class="floating-badge fb3">&#128230; Free Shipping</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#f8faf7"/>
+    </svg>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<section class="trust-bar">
+  <div class="container">
+    <div class="trust-bar-grid">
+      <div class="tb-item">
+        <span class="tb-icon">&#128666;</span>
+        <div>
+          <strong>Free Delivery</strong>
+          <p>On orders above &#8377;499</p>
+        </div>
+      </div>
+      <div class="tb-item">
+        <span class="tb-icon">&#9851;</span>
+        <div>
+          <strong>Eco Packaging</strong>
+          <p>100% recyclable packs</p>
+        </div>
+      </div>
+      <div class="tb-item">
+        <span class="tb-icon">&#128300;</span>
+        <div>
+          <strong>Lab Tested</strong>
+          <p>Third-party certified</p>
+        </div>
+      </div>
+      <div class="tb-item">
+        <span class="tb-icon">&#128260;</span>
+        <div>
+          <strong>Easy Returns</strong>
+          <p>7-day return policy</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products-section" id="products">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Our Products</span>
+      <h2>Shop Premium Moringa</h2>
+      <p>Carefully sourced, tested, and packed for your daily wellness</p>
+    </div>
+    <div class="products-grid">
+
+      <div class="product-card featured">
+        <div class="product-badge-wrap">
+          <span class="prod-badge bestseller">&#11088; Best Seller</span>
+        </div>
+        <div class="product-img">
+          <div class="prod-jar">
+            <div class="prod-jar-lid"></div>
+            <div class="prod-jar-body">
+              <div class="prod-jar-label">
+                <span>Moringai</span>
+                <strong>Organic<br>Powder</strong>
+                <em>250g</em>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <h3>Organic Moringa Powder</h3>
+          <p>Pure, fine-ground moringa leaf powder. No fillers, no additives.</p>
+          <div class="product-rating">
+            <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="rating-count">(2,341 reviews)</span>
+          </div>
+          <div class="product-price">
             <span class="price">&#8377;499</span>
             <span class="old-price">&#8377;699</span>
-            <span class="save">Save 29%</span>
+            <span class="discount">29% off</span>
           </div>
-          <ul class="product-list">
-            <li>100% pure moringa leaf powder</li>
-            <li>No preservatives or artificial additives</li>
-            <li>Resealable freshness pack</li>
-            <li>Free shipping on prepaid orders</li>
-            <li>FSSAI certified &amp; lab tested</li>
-          </ul>
-          <div class="purchase-box">
-            <div class="qty-box">
-              <button type="button" onclick="changeQty(-1)">&#8722;</button>
-              <span id="qty">1</span>
-              <button type="button" onclick="changeQty(1)">+</button>
+          <div class="product-actions">
+            <div class="qty-selector">
+              <button onclick="changeQty('qty1',-1)">&#8722;</button>
+              <span id="qty1">1</span>
+              <button onclick="changeQty('qty1',1)">+</button>
             </div>
-            <button class="btn btn-primary wide" onclick="addToCart()">&#128722; Add to Cart</button>
+            <button class="btn btn-primary add-cart" onclick="addToCart('Organic Moringa Powder 250g', 499, 'qty1')">Add to Cart</button>
           </div>
-          <p id="cart-message" class="cart-message"></p>
-          <div class="delivery-note">&#128666; Usually ships within 24 hours</div>
         </div>
       </div>
-    </section>
 
-    <section class="section accent">
-      <div class="container features-grid">
-        <div>
-          <div class="feat-icon">&#128640;</div>
-          <h3>Fast Delivery</h3>
-          <p>Quick dispatch with secure packaging across India.</p>
+      <div class="product-card">
+        <div class="product-badge-wrap">
+          <span class="prod-badge value">&#128176; Value Pack</span>
         </div>
-        <div>
-          <div class="feat-icon">&#128274;</div>
-          <h3>Secure Checkout</h3>
-          <p>Simple purchase flow designed for mobile shoppers.</p>
+        <div class="product-img">
+          <div class="prod-jar big">
+            <div class="prod-jar-lid"></div>
+            <div class="prod-jar-body">
+              <div class="prod-jar-label">
+                <span>Moringai</span>
+                <strong>Organic<br>Powder</strong>
+                <em>500g</em>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <div class="feat-icon">&#128172;</div>
-          <h3>Support Team</h3>
-          <p>Reach us easily for product or order questions.</p>
+        <div class="product-info">
+          <h3>Moringa Powder &ndash; 500g</h3>
+          <p>Double the goodness. Perfect for families and daily users.</p>
+          <div class="product-rating">
+            <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="rating-count">(1,892 reviews)</span>
+          </div>
+          <div class="product-price">
+            <span class="price">&#8377;849</span>
+            <span class="old-price">&#8377;1,199</span>
+            <span class="discount">29% off</span>
+          </div>
+          <div class="product-actions">
+            <div class="qty-selector">
+              <button onclick="changeQty('qty2',-1)">&#8722;</button>
+              <span id="qty2">1</span>
+              <button onclick="changeQty('qty2',1)">+</button>
+            </div>
+            <button class="btn btn-primary add-cart" onclick="addToCart('Moringa Powder 500g', 849, 'qty2')">Add to Cart</button>
+          </div>
         </div>
       </div>
-    </section>
 
-    <section id="reviews" class="section light">
-      <div class="container">
-        <div class="section-head">
-          <h2>Customer Reviews</h2>
-          <p>Real feedback from wellness-focused buyers across India.</p>
+      <div class="product-card">
+        <div class="product-badge-wrap">
+          <span class="prod-badge new">&#10024; New</span>
         </div>
-        <div class="review-grid">
-          <article class="review-card">
-            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p>&ldquo;Great freshness and mixes really well with my morning smoothie. Will definitely reorder!&rdquo;</p>
-            <h4>&mdash; Priya S., Chennai</h4>
-          </article>
-          <article class="review-card">
-            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <p>&ldquo;Packaging looks premium and delivery was fast. Very happy with the quality.&rdquo;</p>
-            <h4>&mdash; Rahul K., Bengaluru</h4>
-          </article>
-          <article class="review-card">
-            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-            <p>&ldquo;The website is super easy on mobile and checkout feels simple. Great product!&rdquo;</p>
-            <h4>&mdash; Ananya M., Mumbai</h4>
-          </article>
+        <div class="product-img capsule-img">
+          <div class="capsule-visual">
+            <div class="capsule-bottle">
+              <div class="cap-lid"></div>
+              <div class="cap-body">
+                <span>Moringai</span>
+                <strong>Capsules</strong>
+                <em>60 caps</em>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <h3>Moringa Capsules &ndash; 60 Caps</h3>
+          <p>Convenient capsules for on-the-go wellness. No taste, full benefits.</p>
+          <div class="product-rating">
+            <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+            <span class="rating-count">(876 reviews)</span>
+          </div>
+          <div class="product-price">
+            <span class="price">&#8377;599</span>
+            <span class="old-price">&#8377;799</span>
+            <span class="discount">25% off</span>
+          </div>
+          <div class="product-actions">
+            <div class="qty-selector">
+              <button onclick="changeQty('qty3',-1)">&#8722;</button>
+              <span id="qty3">1</span>
+              <button onclick="changeQty('qty3',1)">+</button>
+            </div>
+            <button class="btn btn-primary add-cart" onclick="addToCart('Moringa Capsules 60 Caps', 599, 'qty3')">Add to Cart</button>
+          </div>
         </div>
       </div>
-    </section>
 
-    <section id="contact" class="section">
-      <div class="container contact-box">
-        <div class="contact-info">
-          <h2>Have a Question?</h2>
-          <p>Use the form for wholesale inquiries, product queries, or order support. We usually reply within a few hours.</p>
-          <ul class="contact-list">
-            <li>&#128231; hello@moringapure.in</li>
-            <li>&#128222; +91 98765 43210</li>
-            <li>&#128336; Mon&ndash;Sat, 9AM&ndash;6PM IST</li>
-          </ul>
+      <div class="product-card">
+        <div class="product-badge-wrap">
+          <span class="prod-badge bundle">&#127873; Bundle</span>
         </div>
-        <form class="contact-form" onsubmit="submitForm(event)">
-          <input type="text" placeholder="Your Name" required>
-          <input type="email" placeholder="Email Address" required>
-          <input type="tel" placeholder="Phone Number (optional)">
-          <textarea rows="4" placeholder="Your Message" required></textarea>
-          <button class="btn btn-primary" type="submit">Send Message</button>
-          <p id="form-message" class="form-message"></p>
-        </form>
+        <div class="product-img bundle-img">
+          <div class="bundle-visual">
+            <div class="prod-jar sm left-jar">
+              <div class="prod-jar-lid"></div>
+              <div class="prod-jar-body"><div class="prod-jar-label"><span>Moringai</span><strong>250g</strong></div></div>
+            </div>
+            <div class="prod-jar sm right-jar">
+              <div class="prod-jar-lid"></div>
+              <div class="prod-jar-body"><div class="prod-jar-label"><span>Moringai</span><strong>250g</strong></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <h3>Starter Bundle &ndash; 2 x 250g</h3>
+          <p>Two packs of our bestseller. Best value for new customers.</p>
+          <div class="product-rating">
+            <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="rating-count">(654 reviews)</span>
+          </div>
+          <div class="product-price">
+            <span class="price">&#8377;899</span>
+            <span class="old-price">&#8377;1,398</span>
+            <span class="discount">36% off</span>
+          </div>
+          <div class="product-actions">
+            <div class="qty-selector">
+              <button onclick="changeQty('qty4',-1)">&#8722;</button>
+              <span id="qty4">1</span>
+              <button onclick="changeQty('qty4',1)">+</button>
+            </div>
+            <button class="btn btn-primary add-cart" onclick="addToCart('Starter Bundle 2x250g', 899, 'qty4')">Add to Cart</button>
+          </div>
+        </div>
       </div>
-    </section>
 
-  </main>
+    </div>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <a href="#" class="brand white">Moringa<span>Pure</span></a>
-      <p>Healthy living, delivered simply. &copy; 2026 MoringaPure. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms</a>
-        <a href="#contact">Contact</a>
+<!-- BENEFITS -->
+<section class="benefits-section" id="benefits">
+  <div class="container">
+    <div class="benefits-grid">
+      <div class="benefits-content">
+        <span class="section-tag">Why Moringa?</span>
+        <h2>The Tree of Life &mdash; In Every Scoop</h2>
+        <p>Moringa oleifera has been used for centuries in Ayurvedic medicine. Packed with 90+ nutrients, it&rsquo;s nature&rsquo;s most complete superfood.</p>
+        <div class="benefits-list">
+          <div class="benefit-item">
+            <div class="benefit-icon">&#128170;</div>
+            <div>
+              <h4>Boosts Energy Naturally</h4>
+              <p>Rich in iron and B vitamins to fight fatigue without caffeine</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">&#129504;</div>
+            <div>
+              <h4>Supports Immunity</h4>
+              <p>High in Vitamin C, zinc, and antioxidants to strengthen your defenses</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">&#127807;</div>
+            <div>
+              <h4>Anti-Inflammatory</h4>
+              <p>Contains isothiocyanates that reduce inflammation naturally</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">&#9889;</div>
+            <div>
+              <h4>High Protein Content</h4>
+              <p>More protein than eggs &mdash; perfect for vegetarians and vegans</p>
+            </div>
+          </div>
+        </div>
+        <a href="#products" class="btn btn-primary">Shop Now &#8594;</a>
+      </div>
+      <div class="benefits-visual">
+        <div class="nutrition-card">
+          <h4>&#128202; Nutrition per 10g Serving</h4>
+          <div class="nutrition-bars">
+            <div class="n-bar">
+              <div class="n-label"><span>Protein</span><span>2.1g</span></div>
+              <div class="n-track"><div class="n-fill" style="width:70%"></div></div>
+            </div>
+            <div class="n-bar">
+              <div class="n-label"><span>Iron</span><span>2.8mg</span></div>
+              <div class="n-track"><div class="n-fill" style="width:85%"></div></div>
+            </div>
+            <div class="n-bar">
+              <div class="n-label"><span>Calcium</span><span>185mg</span></div>
+              <div class="n-track"><div class="n-fill" style="width:60%"></div></div>
+            </div>
+            <div class="n-bar">
+              <div class="n-label"><span>Vitamin C</span><span>51mg</span></div>
+              <div class="n-track"><div class="n-fill" style="width:90%"></div></div>
+            </div>
+            <div class="n-bar">
+              <div class="n-label"><span>Vitamin A</span><span>378&#956;g</span></div>
+              <div class="n-track"><div class="n-fill" style="width:75%"></div></div>
+            </div>
+          </div>
+          <div class="cert-badges">
+            <span>&#127807; Organic</span>
+            <span>&#128300; Lab Tested</span>
+            <span>&#9989; FSSAI</span>
+            <span>&#127807; Vegan</span>
+          </div>
+        </div>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script src="script.js"></script>
+<!-- HOW TO USE -->
+<section class="howto-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Simple &amp; Easy</span>
+      <h2>How to Use Moringai</h2>
+      <p>Add moringa to your daily routine in just seconds</p>
+    </div>
+    <div class="howto-grid">
+      <div class="howto-card">
+        <div class="step-num">01</div>
+        <div class="step-icon">&#129379;</div>
+        <h4>Measure</h4>
+        <p>Take 1 teaspoon (5g) of Moringai powder</p>
+      </div>
+      <div class="howto-arrow">&#8594;</div>
+      <div class="howto-card">
+        <div class="step-num">02</div>
+        <div class="step-icon">&#129380;</div>
+        <h4>Mix</h4>
+        <p>Blend into juice, smoothie, milk, or warm water</p>
+      </div>
+      <div class="howto-arrow">&#8594;</div>
+      <div class="howto-card">
+        <div class="step-num">03</div>
+        <div class="step-icon">&#9749;</div>
+        <h4>Drink</h4>
+        <p>Best consumed in the morning for maximum benefits</p>
+      </div>
+      <div class="howto-arrow">&#8594;</div>
+      <div class="howto-card">
+        <div class="step-num">04</div>
+        <div class="step-icon">&#128170;</div>
+        <h4>Feel the Difference</h4>
+        <p>Notice improved energy and wellness in 2&ndash;4 weeks</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section" id="reviews">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Testimonials</span>
+      <h2>What Our Customers Say</h2>
+      <div class="overall-rating">
+        <span class="big-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <strong>4.9/5</strong>
+        <span>based on 5,000+ reviews</span>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="reviewer-header">
+          <div class="reviewer-avatar">P</div>
+          <div>
+            <strong>Priya Sharma</strong>
+            <span>Chennai, Tamil Nadu</span>
+          </div>
+          <span class="verified">&#9989; Verified</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>&ldquo;I&rsquo;ve been using Moringai for 3 months and my energy levels have completely transformed. I add it to my morning smoothie and it mixes perfectly. Will never stop ordering!&rdquo;</p>
+        <span class="review-date">2 weeks ago</span>
+      </div>
+      <div class="review-card">
+        <div class="reviewer-header">
+          <div class="reviewer-avatar" style="background:#e8a838">R</div>
+          <div>
+            <strong>Rahul Menon</strong>
+            <span>Bengaluru, Karnataka</span>
+          </div>
+          <span class="verified">&#9989; Verified</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>&ldquo;Fantastic quality! The powder is super fine and dissolves easily. Packaging is premium and delivery was fast. My whole family uses it now. Highly recommend Moringai!&rdquo;</p>
+        <span class="review-date">1 month ago</span>
+      </div>
+      <div class="review-card">
+        <div class="reviewer-header">
+          <div class="reviewer-avatar" style="background:#7c5cbf">A</div>
+          <div>
+            <strong>Ananya Krishnan</strong>
+            <span>Mumbai, Maharashtra</span>
+          </div>
+          <span class="verified">&#9989; Verified</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>&ldquo;As a nutritionist I&rsquo;m very particular about supplements. Moringai is the only moringa brand I recommend to my clients. Pure, clean, and genuinely effective.&rdquo;</p>
+        <span class="review-date">3 weeks ago</span>
+      </div>
+      <div class="review-card">
+        <div class="reviewer-header">
+          <div class="reviewer-avatar" style="background:#e85a5a">S</div>
+          <div>
+            <strong>Suresh Nair</strong>
+            <span>Kochi, Kerala</span>
+          </div>
+          <span class="verified">&#9989; Verified</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>&ldquo;Best moringa I&rsquo;ve tried in India. Very vibrant green colour which shows it&rsquo;s fresh. No bitter taste, no smell. My 6-year-old daughter also takes it without any complaints!&rdquo;</p>
+        <span class="review-date">1 week ago</span>
+      </div>
+      <div class="review-card">
+        <div class="reviewer-header">
+          <div class="reviewer-avatar" style="background:#2da8a8">D</div>
+          <div>
+            <strong>Divya Reddy</strong>
+            <span>Hyderabad, Telangana</span>
+          </div>
+          <span class="verified">&#9989; Verified</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>&ldquo;Ordered the 500g value pack &mdash; totally worth it! Noticed my skin glowing after just 3 weeks. Also my digestion has improved significantly. A must-buy product!&rdquo;</p>
+        <span class="review-date">5 days ago</span>
+      </div>
+      <div class="review-card">
+        <div class="reviewer-header">
+          <div class="reviewer-avatar" style="background:#d4873c">V</div>
+          <div>
+            <strong>Vikram Iyer</strong>
+            <span>Pune, Maharashtra</span>
+          </div>
+          <span class="verified">&#9989; Verified</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+        <p>&ldquo;Good quality moringa at a fair price. Packaging is neat and resealable which is important. Delivery was quicker than expected. Would definitely order again.&rdquo;</p>
+        <span class="review-date">2 months ago</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">FAQ</span>
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How much moringa powder should I take daily? <span>+</span></button>
+        <div class="faq-a"><p>We recommend starting with 1 teaspoon (5g) per day and gradually increasing to 2 teaspoons. Always consult your doctor if you have any medical conditions.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is Moringai safe during pregnancy? <span>+</span></button>
+        <div class="faq-a"><p>We advise pregnant women to consult their doctor before consuming moringa supplements as high doses may not be suitable during pregnancy.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How long does one pack of 250g last? <span>+</span></button>
+        <div class="faq-a"><p>At the recommended 5g daily serving, one 250g pack lasts approximately 50 days &mdash; about 1.5 months of daily use.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do you ship across India? <span>+</span></button>
+        <div class="faq-a"><p>Yes! We ship to all 28 states and 8 union territories across India. Free shipping on orders above &#8377;499. Express delivery available in major cities.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What is your return policy? <span>+</span></button>
+        <div class="faq-a"><p>We offer a 7-day return policy. If you&rsquo;re not satisfied with your order, contact us within 7 days of delivery for a full refund or replacement.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is Moringai FSSAI certified? <span>+</span></button>
+        <div class="faq-a"><p>Yes, Moringai is fully FSSAI certified and all our products undergo third-party lab testing for quality, purity, and safety before being packed and shipped.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <span class="section-tag">Get in Touch</span>
+        <h2>We&rsquo;re Here to Help</h2>
+        <p>Have questions about our products, orders, or wholesale pricing? We&rsquo;d love to hear from you.</p>
+        <div class="contact-cards">
+          <div class="contact-card">
+            <span>&#128231;</span>
+            <div>
+              <strong>Email Us</strong>
+              <p>hello@moringai.in</p>
+            </div>
+          </div>
+          <div class="contact-card">
+            <span>&#128222;</span>
+            <div>
+              <strong>Call Us</strong>
+              <p>+91 98765 43210</p>
+            </div>
+          </div>
+          <div class="contact-card">
+            <span>&#128336;</span>
+            <div>
+              <strong>Working Hours</strong>
+              <p>Mon &ndash; Sat, 9AM &ndash; 6PM IST</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="submitForm(event)">
+        <h3>Send a Message</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="your@email.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Phone (optional)</label>
+          <input type="tel" placeholder="+91 XXXXX XXXXX">
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <select>
+            <option>Product Inquiry</option>
+            <option>Order Support</option>
+            <option>Wholesale</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea rows="4" placeholder="How can we help you?" required></textarea>
+        </div>
+        <button class="btn btn-primary full" type="submit">Send Message &#9993;</button>
+        <p id="form-message" class="form-success"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <span class="logo-icon">&#127807;</span>
+            <span class="logo-text white">Moringai</span>
+          </a>
+          <p>India&rsquo;s premium organic moringa brand. Pure, powerful, and packed with nature&rsquo;s best nutrients.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Instagram">&#128247;</a>
+            <a href="#" aria-label="Facebook">&#128241;</a>
+            <a href="#" aria-label="YouTube">&#127909;</a>
+            <a href="#" aria-label="Twitter">&#128140;</a>
+          </div>
+        </div>
+        <div class="footer-links-col">
+          <h4>Quick Links</h4>
+          <a href="#home">Home</a>
+          <a href="#products">Shop</a>
+          <a href="#benefits">Benefits</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="footer-links-col">
+          <h4>Support</h4>
+          <a href="#contact">Contact Us</a>
+          <a href="#">Track Order</a>
+          <a href="#">Return Policy</a>
+          <a href="#">Shipping Info</a>
+          <a href="#">Wholesale</a>
+        </div>
+        <div class="footer-newsletter">
+          <h4>Newsletter</h4>
+          <p>Get health tips and exclusive offers in your inbox.</p>
+          <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">&#8594;</button>
+          </form>
+          <p id="nl-message" class="nl-message"></p>
+          <div class="payment-icons">
+            <span>&#128179;</span>
+            <span>&#128180;</span>
+            <span>&#128181;</span>
+            <span>UPI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; 2026 Moringai. All rights reserved. | FSSAI Licensed | Made with &#10084; in India &#127470;&#127475;</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button class="back-top" id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">&#8679;</button>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
 </body>
 </html>
