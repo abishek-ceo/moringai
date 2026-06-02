@@ -1,129 +1,148 @@
-// Cart state
 let cart = [];
 
-// Qty selectors
-function changeQty(id, delta) {
-  const el = document.getElementById(id);
-  let val = parseInt(el.textContent) + delta;
-  if (val < 1) val = 1;
-  el.textContent = val;
+function toggleSearch() {
+  const search = document.getElementById('mobileSearch');
+  search.classList.toggle('open');
+  syncOverlay();
 }
 
-// Add to cart
+function closeSearch() {
+  document.getElementById('mobileSearch').classList.remove('open');
+  syncOverlay();
+}
+
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+  syncOverlay();
+}
+
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  syncOverlay();
+}
+
+function toggleCart() {
+  document.getElementById('cartDrawer').classList.toggle('open');
+  syncOverlay();
+}
+
+function syncOverlay() {
+  const overlay = document.getElementById('overlay');
+  const cartOpen = document.getElementById('cartDrawer').classList.contains('open');
+  const menuOpen = document.getElementById('mobileMenu').classList.contains('open');
+  const searchOpen = document.getElementById('mobileSearch').classList.contains('open');
+  if (cartOpen || menuOpen || searchOpen) {
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  } else {
+    overlay.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+}
+
+function changeQty(id, diff) {
+  const el = document.getElementById(id);
+  let value = parseInt(el.textContent, 10) + diff;
+  if (value < 1) value = 1;
+  el.textContent = value;
+}
+
 function addToCart(name, price, qtyId) {
-  const qty = parseInt(document.getElementById(qtyId).textContent);
-  const existing = cart.find(i => i.name === name);
+  const qty = parseInt(document.getElementById(qtyId).textContent, 10);
+  const existing = cart.find(item => item.name === name);
   if (existing) {
     existing.qty += qty;
   } else {
     cart.push({ name, price, qty });
   }
-  updateCartUI();
-  showToast('\u2705 ' + name + ' added to cart!');
   document.getElementById(qtyId).textContent = '1';
+  updateCart();
+  showToast(name + ' added to cart');
 }
 
-function removeFromCart(index) {
+function removeItem(index) {
   cart.splice(index, 1);
-  updateCartUI();
+  updateCart();
 }
 
-function updateCartUI() {
-  const count = cart.reduce((a, i) => a + i.qty, 0);
-  document.getElementById('cart-count').textContent = count;
-  const itemsEl = document.getElementById('cart-items');
-  const footerEl = document.getElementById('cart-footer');
+function updateCart() {
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  document.getElementById('cartCount').textContent = count;
+
+  const cartItems = document.getElementById('cartItems');
+  const cartFoot = document.getElementById('cartFoot');
+
   if (cart.length === 0) {
-    itemsEl.innerHTML = '<div class="cart-empty"><div class="empty-icon">\u1f6d2</div><p>Your cart is empty</p><a href="#products" class="btn btn-primary" onclick="toggleCart()">Shop Now</a></div>';
-    footerEl.style.display = 'none';
+    cartItems.className = 'cart-items empty-state';
+    cartItems.innerHTML = `
+      <div class="empty-card">
+        <div class="empty-icon">🛒</div>
+        <h4>Your cart is empty</h4>
+        <p>Add your first Moringai product to begin.</p>
+        <a href="#shop" class="btn btn-primary" onclick="toggleCart()">Shop products</a>
+      </div>
+    `;
+    cartFoot.style.display = 'none';
+    document.getElementById('cartTotal').textContent = '₹0';
     return;
   }
-  let html = '';
-  let total = 0;
-  cart.forEach((item, i) => {
-    total += item.price * item.qty;
-    html += '<div class="cart-item"><div class="cart-item-info"><h4>' + item.name + '</h4><p>\u20b9' + (item.price * item.qty).toLocaleString('en-IN') + ' (' + item.qty + ' x \u20b9' + item.price + ')</p></div><button class="cart-item-remove" onclick="removeFromCart(' + i + ')">\u2715</button></div>';
-  });
-  itemsEl.innerHTML = html;
-  document.getElementById('cart-total').textContent = '\u20b9' + total.toLocaleString('en-IN');
-  footerEl.style.display = 'flex';
+
+  cartItems.className = 'cart-items';
+  cartItems.innerHTML = cart.map((item, index) => `
+    <div class="cart-item">
+      <div>
+        <strong>${item.name}</strong>
+        <p>₹${(item.price * item.qty).toLocaleString('en-IN')} · ${item.qty} × ₹${item.price}</p>
+      </div>
+      <button onclick="removeItem(${index})">✕</button>
+    </div>
+  `).join('');
+
+  document.getElementById('cartTotal').textContent = '₹' + total.toLocaleString('en-IN');
+  cartFoot.style.display = 'block';
 }
 
-function toggleCart() {
-  document.getElementById('cart-sidebar').classList.toggle('open');
-  document.getElementById('cart-overlay').classList.toggle('open');
-  document.body.style.overflow = document.getElementById('cart-sidebar').classList.contains('open') ? 'hidden' : '';
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2200);
+}
+
+function toggleFaq(button) {
+  const item = button.parentElement;
+  const body = item.querySelector('.faq-body');
+  const opened = body.classList.contains('open');
+  document.querySelectorAll('.faq-body').forEach(el => el.classList.remove('open'));
+  document.querySelectorAll('.faq-item button span').forEach(el => el.textContent = '+');
+  if (!opened) {
+    body.classList.add('open');
+    button.querySelector('span').textContent = '−';
+  }
+}
+
+function submitForm(event) {
+  event.preventDefault();
+  document.getElementById('formMsg').textContent = 'Message sent successfully.';
+  event.target.reset();
+  showToast('Support request sent');
 }
 
 function checkout() {
-  showToast('\u2705 Redirecting to checkout...');
-  setTimeout(() => toggleCart(), 1200);
+  showToast('Checkout flow ready for integration');
 }
 
-// Search
-function toggleSearch() {
-  document.getElementById('search-bar').classList.toggle('open');
-  if (document.getElementById('search-bar').classList.contains('open')) {
-    document.getElementById('search-input').focus();
+function jumpToShop() {
+  document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+}
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 760) {
+    closeMenu();
+    closeSearch();
   }
-}
-
-// Mobile menu
-function toggleMenu() {
-  document.getElementById('nav-links').classList.toggle('open');
-}
-
-// FAQ
-function toggleFaq(btn) {
-  const answer = btn.nextElementSibling;
-  const isOpen = answer.classList.contains('open');
-  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
-  document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
-  if (!isOpen) {
-    answer.classList.add('open');
-    btn.classList.add('open');
-  }
-}
-
-// Toast
-function showToast(msg) {
-  const toast = document.getElementById('toast');
-  toast.textContent = msg;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 3000);
-}
-
-// Contact form
-function submitForm(e) {
-  e.preventDefault();
-  document.getElementById('form-message').textContent = '\u2705 Message sent! We will reply within 24 hours.';
-  e.target.reset();
-  setTimeout(() => { document.getElementById('form-message').textContent = ''; }, 5000);
-}
-
-// Newsletter
-function subscribeNewsletter(e) {
-  e.preventDefault();
-  document.getElementById('nl-message').textContent = '\u2705 Subscribed! Check your inbox.';
-  e.target.reset();
-}
-
-// Navbar scroll effect
-window.addEventListener('scroll', () => {
-  const navbar = document.getElementById('navbar');
-  const backTop = document.getElementById('back-top');
-  if (window.scrollY > 60) {
-    navbar.classList.add('scrolled');
-    backTop.classList.add('visible');
-  } else {
-    navbar.classList.remove('scrolled');
-    backTop.classList.remove('visible');
-  }
-});
-
-// Close mobile menu on link click
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    document.getElementById('nav-links').classList.remove('open');
-  });
 });
