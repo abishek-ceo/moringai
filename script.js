@@ -3,14 +3,13 @@ let countersAnimated = false;
 let navOpen = false;
 
 /* ---- SCROLL REVEAL ---- */
-// Defined early but populated after DOMContentLoaded to avoid missing dynamic classes
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
   });
 }, { threshold: 0.12 });
 
-/* ---- SPARKLE CURSOR (mouse only, not on touch devices) ---- */
+/* ---- SPARKLE CURSOR (mouse only) ---- */
 const sparkleEmojis = ['✨','🌿','🌟','💚','⚡','🍃'];
 let lastSparkle = 0;
 if (window.matchMedia('(hover: hover)').matches) {
@@ -50,18 +49,30 @@ function addCart(name, price, qtyId) {
   document.getElementById(qtyId).textContent = '1';
   renderCart();
   updateWhatsAppLink();
-  // Only auto-open cart on desktop to avoid jarring experience on mobile
-  if (!document.getElementById('cartPanel').classList.contains('open')) {
-    toggleCart();
+
+  // Show added state on button — do NOT open cart
+  const btn = document.querySelector(`[onclick*="'${qtyId}'"].add-btn`);
+  if (btn) {
+    btn.textContent = '✅ Added!';
+    btn.classList.add('added');
+    setTimeout(() => {
+      btn.innerHTML = 'Add to Cart 🛒';
+      btn.classList.remove('added');
+    }, 1800);
   }
-  toast('\u2705 Added: ' + name);
+
+  // Animate cart badge
+  const badge = document.getElementById('cartBadge');
+  badge.style.transform = 'scale(1.5)';
+  setTimeout(() => { badge.style.transform = ''; }, 300);
+
+  toast('✅ Added: ' + name);
 }
 
 function removeCartItem(i) {
   cart.splice(i, 1);
   renderCart();
   updateWhatsAppLink();
-  // Close cart if it becomes empty
   if (cart.length === 0 && document.getElementById('cartPanel').classList.contains('open')) {
     toggleCart();
   }
@@ -76,8 +87,8 @@ function updateWhatsAppLink() {
   }
   const lines = [
     'Hello Moringai! I want to place an order.',
-    ...cart.map(i => i.name + ' x ' + i.qty + ' = \u20b9' + (i.price * i.qty).toLocaleString('en-IN')),
-    'Total: \u20b9' + cart.reduce((a, i) => a + i.price * i.qty, 0).toLocaleString('en-IN')
+    ...cart.map(i => i.name + ' x ' + i.qty + ' = ₹' + (i.price * i.qty).toLocaleString('en-IN')),
+    'Total: ₹' + cart.reduce((a, i) => a + i.price * i.qty, 0).toLocaleString('en-IN')
   ];
   link.href = 'https://wa.me/919514499924?text=' + encodeURIComponent(lines.join('\n'));
 }
@@ -89,7 +100,7 @@ function renderCart() {
   const body = document.getElementById('cartBody');
   const foot = document.getElementById('cartFoot');
   if (!cart.length) {
-    body.innerHTML = '<div class="cart-empty-state"><p style="font-size:2.5rem">\ud83d\uded2</p><p>Cart is empty!</p><small>Add products to continue</small></div>';
+    body.innerHTML = '<div class="cart-empty-state"><p style="font-size:2.5rem">🛒</p><p>Cart is empty!</p><small>Add products to continue</small></div>';
     foot.style.display = 'none';
     return;
   }
@@ -97,12 +108,12 @@ function renderCart() {
     <div class="cart-item-row">
       <div class="ci-info">
         <strong>${item.name}</strong>
-        <p>\u20b9${(item.price * item.qty).toLocaleString('en-IN')} &nbsp;&middot;&nbsp; ${item.qty} &times; \u20b9${item.price}</p>
+        <p>₹${(item.price * item.qty).toLocaleString('en-IN')} &nbsp;&middot;&nbsp; ${item.qty} &times; ₹${item.price}</p>
       </div>
       <button onclick="removeCartItem(${i})" aria-label="Remove item">&times;</button>
     </div>
   `).join('');
-  document.getElementById('cartTotal').textContent = '\u20b9' + total.toLocaleString('en-IN');
+  document.getElementById('cartTotal').textContent = '₹' + total.toLocaleString('en-IN');
   foot.style.display = 'flex';
   updateWhatsAppLink();
 }
@@ -110,7 +121,6 @@ function renderCart() {
 function toggleNav() {
   navOpen = !navOpen;
   document.getElementById('header').classList.toggle('mobile-nav-open', navOpen);
-  // Prevent body scroll when mobile nav is open
   document.body.style.overflow = navOpen ? 'hidden' : '';
 }
 
@@ -121,27 +131,21 @@ function closeNav() {
   document.body.style.overflow = '';
 }
 
-// Close mobile nav when clicking outside of header
 document.addEventListener('click', e => {
-  if (navOpen && !e.target.closest('#header')) {
-    closeNav();
-  }
+  if (navOpen && !e.target.closest('#header')) closeNav();
 });
 
 function openFaq(btn) {
   const item = btn.parentElement;
   const ans = item.querySelector('.faq-ans');
   const isOpen = ans.classList.contains('open');
-  // Close all
   document.querySelectorAll('.faq-ans').forEach(a => a.classList.remove('open'));
   document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-  // Update all + icons to +
   document.querySelectorAll('.faq-item button span').forEach(s => s.textContent = '+');
   if (!isOpen) {
     ans.classList.add('open');
     item.classList.add('open');
-    // Update icon of the opened item to −
-    btn.querySelector('span').textContent = '\u2212';
+    btn.querySelector('span').textContent = '−';
   }
 }
 
@@ -151,7 +155,6 @@ function filterProducts(cat, btn) {
   document.querySelectorAll('.product-card').forEach(card => {
     const show = cat === 'all' || card.dataset.cat === cat;
     card.style.display = show ? '' : 'none';
-    // Also toggle hidden class for CSS-driven transitions
     card.classList.toggle('hidden', !show);
   });
 }
@@ -160,15 +163,14 @@ function submitForm(e) {
   e.preventDefault();
   const form = e.target;
   const msg = document.getElementById('formMsg');
-  // Basic phone validation
   const phone = form.querySelector('input[type="tel"]').value.trim();
   if (phone.length < 10) {
     msg.style.color = '#c0392b';
-    msg.textContent = '\u26a0\ufe0f Please enter a valid 10-digit phone number.';
+    msg.textContent = '⚠️ Please enter a valid 10-digit phone number.';
     return;
   }
   msg.style.color = '#2d7a46';
-  msg.textContent = '\u2705 Message sent! We will reply within 2 hours.';
+  msg.textContent = '✅ Message sent! We will reply within 2 hours.';
   form.reset();
   toast('Message sent successfully!');
   setTimeout(() => { msg.textContent = ''; }, 5000);
@@ -195,7 +197,7 @@ window.addEventListener('scroll', () => {
 function createParticles() {
   const container = document.getElementById('particles');
   if (!container) return;
-  const emojis = ['\ud83c\udf3f', '\u2728', '\ud83c\udf43', '\ud83d\udc9a', '\ud83c\udf31', '\u2b50', '\ud83d\udcb5'];
+  const emojis = ['🌿', '✨', '🍃', '💚', '🌱', '⭐', '💵'];
   for (let i = 0; i < 22; i++) {
     const p = document.createElement('div');
     p.className = 'particle';
@@ -219,10 +221,8 @@ function animateCounters() {
     const target = parseInt(el.dataset.target, 10);
     if (isNaN(target)) return;
     let current = 0;
-    const duration = 1500; // ms
     const steps = 60;
     const step = target / steps;
-    const interval = duration / steps;
     const timer = setInterval(() => {
       current += step;
       if (current >= target) {
@@ -231,7 +231,7 @@ function animateCounters() {
       } else {
         el.textContent = Math.floor(current).toLocaleString('en-IN') + '+';
       }
-    }, interval);
+    }, 25);
   });
 }
 
@@ -247,38 +247,29 @@ if (heroStats) {
   }
 }
 
-/* ---- ADD REVEAL CLASSES & RE-OBSERVE AFTER DOM IS READY ---- */
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.benefit-card').forEach((el, i) => {
-    el.classList.add('reveal');
-    el.style.transitionDelay = (i * 0.08) + 's';
+    el.classList.add('reveal'); el.style.transitionDelay = (i * 0.08) + 's';
   });
   document.querySelectorAll('.product-card').forEach((el, i) => {
-    el.classList.add('reveal');
-    el.style.transitionDelay = (i * 0.1) + 's';
+    el.classList.add('reveal'); el.style.transitionDelay = (i * 0.1) + 's';
   });
   document.querySelectorAll('.review-card').forEach((el, i) => {
-    el.classList.add('reveal');
-    el.style.transitionDelay = (i * 0.1) + 's';
+    el.classList.add('reveal'); el.style.transitionDelay = (i * 0.1) + 's';
   });
   document.querySelectorAll('.howto-step').forEach((el, i) => {
-    el.classList.add('reveal');
-    el.style.transitionDelay = (i * 0.12) + 's';
+    el.classList.add('reveal'); el.style.transitionDelay = (i * 0.12) + 's';
   });
   document.querySelectorAll('.section-title').forEach(el => el.classList.add('reveal'));
   document.querySelectorAll('.contact-card').forEach((el, i) => {
-    el.classList.add('reveal-left');
-    el.style.transitionDelay = (i * 0.1) + 's';
+    el.classList.add('reveal-left'); el.style.transitionDelay = (i * 0.1) + 's';
   });
   document.querySelectorAll('.contact-form').forEach(el => el.classList.add('reveal-right'));
   document.querySelectorAll('.trust-item').forEach((el, i) => {
-    el.classList.add('reveal');
-    el.style.transitionDelay = (i * 0.07) + 's';
+    el.classList.add('reveal'); el.style.transitionDelay = (i * 0.07) + 's';
   });
-  // Observe all newly-added reveal elements
   document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
 
-  // Initial render
   renderCart();
   updateWhatsAppLink();
   createParticles();
