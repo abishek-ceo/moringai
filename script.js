@@ -38,11 +38,11 @@ function updateWhatsAppLink() {
   const link = document.getElementById('cartWaLink');
   if (!link) return;
   if (!cart.length) {
-    link.href = 'https://wa.me/919876543210?text=Hello%20Moringai!%20I%20want%20to%20place%20an%20order';
+    link.href = 'https://wa.me/919514499924?text=Hello%20Moringai!%20I%20want%20to%20place%20an%20order';
     return;
   }
   const lines = ['Hello Moringai! I want to place an order.', ...cart.map(i => `${i.name} x ${i.qty} = ₹${(i.price * i.qty).toLocaleString('en-IN')}`), 'Total: ₹' + cart.reduce((a, i) => a + i.price * i.qty, 0).toLocaleString('en-IN')];
-  link.href = 'https://wa.me/919876543210?text=' + encodeURIComponent(lines.join('\n'));
+  link.href = 'https://wa.me/919514499924?text=' + encodeURIComponent(lines.join('\n'));
 }
 
 function renderCart() {
