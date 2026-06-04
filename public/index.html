@@ -31,14 +31,16 @@
     <header id="mainHeader" class="header">
         <nav class="nav-container">
             <div class="nav-logo">
-                <span class="logo-icon">♦️</span>
-                <span class="logo-text">Moringai</span>
+                <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:8px">
+                    <span class="logo-icon">♦️</span>
+                    <span class="logo-text">Moringai</span>
+                </a>
             </div>
             <div class="nav-links desktop-only">
-                <a href="#products" class="nav-link">Shop</a>
-                <a href="#benefits" class="nav-link">Benefits</a>
-                <a href="#story" class="nav-link">Our Story</a>
-                <a href="#reviews" class="nav-link">Reviews</a>
+                <a href="/shop" class="nav-link">Shop</a>
+                <a href="/benefits" class="nav-link">Benefits</a>
+                <a href="/story" class="nav-link">Our Story</a>
+                <a href="/reviews" class="nav-link">Reviews</a>
             </div>
             <div class="nav-actions">
                 <button class="cart-icon-btn" id="cartToggle" aria-label="Open Cart">
@@ -56,10 +58,10 @@
         </nav>
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
-            <a href="#products" class="mobile-nav-link" onclick="closeMobileMenu()">Shop</a>
-            <a href="#benefits" class="mobile-nav-link" onclick="closeMobileMenu()">Benefits</a>
-            <a href="#story" class="mobile-nav-link" onclick="closeMobileMenu()">Our Story</a>
-            <a href="#reviews" class="mobile-nav-link" onclick="closeMobileMenu()">Reviews</a>
+            <a href="/shop" class="mobile-nav-link">Shop</a>
+            <a href="/benefits" class="mobile-nav-link">Benefits</a>
+            <a href="/story" class="mobile-nav-link">Our Story</a>
+            <a href="/reviews" class="mobile-nav-link">Reviews</a>
         </div>
     </header>
 
@@ -78,14 +80,10 @@
                 <em class="hero-italic">Intelligence</em>
                 of Nature
             </h1>
-            <p class="hero-subtitle">Discover the miraculous Moringa — the world’s most nutrient-dense superfood, ethically harvested from sun-drenched farms across Tamil Nadu and Andhra Pradesh.</p>
+            <p class="hero-subtitle">Discover the miraculous Moringa — the world's most nutrient-dense superfood, ethically harvested from sun-drenched farms across Tamil Nadu and Andhra Pradesh.</p>
             <div class="hero-cta">
-                <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
-                    SHOP COLLECTION
-                </button>
-                <button class="btn-secondary" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">
-                    OUR STORY
-                </button>
+                <a href="/shop" class="btn-primary" style="text-decoration:none;display:inline-block">SHOP COLLECTION</a>
+                <a href="/story" class="btn-secondary" style="text-decoration:none;display:inline-block">OUR STORY</a>
             </div>
             <div class="hero-scroll">
                 <span class="scroll-line"></span>
@@ -114,90 +112,31 @@
         </div>
     </section>
 
-    <!-- WHY MORINGAI -->
-    <section class="why-section" id="benefits">
+    <!-- QUICK LINKS SECTION -->
+    <section style="padding:64px 0;background:#f8fdf8">
         <div class="container">
-            <div class="section-label">WHY MORINGAI</div>
-            <h2 class="section-title">Nature’s most powerful<br>superfood, perfected.</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🌾</div>
-                    <h3 class="feature-title">Farm to Table</h3>
-                    <p class="feature-desc">Direct partnerships with 200+ organic farmers in Tamil Nadu ensuring freshness and fair trade practices.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔬</div>
-                    <h3 class="feature-title">Lab Certified</h3>
-                    <p class="feature-desc">Every batch tested for heavy metals, pesticides, and microbial contamination. Certificate available on request.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">❤️</div>
-                    <h3 class="feature-title">Nutrient Dense</h3>
-                    <p class="feature-desc">Contains 90+ nutrients, 46 antioxidants, all 9 essential amino acids, vitamins A, C, E and minerals.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📦</div>
-                    <h3 class="feature-title">Eco Packaging</h3>
-                    <p class="feature-desc">100% recyclable kraft paper packaging. Zero plastic policy. Carbon-neutral delivery partners.</p>
-                </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;text-align:center">
+                <a href="/shop" style="text-decoration:none;background:#fff;border-radius:16px;padding:32px 20px;box-shadow:0 2px 12px rgba(0,0,0,0.06);display:flex;flex-direction:column;align-items:center;gap:12px;color:#1a3a1a;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.06)'">
+                    <span style="font-size:36px">🛒</span>
+                    <span style="font-weight:700;font-size:18px">Shop</span>
+                    <span style="font-size:13px;color:#666">Browse all products</span>
+                </a>
+                <a href="/benefits" style="text-decoration:none;background:#fff;border-radius:16px;padding:32px 20px;box-shadow:0 2px 12px rgba(0,0,0,0.06);display:flex;flex-direction:column;align-items:center;gap:12px;color:#1a3a1a;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.06)'">
+                    <span style="font-size:36px">💪</span>
+                    <span style="font-weight:700;font-size:18px">Benefits</span>
+                    <span style="font-size:13px;color:#666">90+ nutrients inside</span>
+                </a>
+                <a href="/story" style="text-decoration:none;background:#fff;border-radius:16px;padding:32px 20px;box-shadow:0 2px 12px rgba(0,0,0,0.06);display:flex;flex-direction:column;align-items:center;gap:12px;color:#1a3a1a;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.06)'">
+                    <span style="font-size:36px">🌱</span>
+                    <span style="font-weight:700;font-size:18px">Our Story</span>
+                    <span style="font-size:13px;color:#666">Farm to your table</span>
+                </a>
+                <a href="/reviews" style="text-decoration:none;background:#fff;border-radius:16px;padding:32px 20px;box-shadow:0 2px 12px rgba(0,0,0,0.06);display:flex;flex-direction:column;align-items:center;gap:12px;color:#1a3a1a;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.06)'">
+                    <span style="font-size:36px">⭐</span>
+                    <span style="font-weight:700;font-size:18px">Reviews</span>
+                    <span style="font-size:13px;color:#666">Loved by thousands</span>
+                </a>
             </div>
-        </div>
-    </section>
-
-    <!-- PRODUCTS -->
-    <section class="products-section" id="products">
-        <div class="container">
-            <div class="section-label">THE COLLECTION</div>
-            <h2 class="section-title">Curated for your<br>wellness journey.</h2>
-            <div class="products-grid" id="productsGrid"></div>
-        </div>
-    </section>
-
-    <!-- BENEFITS -->
-    <section class="benefits-section">
-        <div class="container">
-            <div class="benefits-split">
-                <div class="benefits-visual">
-                    <div class="benefits-orb">
-                        <span class="orb-icon">🌿</span>
-                        <div class="orb-rings"></div>
-                    </div>
-                    <div class="benefit-stat"><span class="stat-num">90+</span><span class="stat-lbl">Nutrients</span></div>
-                    <div class="benefit-stat"><span class="stat-num">46</span><span class="stat-lbl">Antioxidants</span></div>
-                    <div class="benefit-stat"><span class="stat-num">9</span><span class="stat-lbl">Amino Acids</span></div>
-                </div>
-                <div class="benefits-content">
-                    <div class="section-label">HEALTH BENEFITS</div>
-                    <h2 class="section-title">One plant,<br>infinite wellness.</h2>
-                    <div class="benefits-list">
-                        <div class="benefit-item">💪 Boosts immunity & energy levels naturally</div>
-                        <div class="benefit-item">🧠 Enhances cognitive function & mental clarity</div>
-                        <div class="benefit-item">🩸 Supports healthy blood sugar & cholesterol</div>
-                        <div class="benefit-item">✨ Promotes radiant skin, hair & nail growth</div>
-                        <div class="benefit-item">💤 Improves sleep quality & reduces fatigue</div>
-                        <div class="benefit-item">🌱 Anti-inflammatory & detoxifying properties</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- OUR STORY -->
-    <section class="story-section" id="story">
-        <div class="container">
-            <div class="section-label">OUR STORY</div>
-            <h2 class="section-title">Rooted in tradition,<br>driven by science.</h2>
-            <p class="story-text">Moringai was born from a simple belief — that the ancient wisdom of Tamil Nadu’s farmers holds the key to modern wellness. For generations, murungai (moringa) has been a staple of South Indian kitchens, revered for its extraordinary healing properties.</p>
-            <p class="story-text">We work directly with small-scale organic farmers across Tamil Nadu and Andhra Pradesh, ensuring fair prices, sustainable farming practices, and the purest possible product for you.</p>
-        </div>
-    </section>
-
-    <!-- REVIEWS -->
-    <section class="reviews-section" id="reviews">
-        <div class="container">
-            <div class="section-label">TESTIMONIALS</div>
-            <h2 class="section-title">Loved by thousands<br>across India.</h2>
-            <div class="reviews-grid" id="reviewsGrid"></div>
         </div>
     </section>
 
@@ -213,17 +152,16 @@
                 <div class="footer-links">
                     <div class="footer-col">
                         <h4>Shop</h4>
-                        <a href="#products">All Products</a>
-                        <a href="#products">Moringa Powder</a>
-                        <a href="#products">Moringa Capsules</a>
-                        <a href="#products">Gift Sets</a>
+                        <a href="/shop">All Products</a>
+                        <a href="/shop">Moringa Powder</a>
+                        <a href="/shop">Moringa Capsules</a>
+                        <a href="/shop">Gift Sets</a>
                     </div>
                     <div class="footer-col">
                         <h4>Company</h4>
-                        <a href="#story">Our Story</a>
-                        <a href="#benefits">Benefits</a>
-                        <a href="#">Certifications</a>
-                        <a href="#">Blog</a>
+                        <a href="/story">Our Story</a>
+                        <a href="/benefits">Benefits</a>
+                        <a href="/reviews">Reviews</a>
                     </div>
                     <div class="footer-col">
                         <h4>Support</h4>
