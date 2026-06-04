@@ -8,45 +8,14 @@
 .fade-in { opacity:1 !important; transform:translateY(0) !important; }
 
 /* ── GLOBAL CURSOR FIX ───────────────────────────────────── */
-/* Every clickable/interactive element must show a pointer */
-.whatsapp-float,
-.chat-float,
-.chat-btn,
-[class*="float-btn"],
-[class*="chat"],
-.product-card,
-.product-wishlist,
-.add-to-cart,
-.btn-checkout,
-.btn-buynow,
-.btn-place-order,
-.filter-btn,
-.variant-btn,
-.feature-card,
-.testimonial-card,
-.blog-card,
-.social-btn,
-.footer-badge,
-.footer-col ul li a,
-.trust-item,
-.about-metric,
-.nutrition-stat,
-.cart-upsell,
-.cart-upsell-btn,
-.cart-item,
-.payment-method,
-.contact-item,
-.hero-badge,
-.section-tag,
-.blog-tag,
-.nav a,
-nav a,
-.logo,
-.logo-icon,
-.cart-btn,
-.mobile-buy-bar button,
-[class*="btn"],
-[class*="-card"] { cursor: pointer !important; }
+.whatsapp-float,.chat-float,.chat-btn,[class*="float-btn"],[class*="chat"],
+.product-card,.product-wishlist,.add-to-cart,.btn-checkout,.btn-buynow,
+.btn-place-order,.filter-btn,.variant-btn,.feature-card,.testimonial-card,
+.blog-card,.social-btn,.footer-badge,.footer-col ul li a,.trust-item,
+.about-metric,.nutrition-stat,.cart-upsell,.cart-upsell-btn,.cart-item,
+.payment-method,.contact-item,.hero-badge,.section-tag,.blog-tag,
+.nav a,nav a,.logo,.logo-icon,.cart-btn,.mobile-buy-bar button,[class*="btn"],[class*="-card"]
+{ cursor: pointer !important; }
 
 /* ════════════════════════════════════════════
    1. NAVBAR
@@ -58,18 +27,12 @@ nav a,
 header {
   animation: navSlideDown 0.6s cubic-bezier(0.4,0,0.2,1) both;
 }
-
-/* Logo pulse */
 @keyframes logoPulse {
   0%,100% { transform:scale(1) rotate(0deg); }
   50%     { transform:scale(1.12) rotate(8deg); }
 }
-.logo-icon {
-  animation: logoPulse 3s ease-in-out infinite;
-  cursor:pointer;
-}
+.logo-icon { animation: logoPulse 3s ease-in-out infinite; cursor:pointer; }
 
-/* Cart button wiggle when count > 0 */
 @keyframes cartWiggle {
   0%,100% { transform:rotate(0deg); }
   20%     { transform:rotate(-15deg); }
@@ -78,40 +41,34 @@ header {
   80%     { transform:rotate(5deg); }
 }
 .cart-btn:hover { animation: cartWiggle 0.5s ease; }
+nav a::after { transition: width 0.3s cubic-bezier(0.4,0,0.2,1) !important; }
 
-/* Nav link hover underline slide */
-nav a::after {
-  transition: width 0.3s cubic-bezier(0.4,0,0.2,1) !important;
-}
-
-/* Announcement bar shimmer */
 @keyframes announceShimmer {
   0%   { background-position:-400px 0; }
   100% { background-position:400px 0; }
 }
 .announcement-bar {
-  background: linear-gradient(90deg,#1b4332,#2d6a4f,#40916c,#2d6a4f,#1b4332) !important;
-  background-size:400px 100% !important;
-  animation: announceShimmer 6s linear infinite !important;
+  background: linear-gradient(90deg,#1b4332,#2d6a4f,#40916c,#52b788,#2d6a4f,#1b4332) !important;
+  background-size:600px 100% !important;
+  animation: announceShimmer 5s linear infinite !important;
 }
 
 /* ════════════════════════════════════════════
    2. HERO
 ════════════════════════════════════════════ */
 @keyframes heroFadeUp {
-  from { opacity:0; transform:translateY(40px); }
+  from { opacity:0; transform:translateY(50px); }
   to   { opacity:1; transform:translateY(0); }
 }
 .hero-content > * {
-  animation: heroFadeUp 0.7s ease both;
+  animation: heroFadeUp 0.8s cubic-bezier(0.4,0,0.2,1) both;
 }
 .hero-content > *:nth-child(1){ animation-delay:0.1s; }
-.hero-content > *:nth-child(2){ animation-delay:0.25s; }
-.hero-content > *:nth-child(3){ animation-delay:0.4s; }
-.hero-content > *:nth-child(4){ animation-delay:0.55s; }
-.hero-content > *:nth-child(5){ animation-delay:0.7s; }
+.hero-content > *:nth-child(2){ animation-delay:0.28s; }
+.hero-content > *:nth-child(3){ animation-delay:0.46s; }
+.hero-content > *:nth-child(4){ animation-delay:0.64s; }
+.hero-content > *:nth-child(5){ animation-delay:0.82s; }
 
-/* Hero stats counter glow */
 @keyframes statGlow {
   0%,100% { color:#fff; text-shadow:none; }
   50%     { color:#b7e4c7; text-shadow:0 0 20px rgba(183,228,199,0.8); }
@@ -122,36 +79,30 @@ nav a::after {
 .hero-stat:nth-child(3) strong { animation-delay:1.5s; }
 .hero-stat:nth-child(4) strong { animation-delay:2.25s; }
 
-/* Hero card float */
 @keyframes heroCardFloat {
-  0%,100% { transform:translateY(0) rotate(-1deg); }
-  50%     { transform:translateY(-16px) rotate(1deg); }
+  0%,100% { transform:translateY(0) rotate(-1.5deg); }
+  50%     { transform:translateY(-20px) rotate(1.5deg); }
 }
-.hero-product-card {
-  animation: heroCardFloat 5s ease-in-out infinite;
-}
+.hero-product-card { animation: heroCardFloat 5s ease-in-out infinite; }
 
-/* Hero badge pulse ring */
 @keyframes badgeRing {
-  0%  { box-shadow:0 0 0 0 rgba(183,228,199,0.5); }
-  70% { box-shadow:0 0 0 12px rgba(183,228,199,0); }
+  0%  { box-shadow:0 0 0 0 rgba(183,228,199,0.6); }
+  70% { box-shadow:0 0 0 14px rgba(183,228,199,0); }
   100%{ box-shadow:0 0 0 0 rgba(183,228,199,0); }
 }
 .hero-badge { animation: badgeRing 2.5s ease infinite; }
 
-/* Hero CTA buttons shimmer */
 @keyframes btnShimmer {
   0%   { background-position:-200% center; }
   100% { background-position:200% center; }
 }
 .hero-ctas .btn-primary {
-  background: linear-gradient(90deg,#fff,#d8f3dc,#fff) !important;
+  background: linear-gradient(90deg,#fff,#d8f3dc,#b7e4c7,#fff) !important;
   background-size:200% auto !important;
-  animation: btnShimmer 3s linear infinite;
+  animation: btnShimmer 2.5s linear infinite;
   color:#2d6a4f !important;
 }
 
-/* Floating particles */
 @keyframes drift {
   0%   { transform:translateY(0) translateX(0) scale(1);     opacity:0.7; }
   50%  { transform:translateY(-50px) translateX(25px) scale(1.3); opacity:1; }
@@ -162,6 +113,16 @@ nav a::after {
   background:rgba(183,228,199,0.45); pointer-events:none;
   animation: drift linear infinite;
 }
+.hero { overflow:hidden; position:relative; }
+
+/* ── GLASS CARD EFFECT ────────────────────────────────────── */
+.hero-product-card {
+  background: rgba(255,255,255,0.15) !important;
+  backdrop-filter: blur(16px) saturate(1.5) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.5) !important;
+  border: 1px solid rgba(255,255,255,0.25) !important;
+  box-shadow: 0 20px 60px rgba(27,67,50,0.3), inset 0 1px 0 rgba(255,255,255,0.3) !important;
+}
 
 /* ════════════════════════════════════════════
    3. TRUST BAR
@@ -170,39 +131,30 @@ nav a::after {
   from { opacity:0; transform:translateX(-30px); }
   to   { opacity:1; transform:translateX(0); }
 }
-.trust-item {
-  animation: trustSlide 0.5s ease both;
-}
+.trust-item { animation: trustSlide 0.5s ease both; }
 .trust-item:nth-child(1){ animation-delay:0.1s; }
 .trust-item:nth-child(2){ animation-delay:0.2s; }
 .trust-item:nth-child(3){ animation-delay:0.3s; }
 .trust-item:nth-child(4){ animation-delay:0.4s; }
 .trust-item:nth-child(5){ animation-delay:0.5s; }
-.trust-item:hover {
-  color:#2d6a4f;
-  transform:scale(1.06);
-  transition:transform 0.2s ease, color 0.2s ease;
-}
-.trust-item span:first-child {
-  transition: transform 0.3s ease;
-}
-.trust-item:hover span:first-child {
-  transform: rotate(15deg) scale(1.2);
-  display:inline-block;
-}
+.trust-item:hover { color:#2d6a4f; transform:scale(1.08); transition:transform 0.2s ease, color 0.2s ease; }
+.trust-item span:first-child { transition: transform 0.3s ease; }
+.trust-item:hover span:first-child { transform: rotate(20deg) scale(1.3); display:inline-block; }
 
 /* ════════════════════════════════════════════
    4. PRODUCT CARDS
 ════════════════════════════════════════════ */
 @keyframes cardPop {
-  0%   { opacity:0; transform:translateY(32px) scale(0.94); }
-  70%  { transform:translateY(-5px) scale(1.02); }
+  0%   { opacity:0; transform:translateY(40px) scale(0.92); }
+  65%  { transform:translateY(-6px) scale(1.03); }
   100% { opacity:1; transform:translateY(0) scale(1); }
 }
 .product-card {
-  animation: cardPop 0.55s cubic-bezier(0.34,1.56,0.64,1) both;
-  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1),
-              box-shadow 0.3s ease, border-color 0.3s ease !important;
+  animation: cardPop 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+  transition: box-shadow 0.15s ease, border-color 0.3s ease !important;
+  will-change: transform;
+  position:relative;
+  overflow:hidden;
 }
 .product-card:nth-child(1){ animation-delay:0.05s; }
 .product-card:nth-child(2){ animation-delay:0.13s; }
@@ -210,65 +162,68 @@ nav a::after {
 .product-card:nth-child(4){ animation-delay:0.29s; }
 .product-card:nth-child(5){ animation-delay:0.37s; }
 .product-card:nth-child(6){ animation-delay:0.45s; }
-.product-card:hover {
-  transform:translateY(-12px) scale(1.02) !important;
-  box-shadow:0 24px 70px rgba(45,106,79,0.25), 0 0 0 2.5px #52b78866 !important;
-  border-color:#40916c !important;
-}
 
-/* Floating emoji on hover */
+/* Card glow border on hover */
+.product-card::before {
+  content:'';
+  position:absolute; inset:-2px; border-radius:inherit;
+  background:linear-gradient(135deg,#52b788,#b7e4c7,#40916c,#52b788);
+  background-size:300% 300%;
+  opacity:0; z-index:-1;
+  transition:opacity 0.3s ease;
+  animation:borderRotate 3s linear infinite;
+}
+@keyframes borderRotate {
+  0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}
+}
+.product-card:hover::before { opacity:1; }
+
 @keyframes floatEmoji {
   0%,100% { transform:translateY(0) rotate(-3deg) scale(1); }
-  50%      { transform:translateY(-14px) rotate(3deg) scale(1.1); }
+  50%      { transform:translateY(-16px) rotate(3deg) scale(1.12); }
 }
-.product-img { transition:background 0.3s ease; }
+.product-img { transition:background 0.3s ease; overflow:hidden; }
 .product-card:hover .product-img {
   animation: floatEmoji 2.2s ease-in-out infinite;
   background:linear-gradient(135deg,#d8f3dc,#b7e4c7) !important;
 }
 
-/* Badge shine */
 @keyframes badgeShine {
   0%   { background-position:-200% center; }
   100% { background-position:200% center; }
 }
-.product-badge { background-size:200% auto !important; animation:badgeShine 3s linear infinite; }
+.product-badge { background-size:200% auto !important; animation:badgeShine 2.5s linear infinite; }
 .badge-bestseller { background-image:linear-gradient(90deg,#2d6a4f,#52b788,#2d6a4f) !important; }
 .badge-new       { background-image:linear-gradient(90deg,#b7950b,#f0c030,#b7950b) !important; }
 .badge-sale      { background-image:linear-gradient(90deg,#c62828,#e63946,#c62828) !important; }
 
-/* Price glow */
 @keyframes priceGlow {
   0%,100% { text-shadow:none; }
-  50%     { text-shadow:0 0 14px rgba(45,106,79,0.55); }
+  50%     { text-shadow:0 0 18px rgba(45,106,79,0.6); }
 }
 .price-current { animation:priceGlow 2.5s ease-in-out infinite; }
 
-/* Add button pulse */
 @keyframes btnPulse {
-  0%,100% { box-shadow:0 0 0 0 rgba(45,106,79,0.45); }
-  50%     { box-shadow:0 0 0 9px rgba(45,106,79,0); }
+  0%,100% { box-shadow:0 0 0 0 rgba(45,106,79,0.5); }
+  50%     { box-shadow:0 0 0 10px rgba(45,106,79,0); }
 }
 .add-to-cart {
   animation:btnPulse 2s ease infinite;
   transition:background 0.2s, transform 0.2s !important;
 }
-.add-to-cart:hover { transform:scale(1.1) !important; }
+.add-to-cart:hover { transform:scale(1.12) !important; }
 
-/* Wishlist heartbeat */
 @keyframes heartBeat {
   0%,100%{ transform:scale(1); }
-  25%    { transform:scale(1.35); }
-  50%    { transform:scale(0.9); }
-  75%    { transform:scale(1.18); }
+  25%    { transform:scale(1.4); }
+  50%    { transform:scale(0.88); }
+  75%    { transform:scale(1.2); }
 }
 .product-wishlist:hover { animation:heartBeat 0.5s ease; }
 
-/* Stock bar fill */
 @keyframes stockFill { from { width:0 !important; } }
 .stock-bar-fill { animation:stockFill 1.2s ease-out both; }
 
-/* Ripple */
 .ripple {
   position:absolute; border-radius:50%;
   background:rgba(255,255,255,0.5);
@@ -278,7 +233,6 @@ nav a::after {
 }
 @keyframes rippleAnim { to { transform:scale(4); opacity:0; } }
 
-/* Cart qty ctrl */
 .card-qty-ctrl {
   display:flex; align-items:center; gap:0;
   border-radius:50px; overflow:hidden;
@@ -299,48 +253,46 @@ nav a::after {
 /* ════════════════════════════════════════════
    5. FILTER BUTTONS
 ════════════════════════════════════════════ */
-.filter-btn {
-  transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1) !important;
-}
+.filter-btn { transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1) !important; }
 .filter-btn:hover, .filter-btn.active {
-  transform:translateY(-3px) scale(1.05) !important;
-  box-shadow:0 6px 20px rgba(45,106,79,0.25) !important;
+  transform:translateY(-4px) scale(1.07) !important;
+  box-shadow:0 8px 24px rgba(45,106,79,0.28) !important;
 }
 
 /* ════════════════════════════════════════════
    6. SECTION HEADERS
 ════════════════════════════════════════════ */
 @keyframes underlineGrow {
-  from { width:0; } to { width:64px; }
+  from { width:0; } to { width:80px; }
 }
 .section-header h2::after {
   content:'';
   display:block; height:4px;
-  background:linear-gradient(90deg,#2d6a4f,#52b788,#b7e4c7);
+  background:linear-gradient(90deg,#2d6a4f,#52b788,#b7e4c7,#52b788,#2d6a4f);
+  background-size:200% auto;
+  animation:underlineGrow 0.9s cubic-bezier(0.4,0,0.2,1) both, btnShimmer 3s linear 1s infinite;
   border-radius:50px; margin:14px auto 0;
-  animation:underlineGrow 0.9s cubic-bezier(0.4,0,0.2,1) both;
   animation-delay:0.35s;
 }
 
 @keyframes sectionTagPop {
-  from { opacity:0; transform:scale(0.8) translateY(10px); }
+  from { opacity:0; transform:scale(0.7) translateY(14px); }
   to   { opacity:1; transform:scale(1) translateY(0); }
 }
-.section-tag {
-  animation:sectionTagPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
-  animation-delay:0.1s;
-}
+.section-tag { animation:sectionTagPop 0.55s cubic-bezier(0.34,1.56,0.64,1) both; animation-delay:0.1s; }
 
 /* ════════════════════════════════════════════
    7. WHY US / FEATURE CARDS
 ════════════════════════════════════════════ */
 @keyframes featureReveal {
-  from { opacity:0; transform:translateY(36px) scale(0.96); }
+  from { opacity:0; transform:translateY(40px) scale(0.94); }
   to   { opacity:1; transform:translateY(0) scale(1); }
 }
 .feature-card {
-  animation:featureReveal 0.5s ease both;
-  transition:transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease !important;
+  animation:featureReveal 0.55s ease both;
+  transition:box-shadow 0.15s ease, background 0.3s ease !important;
+  will-change:transform;
+  position:relative; overflow:hidden;
 }
 .feature-card:nth-child(1){ animation-delay:0.05s; }
 .feature-card:nth-child(2){ animation-delay:0.12s; }
@@ -348,10 +300,6 @@ nav a::after {
 .feature-card:nth-child(4){ animation-delay:0.26s; }
 .feature-card:nth-child(5){ animation-delay:0.33s; }
 .feature-card:nth-child(6){ animation-delay:0.40s; }
-.feature-card:hover {
-  transform:translateY(-10px) scale(1.03) !important;
-  box-shadow:0 20px 50px rgba(45,106,79,0.18) !important;
-}
 
 @keyframes iconSpin {
   from { transform:rotate(0deg) scale(1); }
@@ -360,25 +308,21 @@ nav a::after {
 .feature-card:hover .feature-icon {
   animation:iconSpin 0.6s cubic-bezier(0.4,0,0.2,1) both;
   background:linear-gradient(135deg,#2d6a4f,#52b788) !important;
+  color:#fff;
 }
-.feature-card:hover .feature-icon { color:#fff; }
 
 /* ════════════════════════════════════════════
    8. NUTRITION SECTION
 ════════════════════════════════════════════ */
-@keyframes nutritionBarGrow {
-  from { width:0 !important; }
-}
-.nutrition-bar-fill {
-  animation:nutritionBarGrow 1.4s cubic-bezier(0.4,0,0.2,1) both;
-}
+@keyframes nutritionBarGrow { from { width:0 !important; } }
+.nutrition-bar-fill { animation:nutritionBarGrow 1.4s cubic-bezier(0.4,0,0.2,1) both; }
 .nutrition-bar:nth-child(1) .nutrition-bar-fill { animation-delay:0.1s; }
 .nutrition-bar:nth-child(2) .nutrition-bar-fill { animation-delay:0.3s; }
 .nutrition-bar:nth-child(3) .nutrition-bar-fill { animation-delay:0.5s; }
 .nutrition-bar:nth-child(4) .nutrition-bar-fill { animation-delay:0.7s; }
 
 @keyframes nutritionStatCount {
-  from { opacity:0; transform:scale(0.5) translateY(20px); }
+  from { opacity:0; transform:scale(0.5) translateY(24px); }
   to   { opacity:1; transform:scale(1) translateY(0); }
 }
 .nutrition-stat {
@@ -389,44 +333,35 @@ nav a::after {
 .nutrition-stat:nth-child(2){ animation-delay:0.25s; }
 .nutrition-stat:nth-child(3){ animation-delay:0.4s; }
 .nutrition-stat:nth-child(4){ animation-delay:0.55s; }
-.nutrition-stat:hover {
-  transform:scale(1.08) !important;
-  background:rgba(255,255,255,0.2) !important;
-}
+.nutrition-stat:hover { transform:scale(1.1) !important; background:rgba(255,255,255,0.22) !important; }
 
 @keyframes nutritionEmojiPulse {
-  0%,100% { transform:scale(1) rotate(-3deg); }
-  50%     { transform:scale(1.15) rotate(3deg); }
+  0%,100% { transform:scale(1) rotate(-4deg); }
+  50%     { transform:scale(1.18) rotate(4deg); }
 }
 .nutrition-emoji { animation:nutritionEmojiPulse 3s ease-in-out infinite; }
 
 /* ════════════════════════════════════════════
-   9. TESTIMONIALS
+   9. TESTIMONIALS / REVIEWS
 ════════════════════════════════════════════ */
 @keyframes testimonialSlide {
-  from { opacity:0; transform:translateX(-40px) rotate(-2deg); }
+  from { opacity:0; transform:translateX(-44px) rotate(-2deg); }
   to   { opacity:1; transform:translateX(0) rotate(0); }
 }
-.testimonial-card {
+.testimonial-card, .review-card {
   animation:testimonialSlide 0.6s cubic-bezier(0.4,0,0.2,1) both;
-  transition:transform 0.3s ease, box-shadow 0.3s ease !important;
+  transition:box-shadow 0.15s ease !important;
+  will-change:transform;
 }
-.testimonial-card:nth-child(1){ animation-delay:0.05s; }
-.testimonial-card:nth-child(2){ animation-delay:0.18s; }
-.testimonial-card:nth-child(3){ animation-delay:0.31s; }
-.testimonial-card:hover {
-  transform:translateY(-10px) rotate(0.5deg) !important;
-  box-shadow:0 24px 60px rgba(45,106,79,0.15) !important;
-}
+.testimonial-card:nth-child(1),.review-card:nth-child(1){ animation-delay:0.05s; }
+.testimonial-card:nth-child(2),.review-card:nth-child(2){ animation-delay:0.18s; }
+.testimonial-card:nth-child(3),.review-card:nth-child(3){ animation-delay:0.31s; }
 
 @keyframes starTwinkle {
   0%,100% { opacity:1; transform:scale(1); }
-  50%     { opacity:0.6; transform:scale(0.85); }
+  50%     { opacity:0.55; transform:scale(0.82); }
 }
-.testimonial-rating {
-  display:inline-block;
-  animation:starTwinkle 1.8s ease-in-out infinite;
-}
+.testimonial-rating { display:inline-block; animation:starTwinkle 1.8s ease-in-out infinite; }
 .testimonial-card:nth-child(2) .testimonial-rating { animation-delay:0.6s; }
 .testimonial-card:nth-child(3) .testimonial-rating { animation-delay:1.2s; }
 
@@ -438,20 +373,15 @@ nav a::after {
   animation:avatarPop 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
   transition:transform 0.3s ease !important;
 }
-.testimonial-card:hover .author-avatar {
-  transform:scale(1.15) !important;
-}
 
 /* ════════════════════════════════════════════
    10. ABOUT SECTION
 ════════════════════════════════════════════ */
 @keyframes timelineItemReveal {
-  from { opacity:0; transform:translateX(-24px); }
+  from { opacity:0; transform:translateX(-28px); }
   to   { opacity:1; transform:translateX(0); }
 }
-.timeline-item {
-  animation:timelineItemReveal 0.5s ease both;
-}
+.timeline-item { animation:timelineItemReveal 0.5s ease both; }
 .timeline-item:nth-child(1){ animation-delay:0.1s; }
 .timeline-item:nth-child(2){ animation-delay:0.25s; }
 .timeline-item:nth-child(3){ animation-delay:0.4s; }
@@ -459,36 +389,31 @@ nav a::after {
 
 @keyframes timelineDotPing {
   0%   { box-shadow:0 0 0 0 rgba(45,106,79,0.6); }
-  70%  { box-shadow:0 0 0 10px rgba(45,106,79,0); }
+  70%  { box-shadow:0 0 0 12px rgba(45,106,79,0); }
   100% { box-shadow:0 0 0 0 rgba(45,106,79,0); }
 }
-.timeline-item::before {
-  animation:timelineDotPing 2s ease infinite;
-}
+.timeline-item::before { animation:timelineDotPing 2s ease infinite; }
 .timeline-item:nth-child(2)::before { animation-delay:0.5s; }
 .timeline-item:nth-child(3)::before { animation-delay:1s; }
 .timeline-item:nth-child(4)::before { animation-delay:1.5s; }
 
 @keyframes metricCountUp {
-  from { opacity:0; transform:translateY(20px) scale(0.8); }
+  from { opacity:0; transform:translateY(24px) scale(0.8); }
   to   { opacity:1; transform:translateY(0) scale(1); }
 }
 .about-metric {
   animation:metricCountUp 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
-  transition:transform 0.3s ease, box-shadow 0.3s ease !important;
+  transition:box-shadow 0.15s ease !important;
+  will-change:transform;
 }
 .about-metric:nth-child(1){ animation-delay:0.1s; }
 .about-metric:nth-child(2){ animation-delay:0.2s; }
 .about-metric:nth-child(3){ animation-delay:0.3s; }
 .about-metric:nth-child(4){ animation-delay:0.4s; }
-.about-metric:hover {
-  transform:translateY(-6px) scale(1.06) !important;
-  box-shadow:0 12px 30px rgba(45,106,79,0.18) !important;
-}
 
 @keyframes aboutEmojiSway {
-  0%,100% { transform:rotate(-5deg) scale(1); }
-  50%     { transform:rotate(5deg) scale(1.08); }
+  0%,100% { transform:rotate(-6deg) scale(1); }
+  50%     { transform:rotate(6deg) scale(1.1); }
 }
 .about-visual-emoji { animation:aboutEmojiSway 4s ease-in-out infinite; display:block; }
 
@@ -496,41 +421,32 @@ nav a::after {
    11. BLOG CARDS
 ════════════════════════════════════════════ */
 @keyframes blogCardIn {
-  from { opacity:0; transform:translateY(40px) scale(0.96); }
+  from { opacity:0; transform:translateY(44px) scale(0.94); }
   to   { opacity:1; transform:translateY(0) scale(1); }
 }
 .blog-card {
   animation:blogCardIn 0.55s ease both;
-  transition:transform 0.3s ease, box-shadow 0.3s ease !important;
+  transition:box-shadow 0.15s ease !important;
+  will-change:transform;
+  overflow:hidden; position:relative;
 }
 .blog-card:nth-child(1){ animation-delay:0.05s; }
 .blog-card:nth-child(2){ animation-delay:0.17s; }
 .blog-card:nth-child(3){ animation-delay:0.29s; }
-.blog-card:hover {
-  transform:translateY(-12px) scale(1.02) !important;
-  box-shadow:0 24px 60px rgba(45,106,79,0.18) !important;
-}
 
-@keyframes blogImgZoom {
-  from { transform:scale(1); }
-  to   { transform:scale(1.08); }
-}
+@keyframes blogImgZoom { from { transform:scale(1); } to { transform:scale(1.1); } }
 .blog-card:hover .blog-img {
   animation:blogImgZoom 0.4s ease forwards;
   background:linear-gradient(135deg,#d8f3dc,#b7e4c7) !important;
 }
-
-.blog-tag {
-  position:relative; display:inline-block;
-  transition:color 0.2s ease;
-}
+.blog-tag { position:relative; display:inline-block; transition:color 0.2s ease; }
 .blog-card:hover .blog-tag { color:#52b788; }
 
 /* ════════════════════════════════════════════
    12. CONTACT SECTION
 ════════════════════════════════════════════ */
 @keyframes contactItemIn {
-  from { opacity:0; transform:translateX(-30px); }
+  from { opacity:0; transform:translateX(-32px); }
   to   { opacity:1; transform:translateX(0); }
 }
 .contact-item {
@@ -540,35 +456,25 @@ nav a::after {
 .contact-item:nth-child(1){ animation-delay:0.1s; }
 .contact-item:nth-child(2){ animation-delay:0.22s; }
 .contact-item:nth-child(3){ animation-delay:0.34s; }
-.contact-item:hover {
-  transform:translateX(8px) !important;
-}
+.contact-item:hover { transform:translateX(10px) !important; }
 .contact-item-icon {
   transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1), background 0.3s ease !important;
 }
 .contact-item:hover .contact-item-icon {
-  transform:scale(1.2) rotate(10deg) !important;
-  background:#2d6a4f !important;
-  color:#fff;
+  transform:scale(1.22) rotate(12deg) !important;
+  background:#2d6a4f !important; color:#fff;
 }
 
 @keyframes formSlideIn {
-  from { opacity:0; transform:translateX(40px); }
+  from { opacity:0; transform:translateX(44px); }
   to   { opacity:1; transform:translateX(0); }
 }
-.contact-form {
-  animation:formSlideIn 0.6s ease both;
-  animation-delay:0.2s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-  transform:scale(1.01);
+.contact-form { animation:formSlideIn 0.6s ease both; animation-delay:0.2s; }
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus {
+  transform:scale(1.015);
   transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
 }
 
-/* Send button shimmer */
 @keyframes sendBtnShine {
   0%   { background-position:-200% center; }
   100% { background-position:200% center; }
@@ -583,89 +489,56 @@ nav a::after {
    13. FOOTER
 ════════════════════════════════════════════ */
 @keyframes footerFadeUp {
-  from { opacity:0; transform:translateY(30px); }
+  from { opacity:0; transform:translateY(32px); }
   to   { opacity:1; transform:translateY(0); }
 }
-.footer-grid > * {
-  animation:footerFadeUp 0.5s ease both;
-}
+.footer-grid > * { animation:footerFadeUp 0.5s ease both; }
 .footer-grid > *:nth-child(1){ animation-delay:0.05s; }
 .footer-grid > *:nth-child(2){ animation-delay:0.15s; }
 .footer-grid > *:nth-child(3){ animation-delay:0.25s; }
 .footer-grid > *:nth-child(4){ animation-delay:0.35s; }
 
-/* Social buttons */
 .social-btn {
   transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1), background 0.3s ease !important;
 }
-.social-btn:hover {
-  transform:translateY(-6px) scale(1.2) rotate(10deg) !important;
-  background:#2d6a4f !important;
-}
+.social-btn:hover { transform:translateY(-8px) scale(1.25) rotate(12deg) !important; background:#2d6a4f !important; }
 
-/* Footer links */
 .footer-col ul li a {
   position:relative;
   transition:color 0.2s ease, padding-left 0.2s ease !important;
 }
-.footer-col ul li a:hover {
-  padding-left:8px !important;
-  color:#52b788 !important;
-}
+.footer-col ul li a:hover { padding-left:10px !important; color:#52b788 !important; }
 .footer-col ul li a::before {
-  content:'→';
-  position:absolute; left:-16px;
+  content:'→'; position:absolute; left:-16px;
   opacity:0; color:#52b788;
   transition:opacity 0.2s ease, left 0.2s ease;
 }
-.footer-col ul li a:hover::before {
-  opacity:1; left:-12px;
-}
+.footer-col ul li a:hover::before { opacity:1; left:-12px; }
 
-/* Footer badges */
-.footer-badge {
-  transition:transform 0.25s ease, background 0.25s ease !important;
-}
-.footer-badge:hover {
-  transform:scale(1.1) !important;
-  background:rgba(82,183,136,0.2) !important;
-  color:#52b788 !important;
-}
+.footer-badge { transition:transform 0.25s ease, background 0.25s ease !important; }
+.footer-badge:hover { transform:scale(1.12) !important; background:rgba(82,183,136,0.22) !important; color:#52b788 !important; }
 
-/* WhatsApp float bounce */
 @keyframes waFloat {
-  0%,100% { transform:translateY(0) scale(1); }
-  50%     { transform:translateY(-8px) scale(1.05); }
+  0%,100% { transform:translateY(0) scale(1) rotate(0deg); }
+  50%     { transform:translateY(-10px) scale(1.07) rotate(5deg); }
 }
 .whatsapp-float { animation:waFloat 2.5s ease-in-out infinite; cursor:pointer !important; }
-.whatsapp-float:hover { animation:none !important; transform:scale(1.15) !important; cursor:pointer !important; }
+.whatsapp-float:hover { animation:none !important; transform:scale(1.18) !important; cursor:pointer !important; }
 
 /* ════════════════════════════════════════════
    14. CART SIDEBAR
 ════════════════════════════════════════════ */
-.cart-item {
-  transition:background 0.2s ease, transform 0.2s ease !important;
-}
-.cart-item:hover {
-  background:#f0faf2 !important;
-  transform:translateX(4px) !important;
-}
-
-.cart-upsell {
-  transition:transform 0.3s ease, box-shadow 0.3s ease !important;
-}
-.cart-upsell:hover {
-  transform:scale(1.02) !important;
-  box-shadow:0 6px 20px rgba(45,106,79,0.15) !important;
-}
-
+.cart-item { transition:background 0.2s ease, transform 0.2s ease !important; }
+.cart-item:hover { background:#f0faf2 !important; transform:translateX(5px) !important; }
+.cart-upsell { transition:transform 0.3s ease, box-shadow 0.3s ease !important; }
+.cart-upsell:hover { transform:scale(1.03) !important; box-shadow:0 6px 20px rgba(45,106,79,0.18) !important; }
 .btn-checkout {
   background:linear-gradient(90deg,#2d6a4f,#52b788,#40916c,#2d6a4f) !important;
   background-size:200% auto !important;
   animation:sendBtnShine 3s linear infinite;
   transition:transform 0.2s ease !important;
 }
-.btn-checkout:hover { transform:scale(1.02) !important; }
+.btn-checkout:hover { transform:scale(1.03) !important; }
 
 /* ════════════════════════════════════════════
    15. TOAST
@@ -673,9 +546,9 @@ nav a::after {
 .toast {
   background:linear-gradient(135deg,#1b4332,#2d6a4f) !important;
   border-left:4px solid #52b788 !important;
-  border-radius:14px !important;
+  border-radius:16px !important;
   font-size:15px !important;
-  box-shadow:0 8px 32px rgba(45,106,79,0.4) !important;
+  box-shadow:0 8px 40px rgba(45,106,79,0.45) !important;
 }
 
 /* ════════════════════════════════════════════
@@ -683,8 +556,8 @@ nav a::after {
 ════════════════════════════════════════════ */
 @keyframes countBounce {
   0%  { transform:scale(1); }
-  30% { transform:scale(1.6); }
-  60% { transform:scale(0.88); }
+  30% { transform:scale(1.7); }
+  60% { transform:scale(0.86); }
   100%{ transform:scale(1); }
 }
 .cart-count-bump { animation:countBounce 0.45s cubic-bezier(0.34,1.56,0.64,1); }
@@ -696,10 +569,7 @@ nav a::after {
   from { transform:translateY(100%); }
   to   { transform:translateY(0); }
 }
-.mobile-buy-bar {
-  animation:mobileBarIn 0.5s cubic-bezier(0.4,0,0.2,1) both;
-  animation-delay:0.8s;
-}
+.mobile-buy-bar { animation:mobileBarIn 0.5s cubic-bezier(0.4,0,0.2,1) both; animation-delay:0.8s; }
 .mobile-buy-bar .btn-buynow {
   background:linear-gradient(90deg,#2d6a4f,#52b788,#40916c,#2d6a4f) !important;
   background-size:200% auto !important;
@@ -709,12 +579,8 @@ nav a::after {
 /* ════════════════════════════════════════════
    18. VARIANT BUTTONS
 ════════════════════════════════════════════ */
-.variant-btn {
-  transition:all 0.2s cubic-bezier(0.34,1.56,0.64,1) !important;
-}
-.variant-btn:hover, .variant-btn.active {
-  transform:scale(1.1) !important;
-}
+.variant-btn { transition:all 0.2s cubic-bezier(0.34,1.56,0.64,1) !important; }
+.variant-btn:hover, .variant-btn.active { transform:scale(1.12) !important; }
 
 /* ════════════════════════════════════════════
    19. CHECKOUT MODAL
@@ -725,14 +591,9 @@ nav a::after {
   animation:sendBtnShine 3s linear infinite;
   transition:transform 0.2s ease !important;
 }
-.btn-place-order:hover { transform:scale(1.02) !important; }
-
-.payment-method {
-  transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1) !important;
-}
-.payment-method:hover {
-  transform:translateX(6px) !important;
-}
+.btn-place-order:hover { transform:scale(1.03) !important; }
+.payment-method { transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1) !important; }
+.payment-method:hover { transform:translateX(8px) !important; }
 
 /* ════════════════════════════════════════════
    20. URGENCY TIMER PULSE
@@ -741,9 +602,65 @@ nav a::after {
   0%,100% { background:#fff5f0; border-color:#ffd4c2; }
   50%     { background:#ffe8e0; border-color:#e63946; }
 }
-.urgency-timer {
-  animation:timerPulse 1.5s ease-in-out infinite;
+.urgency-timer { animation:timerPulse 1.5s ease-in-out infinite; }
+
+/* ════════════════════════════════════════════
+   21. SHIMMER TEXT
+════════════════════════════════════════════ */
+.shimmer-text {
+  background:linear-gradient(90deg,#1b4332 0%,#52b788 40%,#b7e4c7 60%,#1b4332 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:shimmerMove 4s linear infinite;
+}
+@keyframes shimmerMove {
+  0%  { background-position:0% center }
+  100%{ background-position:200% center }
 }
 
-/* Prevent overflow on hero particles */
-.hero { overflow:hidden; }
+/* ════════════════════════════════════════════
+   22. SCROLL WAVE ENTRANCE
+════════════════════════════════════════════ */
+.section-wave-in {
+  opacity:0;
+  transform:translateY(32px);
+  transition:opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1);
+}
+.section-wave-in.in-view { opacity:1; transform:none; }
+
+/* ════════════════════════════════════════════
+   23. GLOWING CARD BORDERS
+════════════════════════════════════════════ */
+@keyframes glowPulse {
+  0%,100%{ box-shadow:0 0 0 0 rgba(82,183,136,0); }
+  50%    { box-shadow:0 0 20px 4px rgba(82,183,136,0.3); }
+}
+.feature-card:hover, .testimonial-card:hover, .review-card:hover {
+  animation:glowPulse 1.8s ease-in-out infinite;
+}
+
+/* ════════════════════════════════════════════
+   24. CURSOR GLOW (container)
+════════════════════════════════════════════ */
+#cursorGlow { mix-blend-mode:screen; }
+
+/* ════════════════════════════════════════════
+   25. GLASS MORPHISM BADGES
+════════════════════════════════════════════ */
+.hero-badge, .section-tag {
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,0.2) !important;
+}
+
+/* ════════════════════════════════════════════
+   26. REDUCED MOTION OVERRIDE
+════════════════════════════════════════════ */
+@media (prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    animation-duration:0.01ms !important;
+    transition-duration:0.01ms !important;
+  }
+}
