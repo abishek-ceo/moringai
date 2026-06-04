@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shop Moringai - Premium Moringa Products.">
+    <title>Shop – Moringai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/fix.css">
+    <link rel="stylesheet" href="/mobile.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
+</head>
+<body>
+    <header id="mainHeader" class="header">
+        <nav class="nav-container">
+            <div class="nav-logo"><a href="/" style="text-decoration:none;display:flex;align-items:center;gap:8px"><span class="logo-icon">♦️</span><span class="logo-text">Moringai</span></a></div>
+            <div class="nav-links desktop-only">
+                <a href="/shop" class="nav-link active">Shop</a>
+                <a href="/benefits" class="nav-link">Benefits</a>
+                <a href="/story" class="nav-link">Our Story</a>
+                <a href="/reviews" class="nav-link">Reviews</a>
+            </div>
+            <div class="nav-actions">
+                <button class="cart-icon-btn" id="cartToggle" aria-label="Open Cart">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </button>
+                <button class="menu-btn mobile-only" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="/shop" class="mobile-nav-link">Shop</a>
+            <a href="/benefits" class="mobile-nav-link">Benefits</a>
+            <a href="/story" class="mobile-nav-link">Our Story</a>
+            <a href="/reviews" class="mobile-nav-link">Reviews</a>
+        </div>
+    </header>
+
+    <section class="products-section" id="products" style="padding-top:100px">
+        <div class="container">
+            <div class="section-label">THE COLLECTION</div>
+            <h2 class="section-title">Curated for your<br>wellness journey.</h2>
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <footer class="footer"><div class="container"><div class="footer-bottom" style="padding:20px 0;text-align:center"><p>© 2026 Moringai. Made with 💚 in Tamil Nadu.</p></div></div></footer>
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header"><h3 class="cart-title">Your Cart</h3><button class="cart-close" id="cartClose">&times;</button></div>
+        <div class="cart-body" id="cartBody"></div>
+        <div class="cart-footer" id="cartFooter"></div>
+    </div>
+    <div class="modal-overlay" id="checkoutOverlay"></div>
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-header">
+            <button class="checkout-back" id="checkoutBack">&larr; Back to Cart</button>
+            <h3>Checkout</h3>
+            <button class="checkout-close" id="checkoutClose">&times;</button>
+        </div>
+        <div class="checkout-body" id="checkoutBody"></div>
+    </div>
+    <div class="toast" id="toast"></div>
+    <div class="mobile-buy-bar" id="mobileBuyBar">
+        <div class="buy-bar-info"><span class="buy-bar-count" id="buyBarCount">0 items</span><span class="buy-bar-total" id="buyBarTotal">₹0</span></div>
+        <button class="buy-bar-btn" onclick="openCart()">View Cart →</button>
+    </div>
+    <script src="/fix-script-tag.js"></script>
+    <script src="/app.js"></script>
+    <script src="/effects.js"></script>
+    <script src="/checkout.js"></script>
+</body>
+</html>

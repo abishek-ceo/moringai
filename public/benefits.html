@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Moringa health benefits - 90+ nutrients, 46 antioxidants.">
+    <title>Benefits – Moringai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/fix.css">
+    <link rel="stylesheet" href="/mobile.css">
+</head>
+<body>
+    <header id="mainHeader" class="header">
+        <nav class="nav-container">
+            <div class="nav-logo"><a href="/" style="text-decoration:none;display:flex;align-items:center;gap:8px"><span class="logo-icon">♦️</span><span class="logo-text">Moringai</span></a></div>
+            <div class="nav-links desktop-only">
+                <a href="/shop" class="nav-link">Shop</a>
+                <a href="/benefits" class="nav-link active">Benefits</a>
+                <a href="/story" class="nav-link">Our Story</a>
+                <a href="/reviews" class="nav-link">Reviews</a>
+            </div>
+            <div class="nav-actions">
+                <button class="cart-icon-btn" id="cartToggle" aria-label="Open Cart">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </button>
+                <button class="menu-btn mobile-only" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="/shop" class="mobile-nav-link">Shop</a>
+            <a href="/benefits" class="mobile-nav-link">Benefits</a>
+            <a href="/story" class="mobile-nav-link">Our Story</a>
+            <a href="/reviews" class="mobile-nav-link">Reviews</a>
+        </div>
+    </header>
+    <section class="why-section" style="padding-top:100px">
+        <div class="container">
+            <div class="section-label">WHY MORINGAI</div>
+            <h2 class="section-title">Nature's most powerful<br>superfood, perfected.</h2>
+            <div class="features-grid">
+                <div class="feature-card"><div class="feature-icon">🌾</div><h3 class="feature-title">Farm to Table</h3><p class="feature-desc">Direct partnerships with 200+ organic farmers in Tamil Nadu ensuring freshness and fair trade practices.</p></div>
+                <div class="feature-card"><div class="feature-icon">🔬</div><h3 class="feature-title">Lab Certified</h3><p class="feature-desc">Every batch tested for heavy metals, pesticides, and microbial contamination. Certificate available on request.</p></div>
+                <div class="feature-card"><div class="feature-icon">❤️</div><h3 class="feature-title">Nutrient Dense</h3><p class="feature-desc">Contains 90+ nutrients, 46 antioxidants, all 9 essential amino acids, vitamins A, C, E and minerals.</p></div>
+                <div class="feature-card"><div class="feature-icon">📦</div><h3 class="feature-title">Eco Packaging</h3><p class="feature-desc">100% recyclable kraft paper packaging. Zero plastic policy. Carbon-neutral delivery partners.</p></div>
+            </div>
+        </div>
+    </section>
+    <section class="benefits-section">
+        <div class="container">
+            <div class="benefits-split">
+                <div class="benefits-visual">
+                    <div class="benefits-orb"><span class="orb-icon">🌿</span><div class="orb-rings"></div></div>
+                    <div class="benefit-stat"><span class="stat-num">90+</span><span class="stat-lbl">Nutrients</span></div>
+                    <div class="benefit-stat"><span class="stat-num">46</span><span class="stat-lbl">Antioxidants</span></div>
+                    <div class="benefit-stat"><span class="stat-num">9</span><span class="stat-lbl">Amino Acids</span></div>
+                </div>
+                <div class="benefits-content">
+                    <div class="section-label">HEALTH BENEFITS</div>
+                    <h2 class="section-title">One plant,<br>infinite wellness.</h2>
+                    <div class="benefits-list">
+                        <div class="benefit-item">💪 Boosts immunity &amp; energy levels naturally</div>
+                        <div class="benefit-item">🧠 Enhances cognitive function &amp; mental clarity</div>
+                        <div class="benefit-item">🩸 Supports healthy blood sugar &amp; cholesterol</div>
+                        <div class="benefit-item">✨ Promotes radiant skin, hair &amp; nail growth</div>
+                        <div class="benefit-item">💤 Improves sleep quality &amp; reduces fatigue</div>
+                        <div class="benefit-item">🌱 Anti-inflammatory &amp; detoxifying properties</div>
+                    </div>
+                    <a href="/shop" class="btn-primary" style="display:inline-block;margin-top:24px;text-decoration:none">Shop Now →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer"><div class="container"><div class="footer-bottom" style="padding:20px 0;text-align:center"><p>© 2026 Moringai. Made with 💚 in Tamil Nadu.</p></div></div></footer>
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer"><div class="cart-header"><h3 class="cart-title">Your Cart</h3><button class="cart-close" id="cartClose">&times;</button></div><div class="cart-body" id="cartBody"></div><div class="cart-footer" id="cartFooter"></div></div>
+    <div class="toast" id="toast"></div>
+    <script src="/fix-script-tag.js"></script>
+    <script src="/app.js"></script>
+</body>
+</html>
