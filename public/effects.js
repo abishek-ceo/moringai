@@ -26,23 +26,24 @@
 // ── FLOATING MORINGA LEAVES ────────────────────────────────
 (function(){
   var LEAVES = ['🌿','🍃','🌱','✨'];
-  var hero = document.querySelector('.hero');
-  if (!hero) return;
+  // Attach to hero-bg so leaves stay BEHIND hero-content (z-index:2)
+  var container = document.querySelector('.hero-bg') || document.querySelector('.hero');
+  if (!container) return;
   var activeLeaves = 0;
-  var MAX_LEAVES = 8;
+  var MAX_LEAVES = 6;
 
   function spawnLeaf() {
     if (activeLeaves >= MAX_LEAVES) return;
     activeLeaves++;
     var el = document.createElement('span');
     var leaf = LEAVES[Math.floor(Math.random()*LEAVES.length)];
-    var size = Math.random()*14+10;
+    var size = Math.random()*12+9;
     var left = Math.random()*100;
     var dur = Math.random()*8+7;
-    var sway = (Math.random()*60-30);
+    var sway = (Math.random()*50-25);
     el.textContent = leaf;
-    el.style.cssText = 'position:absolute;left:'+left+'%;top:110%;font-size:'+size+'px;pointer-events:none;opacity:0.7;z-index:1;animation:leafFall '+dur+'s linear forwards;--sway:'+sway+'px';
-    hero.appendChild(el);
+    el.style.cssText = 'position:absolute;left:'+left+'%;top:110%;font-size:'+size+'px;pointer-events:none;opacity:0.55;z-index:0;animation:leafFall '+dur+'s linear forwards;--sway:'+sway+'px';
+    container.appendChild(el);
     setTimeout(function(){
       el.remove();
       activeLeaves = Math.max(0, activeLeaves - 1);
@@ -50,11 +51,11 @@
   }
 
   var leafStyle = document.createElement('style');
-  leafStyle.textContent = '@keyframes leafFall{0%{transform:translateY(0) rotate(0deg);opacity:.7}25%{transform:translateY(-25vh) translateX(var(--sway)) rotate(90deg)}50%{transform:translateY(-50vh) translateX(0) rotate(180deg);opacity:.8}75%{transform:translateY(-75vh) translateX(calc(var(--sway)*-0.8)) rotate(270deg)}100%{transform:translateY(-110vh) translateX(0) rotate(360deg);opacity:0}}';
+  leafStyle.textContent = '@keyframes leafFall{0%{transform:translateY(0) rotate(0deg);opacity:.55}25%{transform:translateY(-25vh) translateX(var(--sway)) rotate(90deg)}50%{transform:translateY(-50vh) translateX(0) rotate(180deg);opacity:.65}75%{transform:translateY(-75vh) translateX(calc(var(--sway)*-0.7)) rotate(270deg)}100%{transform:translateY(-110vh) translateX(0) rotate(360deg);opacity:0}}';
   document.head.appendChild(leafStyle);
 
-  for(var i=0;i<4;i++) setTimeout(spawnLeaf, i*1000);
-  setInterval(spawnLeaf, 3000);
+  for(var i=0;i<3;i++) setTimeout(spawnLeaf, i*1200);
+  setInterval(spawnLeaf, 3500);
 })();
 
 // ── AURORA GRADIENT ANIMATION ──────────────────────────────
