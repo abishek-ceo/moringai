@@ -273,7 +273,7 @@ document.addEventListener('click', function(e){
 (function(){
   var s = document.createElement('style');
   s.textContent = [
-    '.shimmer-text{background:linear-gradient(90deg,#1b4332 0%,#52b788 40%,#b7e4c7 60%,#1b4332 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmerMove 4s linear infinite;}',
+    '.shimmer-text{background:linear-gradient(90deg,rgba(255,255,255,0.75) 0%,#fff 42%,#b7e4c7 60%,rgba(255,255,255,0.75) 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmerMove 4s linear infinite;}',
     '@keyframes shimmerMove{0%{background-position:0% center}100%{background-position:200% center}}'
   ].join('');
   document.head.appendChild(s);

@@ -10,13 +10,21 @@
   document.head.appendChild(style);
 })();
 
-// ─── STATE (in-memory only — no localStorage) ─────────────
+// ─── STATE ────────────────────────────────────────────────
 var cart = [];
 var FREE_SHIPPING_THRESHOLD = 499;
 
 function saveCart() {
-  // intentionally empty — localStorage blocked in server sandbox
+  try { localStorage.setItem('moringai_cart', JSON.stringify(cart)); } catch(e) {}
 }
+
+// Load persisted cart on startup
+(function() {
+  try {
+    var saved = localStorage.getItem('moringai_cart');
+    if (saved) cart = JSON.parse(saved) || [];
+  } catch(e) { cart = []; }
+})();
 
 function updateMobileBuyBar() {
   var bar = document.querySelector('.mobile-buy-bar');
@@ -74,7 +82,7 @@ function cardIncrement(btn, name, price, emoji, variant) {
   var item = cart.find(function(i){ return i.name === name && i.variant === variant; });
   if (item) { item.qty += 1; }
   else { cart.push({ name: name, price: price, emoji: emoji, variant: variant, qty: 1 }); }
-  updateCartUI(); updateCardButton(name, variant);
+  saveCart(); updateCartUI(); updateCardButton(name, variant);
   showToast('\u2705 ' + name + ' added!');
 }
 
@@ -83,14 +91,14 @@ function cardDecrement(btn, name, variant) {
   if (idx === -1) return;
   cart[idx].qty -= 1;
   if (cart[idx].qty <= 0) cart.splice(idx, 1);
-  updateCartUI(); updateCardButton(name, variant);
+  saveCart(); updateCartUI(); updateCardButton(name, variant);
 }
 
 function addToCart(name, price, emoji, variant) {
   var existing = cart.find(function(i){ return i.name === name && i.variant === variant; });
   if (existing) { existing.qty += 1; }
   else { cart.push({ name: name, price: price, emoji: emoji, variant: variant, qty: 1 }); }
-  updateCartUI(); updateCardButton(name, variant);
+  saveCart(); updateCartUI(); updateCardButton(name, variant);
   showToast('\u2705 ' + name + ' added to cart!');
   var cartBtn = document.getElementById('cartToggle');
   if (cartBtn) { cartBtn.style.transform = 'scale(1.3)'; setTimeout(function(){ cartBtn.style.transform = ''; }, 300); }
@@ -98,7 +106,7 @@ function addToCart(name, price, emoji, variant) {
 
 function removeFromCart(name, variant) {
   cart = cart.filter(function(i){ return !(i.name === name && i.variant === variant); });
-  updateCartUI(); updateCardButton(name, variant);
+  saveCart(); updateCartUI(); updateCardButton(name, variant);
 }
 
 function changeQty(name, variant, delta) {
@@ -106,7 +114,7 @@ function changeQty(name, variant, delta) {
   if (!item) return;
   item.qty += delta;
   if (item.qty <= 0) cart = cart.filter(function(i){ return !(i.name === name && i.variant === variant); });
-  updateCartUI(); updateCardButton(name, variant);
+  saveCart(); updateCartUI(); updateCardButton(name, variant);
 }
 
 function getCartTotal() {
@@ -331,6 +339,20 @@ function closeMobileMenu() {
   if (menu) menu.classList.remove('open');
 }
 
+// ─── PRELOADER ────────────────────────────────────────────
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    var preloader = document.getElementById('preloader');
+    if (preloader) {
+      preloader.classList.add('hidden');
+      setTimeout(function() {
+        if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+      }, 650);
+    }
+    document.body.classList.remove('loading');
+  }, 1500);
+});
+
 document.addEventListener('DOMContentLoaded', function(){
   var cartToggle = document.getElementById('cartToggle');
   if (cartToggle) cartToggle.addEventListener('click', openCart);
@@ -367,6 +389,8 @@ document.addEventListener('DOMContentLoaded', function(){
   renderProducts();
   renderReviews();
   updateCartUI();
+  // Restore cart button states for persisted cart items
+  cart.forEach(function(item) { updateCardButton(item.name, item.variant); });
 
   if ('IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function(entries){

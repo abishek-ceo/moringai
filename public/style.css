@@ -417,6 +417,15 @@ section { padding: 88px 0; }
   box-shadow: -8px 0 48px rgba(0,0,0,0.2);
 }
 .checkout-modal.open { right: 0; }
+@media (max-width: 768px) {
+  .checkout-modal {
+    top: auto; right: 0; bottom: -100%;
+    width: 100%; height: auto; max-height: 92vh;
+    border-radius: 24px 24px 0 0;
+    transition: bottom 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  .checkout-modal.open { bottom: 0; right: 0; }
+}
 .checkout-header {
   display: flex; align-items: center; gap: 12px;
   padding: 20px 20px; border-bottom: 1px solid #f0f0f0;
@@ -502,4 +511,91 @@ section { padding: 88px 0; }
   .products-grid { grid-template-columns: 1fr; }
   .hero-title { font-size: 28px; }
   .footer-links { grid-template-columns: 1fr; }
+}
+
+/* ── PRELOADER ───────────────────────────────────────────── */
+.preloader {
+  position: fixed; inset: 0; z-index: 99999;
+  background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.6s ease;
+}
+.preloader.hidden { opacity: 0; pointer-events: none; }
+.preloader-content { text-align: center; }
+.preloader-logo {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  color: #fff; font-family: 'Playfair Display', Georgia, serif;
+  font-size: 30px; font-weight: 700; margin-bottom: 24px;
+}
+.preloader-icon { font-size: 44px; animation: orbSway 1.2s ease-in-out infinite; display: block; }
+.preloader-text { color: #fff; }
+.preloader-bar {
+  width: 200px; height: 3px; margin: 0 auto;
+  background: rgba(255,255,255,0.2); border-radius: 50px; overflow: hidden;
+}
+.preloader-fill {
+  height: 100%; width: 0; background: #74c69d;
+  border-radius: 50px; animation: preloaderFill 1.4s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+@keyframes preloaderFill { from { width: 0; } to { width: 100%; } }
+
+/* ── TRUST BAR ───────────────────────────────────────────── */
+.trust-bar {
+  background: #fff; border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 14px 0;
+}
+.trust-bar-inner {
+  display: flex; align-items: center; justify-content: center;
+  gap: 36px; flex-wrap: wrap; max-width: 1160px; margin: 0 auto; padding: 0 24px;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 500; color: #444;
+  white-space: nowrap; transition: color 0.2s;
+}
+.trust-item:hover { color: #2d6a4f; }
+.trust-item span:first-child { font-size: 17px; }
+
+/* ── HERO STATS ──────────────────────────────────────────── */
+.hero-stats {
+  display: flex; gap: 0; justify-content: center;
+  flex-wrap: wrap; margin-top: 36px;
+  padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.15);
+}
+.hero-stat {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 4px; padding: 0 28px; border-right: 1px solid rgba(255,255,255,0.15);
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat strong { font-size: 26px; font-weight: 800; color: #fff; line-height: 1; }
+.hero-stat span { font-size: 11px; color: rgba(255,255,255,0.68); letter-spacing: 0.5px; }
+
+/* ── WHATSAPP FLOAT ──────────────────────────────────────── */
+.whatsapp-float {
+  position: fixed; bottom: 88px; right: 24px;
+  width: 54px; height: 54px; border-radius: 50%;
+  background: #25D366; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; z-index: 1200;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+.whatsapp-float:hover {
+  transform: scale(1.12);
+  box-shadow: 0 8px 32px rgba(37,211,102,0.55);
+}
+
+@media (max-width: 768px) {
+  .trust-bar-inner { gap: 16px; overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start; padding: 0 16px; }
+  .trust-item { font-size: 12px; }
+  .hero-stats { gap: 0; margin-top: 28px; padding-top: 24px; }
+  .hero-stat { padding: 0 16px; }
+  .hero-stat strong { font-size: 20px; }
+  .hero-stat span { font-size: 10px; }
+  .whatsapp-float { bottom: 76px; right: 16px; width: 48px; height: 48px; font-size: 22px; }
+}
+@media (max-width: 480px) {
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; border-top: none; margin-top: 24px; padding-top: 0; }
+  .hero-stat { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 12px; border-right: none; }
 }

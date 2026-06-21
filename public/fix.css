@@ -5,7 +5,7 @@
 ═══════════════════════════════════════════════════════════ */
 
 /* ── VISIBILITY FIX ──────────────────────────────────────── */
-.fade-in { opacity:1 !important; transform:translateY(0) !important; }
+/* Scroll animations handled by IntersectionObserver in app.js + effects.js */
 
 /* ── GLOBAL CURSOR FIX ───────────────────────────────────── */
 .whatsapp-float,.chat-float,.chat-btn,[class*="float-btn"],[class*="chat"],
@@ -608,7 +608,7 @@ nav a::after { transition: width 0.3s cubic-bezier(0.4,0,0.2,1) !important; }
    21. SHIMMER TEXT
 ════════════════════════════════════════════ */
 .shimmer-text {
-  background:linear-gradient(90deg,#1b4332 0%,#52b788 40%,#b7e4c7 60%,#1b4332 100%);
+  background:linear-gradient(90deg,rgba(255,255,255,0.75) 0%,#fff 42%,#b7e4c7 60%,rgba(255,255,255,0.75) 100%);
   background-size:200% auto;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
