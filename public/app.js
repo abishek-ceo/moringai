@@ -162,7 +162,18 @@ function updateCartUI() {
     });
     container.innerHTML = '<div style="padding:0 16px">' + html + '</div>';
     var shipping = total >= FREE_SHIPPING_THRESHOLD ? 0 : 49;
+    var remaining = FREE_SHIPPING_THRESHOLD - total;
+    var progress = Math.min(100, Math.round((total / FREE_SHIPPING_THRESHOLD) * 100));
+    var progressHtml = shipping === 0
+      ? '<div style="padding:10px 14px;margin-bottom:12px;background:#f0fff8;border-radius:12px;border:1px solid #b7e4c7;font-size:13px;color:#1b4332;font-weight:600;text-align:center">\ud83c\udf89 You got FREE delivery!</div>'
+      : '<div style="padding:10px 14px;margin-bottom:12px;background:#fafafa;border-radius:12px;border:1px solid #eee">' +
+          '<div style="font-size:12px;color:#888;margin-bottom:6px">Add \u20b9' + remaining + ' more for <strong style="color:#2d6a4f">FREE delivery</strong></div>' +
+          '<div style="height:6px;background:#e8e8e8;border-radius:50px;overflow:hidden">' +
+            '<div style="height:100%;width:' + progress + '%;background:linear-gradient(90deg,#52b788,#40916c);border-radius:50px;transition:width 0.4s ease"></div>' +
+          '</div>' +
+        '</div>';
     if (footer) footer.innerHTML = '<div style="padding:16px">' +
+      progressHtml +
       '<div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="color:#888">Subtotal</span><span>\u20b9' + total + '</span></div>' +
       '<div style="display:flex;justify-content:space-between;margin-bottom:12px"><span style="color:#888">Shipping</span><span style="color:' + (shipping===0?'#2d6a4f':'#333') + '">' + (shipping===0?'FREE':'\u20b949') + '</span></div>' +
       '<div style="display:flex;justify-content:space-between;font-weight:700;font-size:17px;margin-bottom:16px"><span>Total</span><span style="color:#2d6a4f">\u20b9' + (total+shipping) + '</span></div>' +
@@ -308,6 +319,16 @@ function placeOrder() {
       showToast('\ud83c\udf89 Order received! We\u2019ll contact you on WhatsApp shortly.');
     });
   }
+}
+
+function filterProducts(category) {
+  document.querySelectorAll('.filter-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.dataset.filter === category);
+  });
+  document.querySelectorAll('.product-card').forEach(function(card) {
+    var show = category === 'all' || card.dataset.category === category;
+    card.style.display = show ? '' : 'none';
+  });
 }
 
 function getActiveVariant(addBtn) {

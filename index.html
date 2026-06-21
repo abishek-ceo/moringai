@@ -17,6 +17,24 @@
 </head>
 <body class="loading">
 
+    <!-- ANNOUNCEMENT BAR -->
+    <div class="announcement-bar">
+        <div class="announcement-track">
+            <span>🌿 FREE DELIVERY above ₹499</span><span>·</span>
+            <span>💰 Cash on Delivery Available</span><span>·</span>
+            <span>🏛️ FSSAI Certified</span><span>·</span>
+            <span>📦 Pan India Delivery</span><span>·</span>
+            <span>முருங்கை · தமிழ்நாடு</span><span>·</span>
+            <span>📱 WhatsApp: 95144 99924</span><span>·</span>
+            <span>🌿 FREE DELIVERY above ₹499</span><span>·</span>
+            <span>💰 Cash on Delivery Available</span><span>·</span>
+            <span>🏛️ FSSAI Certified</span><span>·</span>
+            <span>📦 Pan India Delivery</span><span>·</span>
+            <span>முருங்கை · தமிழ்நாடு</span><span>·</span>
+            <span>📱 WhatsApp: 95144 99924</span><span>·</span>
+        </div>
+    </div>
+
     <!-- PRELOADER -->
     <div id="preloader" class="preloader">
         <div class="preloader-content">
@@ -79,7 +97,7 @@
                 <em class="hero-italic">Intelligence</em>
                 of Nature
             </h1>
-            <p class="hero-subtitle">Discover the miraculous Moringa — the world's most nutrient-dense superfood, ethically harvested from sun-drenched farms across Tamil Nadu and Andhra Pradesh.</p>
+            <p class="hero-subtitle">Discover முருங்கை — Tamil Nadu's ancient superfood, now perfected for modern wellness. Ethically sourced from 200+ organic farms across Dindigul, Namakkal &amp; Madurai.</p>
             <div class="hero-cta">
                 <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
                     SHOP COLLECTION
@@ -176,6 +194,15 @@
         <div class="container">
             <div class="section-label">THE COLLECTION</div>
             <h2 class="section-title">Curated for your<br>wellness journey.</h2>
+            <div class="filter-bar" id="filterBar">
+                <button class="filter-btn active" data-filter="all" onclick="filterProducts('all')">All</button>
+                <button class="filter-btn" data-filter="powder" onclick="filterProducts('powder')">Powder</button>
+                <button class="filter-btn" data-filter="capsules" onclick="filterProducts('capsules')">Capsules</button>
+                <button class="filter-btn" data-filter="tea" onclick="filterProducts('tea')">Tea</button>
+                <button class="filter-btn" data-filter="oil" onclick="filterProducts('oil')">Oil</button>
+                <button class="filter-btn" data-filter="gift" onclick="filterProducts('gift')">Gift Sets</button>
+                <button class="filter-btn" data-filter="seeds" onclick="filterProducts('seeds')">Seeds</button>
+            </div>
             <div class="products-grid" id="productsGrid"></div>
         </div>
     </section>
@@ -209,6 +236,84 @@
         </div>
     </section>
 
+    <!-- TAMIL HERITAGE -->
+    <section class="heritage-section">
+        <div class="container">
+            <div class="heritage-grid">
+                <div class="tamil-card">
+                    <div class="tamil-big-word">முருங்கை</div>
+                    <div class="tamil-subtitle">Murungai — Tamil Nadu's Gift to the World</div>
+                    <p class="tamil-desc">For over 5,000 years, Siddha medicine has celebrated முருங்கை as a divine healer — "the tree that never dies." Every part of this sacred tree nourishes body, mind, and soul.</p>
+                    <div class="tamil-districts">
+                        <span>📍 Dindigul</span>
+                        <span>📍 Namakkal</span>
+                        <span>📍 Madurai</span>
+                        <span>📍 Salem</span>
+                    </div>
+                </div>
+                <div class="heritage-facts">
+                    <div class="section-label">ROOTED IN TRADITION</div>
+                    <h2 class="section-title" style="margin-top:8px">5,000 years of<br>Siddha wisdom.</h2>
+                    <blockquote class="siddha-quote">"முருங்கை இலை உண்டால் மூப்பு தோன்றாது"<br><span>— Siddha Proverb: Eat moringa leaves, age shall not appear.</span></blockquote>
+                    <div class="heritage-items">
+                        <div class="heritage-item">
+                            <div class="heritage-icon">🌿</div>
+                            <div>
+                                <strong>Ancient Healing</strong>
+                                <p>Used in Siddha medicine to treat 300+ ailments since 5000 BCE.</p>
+                            </div>
+                        </div>
+                        <div class="heritage-item">
+                            <div class="heritage-icon">👨‍🌾</div>
+                            <div>
+                                <strong>Farmer First</strong>
+                                <p>Direct sourcing from 200+ small-scale farmers across Tamil Nadu.</p>
+                            </div>
+                        </div>
+                        <div class="heritage-item">
+                            <div class="heritage-icon">🏆</div>
+                            <div>
+                                <strong>Globally Recognized</strong>
+                                <p>UN FAO calls moringa "the most nutritious plant on Earth."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW TO USE -->
+    <section class="howto-section">
+        <div class="container">
+            <div class="section-label">HOW TO USE</div>
+            <h2 class="section-title">Three simple ways<br>to transform your health.</h2>
+            <div class="howto-grid">
+                <div class="howto-step">
+                    <div class="howto-num">01</div>
+                    <div class="howto-icon">☀️</div>
+                    <h3 class="howto-title">Morning Wellness Drink</h3>
+                    <p class="howto-desc">Add 1 tsp of Moringai powder to warm water, coconut water, or your morning smoothie. Best consumed on an empty stomach for maximum absorption.</p>
+                    <div class="howto-tip">💡 Pro tip: Add lemon &amp; honey for taste</div>
+                </div>
+                <div class="howto-step howto-step--featured">
+                    <div class="howto-num">02</div>
+                    <div class="howto-icon">🍲</div>
+                    <h3 class="howto-title">Tamil Cooking Magic</h3>
+                    <p class="howto-desc">The traditional way — stir into sambar, kuzhambu, kootu, or rice. Our grandmothers knew best. Blend into chutneys or sprinkle over meals.</p>
+                    <div class="howto-tip">💡 Heritage recipe included with every order</div>
+                </div>
+                <div class="howto-step">
+                    <div class="howto-num">03</div>
+                    <div class="howto-icon">💊</div>
+                    <h3 class="howto-title">Daily Capsule Routine</h3>
+                    <p class="howto-desc">Take 2 capsules with water after breakfast and dinner. Our 500mg capsules are the most convenient way to get your daily moringa dose.</p>
+                    <div class="howto-tip">💡 Consistent use shows results in 3–4 weeks</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- OUR STORY -->
     <section class="story-section" id="story">
         <div class="container">
@@ -225,6 +330,46 @@
             <div class="section-label">TESTIMONIALS</div>
             <h2 class="section-title">Loved by thousands<br>across India.</h2>
             <div class="reviews-grid" id="reviewsGrid"></div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="certs-section">
+        <div class="container">
+            <div class="section-label">TRUST &amp; QUALITY</div>
+            <h2 class="section-title">Every batch. Every promise.<br>Certified &amp; verified.</h2>
+            <div class="certs-grid">
+                <div class="cert-item">
+                    <div class="cert-icon">🏛️</div>
+                    <div class="cert-name">FSSAI Certified</div>
+                    <div class="cert-desc">Licensed by India's food safety authority</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon">🌿</div>
+                    <div class="cert-name">100% Organic</div>
+                    <div class="cert-desc">No pesticides, no chemicals, ever</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon">🔬</div>
+                    <div class="cert-name">Lab Tested</div>
+                    <div class="cert-desc">Heavy metals &amp; microbial tested every batch</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon">💰</div>
+                    <div class="cert-name">Cash on Delivery</div>
+                    <div class="cert-desc">Pay only when you receive your order</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon">↩️</div>
+                    <div class="cert-name">30-Day Returns</div>
+                    <div class="cert-desc">Not happy? Full refund, no questions asked</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon">🚚</div>
+                    <div class="cert-name">Pan India Delivery</div>
+                    <div class="cert-desc">Free shipping on orders above ₹499</div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -298,7 +443,7 @@
     <div class="toast" id="toast"></div>
 
     <!-- WHATSAPP FLOAT -->
-    <a class="whatsapp-float" href="https://wa.me/919787654321?text=Hi%2C%20I%27m%20interested%20in%20Moringai%20products!" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">💬</a>
+    <a class="whatsapp-float" href="https://wa.me/919514499924?text=Hi%2C%20I%27m%20interested%20in%20Moringai%20products!" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">💬</a>
 
     <!-- MOBILE BUY BAR -->
     <div class="mobile-buy-bar" id="mobileBuyBar">

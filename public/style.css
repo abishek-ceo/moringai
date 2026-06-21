@@ -3,6 +3,14 @@
    Matches moringai/public/index.html class names
 ═══════════════════════════════════════════════════════════ */
 
+:root {
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+  --gold-dark: #a07c30;
+  --cream: #faf8f3;
+  --deep-green: #1b4332;
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 body {
@@ -648,4 +656,238 @@ section { padding: 88px 0; }
 @media (max-width: 480px) {
   .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; border-top: none; margin-top: 24px; padding-top: 0; }
   .hero-stat { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 12px; border-right: none; }
+}
+
+/* ── ANNOUNCEMENT BAR ────────────────────────────────────── */
+.announcement-bar {
+  background: #1a3a1a;
+  color: rgba(255,255,255,0.88);
+  padding: 9px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  position: relative;
+  z-index: 1100;
+}
+.announcement-track {
+  display: inline-flex;
+  gap: 20px;
+  align-items: center;
+  animation: announceScroll 32s linear infinite;
+}
+.announcement-track span { padding: 0 4px; }
+@keyframes announceScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── SECTION LABEL GOLD ──────────────────────────────────── */
+.section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 12px;
+}
+
+/* ── FILTER BAR ──────────────────────────────────────────── */
+.filter-bar {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 40px; align-items: center;
+}
+.filter-btn {
+  padding: 9px 22px; border-radius: 50px;
+  border: 1.5px solid #d0d0d0;
+  background: #fff; color: #555;
+  font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: all 0.22s ease;
+  font-family: inherit;
+}
+.filter-btn:hover { border-color: #2d6a4f; color: #2d6a4f; background: #f0faf4; }
+.filter-btn.active {
+  background: var(--deep-green); border-color: var(--deep-green);
+  color: #fff; box-shadow: 0 4px 16px rgba(27,67,50,0.22);
+}
+
+/* ── TAMIL HERITAGE SECTION ──────────────────────────────── */
+.heritage-section {
+  background: var(--cream);
+  padding: 96px 0;
+}
+.heritage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.tamil-card {
+  background: var(--deep-green);
+  color: #fff;
+  border-radius: 28px;
+  padding: 48px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.tamil-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 20% 20%, rgba(201,168,76,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.tamil-big-word {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 62px; font-weight: 400;
+  color: var(--gold);
+  line-height: 1; margin-bottom: 10px;
+  text-shadow: 0 2px 20px rgba(201,168,76,0.4);
+}
+.tamil-subtitle {
+  font-size: 15px; font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 18px;
+  letter-spacing: 0.3px;
+}
+.tamil-desc {
+  font-size: 15px; color: rgba(255,255,255,0.8);
+  line-height: 1.7; margin-bottom: 28px;
+}
+.tamil-districts {
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.tamil-districts span {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50px;
+  padding: 6px 14px;
+  font-size: 12px; font-weight: 500;
+  color: rgba(255,255,255,0.85);
+}
+.siddha-quote {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 18px; font-style: italic;
+  color: #2d6a4f;
+  border-left: 3px solid var(--gold);
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #f0faf4, var(--cream));
+  border-radius: 0 12px 12px 0;
+  margin: 24px 0 32px;
+  line-height: 1.6;
+}
+.siddha-quote span {
+  display: block; margin-top: 8px;
+  font-size: 13px; color: #888;
+  font-style: normal; font-family: 'Inter', sans-serif;
+}
+.heritage-items { display: flex; flex-direction: column; gap: 20px; }
+.heritage-item {
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.heritage-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: linear-gradient(135deg, #d8f3dc, #b7e4c7);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.heritage-item strong { display: block; font-size: 15px; font-weight: 600; color: #1b4332; margin-bottom: 4px; }
+.heritage-item p { font-size: 13px; color: #666; line-height: 1.55; margin: 0; }
+
+/* ── HOW TO USE SECTION ──────────────────────────────────── */
+.howto-section { background: #fff; padding: 96px 0; }
+.howto-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  margin-top: 48px;
+}
+.howto-step {
+  border-radius: 24px;
+  padding: 40px 32px;
+  background: var(--cream);
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: box-shadow 0.25s ease;
+  position: relative; overflow: hidden;
+}
+.howto-step:hover { box-shadow: 0 12px 40px rgba(27,67,50,0.1); }
+.howto-step--featured {
+  background: var(--deep-green);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 16px 48px rgba(27,67,50,0.28);
+}
+.howto-num {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 64px; font-weight: 300;
+  color: rgba(0,0,0,0.07);
+  line-height: 1; position: absolute;
+  top: 16px; right: 24px;
+}
+.howto-step--featured .howto-num { color: rgba(255,255,255,0.1); }
+.howto-icon { font-size: 40px; margin-bottom: 18px; display: block; }
+.howto-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 20px; font-weight: 600;
+  color: #1b4332; margin-bottom: 14px;
+}
+.howto-step--featured .howto-title { color: #fff; }
+.howto-desc {
+  font-size: 14px; color: #666; line-height: 1.7; margin-bottom: 20px;
+}
+.howto-step--featured .howto-desc { color: rgba(255,255,255,0.78); }
+.howto-tip {
+  font-size: 12px; font-weight: 600;
+  color: #2d6a4f;
+  background: rgba(45,106,79,0.08);
+  border-radius: 50px; padding: 7px 14px;
+  display: inline-block;
+}
+.howto-step--featured .howto-tip {
+  color: var(--gold);
+  background: rgba(201,168,76,0.15);
+}
+
+/* ── CERTIFICATIONS SECTION ──────────────────────────────── */
+.certs-section {
+  background: var(--cream);
+  padding: 80px 0;
+}
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+.cert-item {
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px 16px 24px;
+  text-align: center;
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: box-shadow 0.22s, transform 0.22s;
+}
+.cert-item:hover {
+  box-shadow: 0 8px 32px rgba(27,67,50,0.1);
+  transform: translateY(-4px);
+}
+.cert-icon { font-size: 32px; margin-bottom: 10px; display: block; }
+.cert-name {
+  font-size: 13px; font-weight: 700;
+  color: #1b4332; margin-bottom: 6px;
+}
+.cert-desc { font-size: 11px; color: #888; line-height: 1.5; }
+
+@media (max-width: 1024px) {
+  .heritage-grid { grid-template-columns: 1fr; gap: 40px; }
+  .certs-grid { grid-template-columns: repeat(3, 1fr); }
+  .howto-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .filter-bar { gap: 6px; }
+  .filter-btn { padding: 7px 16px; font-size: 12px; }
+  .heritage-section { padding: 64px 0; }
+  .tamil-big-word { font-size: 44px; }
+  .tamil-card { padding: 32px 24px; }
+  .howto-section { padding: 64px 0; }
+  .howto-grid { gap: 16px; }
+  .howto-step { padding: 28px 24px; }
+  .certs-section { padding: 56px 0; }
+  .certs-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .cert-item { padding: 20px 12px; }
+  .announcement-bar { font-size: 11px; }
 }
