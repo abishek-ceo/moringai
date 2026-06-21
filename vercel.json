@@ -17,12 +17,6 @@
         { "key": "X-Frame-Options", "value": "DENY" },
         { "key": "Cache-Control", "value": "public, max-age=3600" }
       ]
-    },
-    {
-      "source": "/public/(.*\\.(css|js))",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
-      ]
     }
   ]
 }
