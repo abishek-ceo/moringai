@@ -17,8 +17,9 @@ section[id] { scroll-margin-top: 80px; }
 }
 
 /* ── DESKTOP CARD HOVER ───────────────────────────────────── */
+/* transform is handled entirely by the JS 3D tilt in effects.js */
 @media (min-width: 769px) {
-  .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(45,106,79,0.18); }
+  .product-card:hover { box-shadow: 0 24px 60px rgba(27,67,50,0.16); }
 }
 
 /* ── TABLET (769px – 1024px) ─────────────────────────────── */
