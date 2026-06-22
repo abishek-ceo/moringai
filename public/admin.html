@@ -1,91 +1,433 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin – Moringai Orders</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        *{box-sizing:border-box;margin:0;padding:0}
-        body{font-family:Inter,sans-serif;background:#f0f4f0;color:#1a3a1a;min-height:100vh}
-        .admin-header{background:#1b4332;color:#fff;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
-        .admin-header h1{font-size:20px;font-weight:700}
-        .admin-header a{color:#fff;text-decoration:none;font-size:14px;opacity:0.8}
-        .admin-body{max-width:1100px;margin:0 auto;padding:32px 16px}
-        .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:32px}
-        .stat-card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
-        .stat-card .num{font-size:28px;font-weight:700;color:#1b4332}
-        .stat-card .lbl{font-size:13px;color:#666;margin-top:4px}
-        h2{font-size:18px;font-weight:700;margin-bottom:16px;color:#1b4332}
-        .orders-table{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);overflow:auto}
-        table{width:100%;border-collapse:collapse;min-width:600px}
-        th{background:#1b4332;color:#fff;padding:12px 16px;text-align:left;font-size:13px;font-weight:600}
-        td{padding:12px 16px;border-bottom:1px solid #f0f0f0;font-size:13px;vertical-align:top}
-        tr:last-child td{border-bottom:none}
-        tr:hover td{background:#f8fdf8}
-        .status{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600}
-        .status.confirmed{background:#d1fae5;color:#065f46}
-        .empty{text-align:center;padding:48px;color:#999}
-        .refresh-btn{background:#1b4332;color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:14px;font-family:Inter,sans-serif}
-        .items-list{font-size:12px;color:#555}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Moringai</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060d08;--s1:#0d1a10;--s2:#122018;--s3:#1b2e1f;
+  --border:rgba(82,183,136,0.14);--border2:rgba(82,183,136,0.25);
+  --green:#52b788;--gd:#2d6a4f;--gold:#c9a84c;--gold-l:#e8d49d;
+  --text:#d4e8dc;--dim:#7a9e88;--dim2:#4d7a5e;
+  --amber:#f59e0b;--blue:#3b82f6;--purple:#8b5cf6;
+  --orange:#f97316;--success:#22c55e;--danger:#ef4444;
+}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;-webkit-font-smoothing:antialiased}
+
+/* ── LOGIN ───────────────────────────────────────────────── */
+#loginScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 40%,#0d2218 0%,var(--bg) 70%)}
+.login-card{background:var(--s1);border:1px solid var(--border2);border-radius:20px;padding:48px 40px;width:100%;max-width:360px;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,0.6)}
+.login-logo{font-size:28px;color:var(--green);font-weight:700;letter-spacing:-0.5px;margin-bottom:4px}
+.login-sub{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:36px}
+.login-card input{width:100%;padding:13px 16px;background:var(--s2);border:1.5px solid var(--border);border-radius:10px;color:var(--text);font-size:15px;outline:none;transition:border-color .2s;font-family:Inter,sans-serif;margin-bottom:12px}
+.login-card input:focus{border-color:var(--green)}
+.login-card input::placeholder{color:var(--dim2)}
+.login-btn{width:100%;padding:14px;background:linear-gradient(135deg,#1b4332,#2d6a4f);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;font-family:Inter,sans-serif;letter-spacing:.2px}
+.login-btn:hover{background:linear-gradient(135deg,#2d6a4f,#40916c);transform:translateY(-1px)}
+.login-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.login-err{color:var(--danger);font-size:13px;margin-top:12px;min-height:18px}
+
+/* ── DASHBOARD ───────────────────────────────────────────── */
+#dashboard{display:none;flex-direction:column;min-height:100vh}
+header{background:var(--s1);border-bottom:1px solid var(--border);padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(8px)}
+.brand{font-size:15px;font-weight:700;color:var(--green);letter-spacing:-.3px}
+.brand span{color:var(--dim);font-weight:400;font-size:12px;margin-left:8px}
+.hdr-right{display:flex;align-items:center;gap:10px}
+.hdr-upd{font-size:11px;color:var(--dim);display:none}
+.hdr-btn{padding:7px 13px;border:1px solid var(--border);background:transparent;color:var(--text);border-radius:8px;cursor:pointer;font-size:12px;font-family:Inter,sans-serif;transition:all .18s;font-weight:500}
+.hdr-btn:hover{background:var(--s2);border-color:var(--green);color:var(--green)}
+.hdr-btn.danger:hover{background:rgba(239,68,68,.1);border-color:var(--danger);color:var(--danger)}
+main{max-width:1400px;margin:0 auto;padding:24px;width:100%}
+
+/* ── STATS ───────────────────────────────────────────────── */
+.stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:22px}
+.stat-card{background:var(--s1);border:1px solid var(--border);border-radius:14px;padding:18px 20px;position:relative;overflow:hidden}
+.stat-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 60%,rgba(82,183,136,.04));pointer-events:none}
+.stat-card.gold{border-color:rgba(201,168,76,.2)}
+.stat-card.gold::after{background:linear-gradient(135deg,transparent 60%,rgba(201,168,76,.06))}
+.stat-card.amber{border-color:rgba(245,158,11,.2)}
+.stat-val{font-size:24px;font-weight:700;color:var(--green);font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+.stat-card.gold .stat-val{color:var(--gold)}
+.stat-card.amber .stat-val{color:var(--amber)}
+.stat-lbl{font-size:11px;color:var(--dim);margin-top:5px;text-transform:uppercase;letter-spacing:.6px}
+.stat-badge{position:absolute;top:14px;right:14px;font-size:18px;opacity:.5}
+
+/* ── TOOLBAR ─────────────────────────────────────────────── */
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.filter-tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tab{padding:7px 13px;background:transparent;border:1px solid var(--border);color:var(--dim);border-radius:8px;cursor:pointer;font-size:12px;font-weight:500;font-family:Inter,sans-serif;transition:all .18s;white-space:nowrap}
+.tab:hover{color:var(--text);border-color:var(--green)}
+.tab.active{background:var(--gd);color:#fff;border-color:var(--gd)}
+.tab .cnt{display:inline-block;margin-left:5px;background:rgba(255,255,255,.15);border-radius:20px;padding:1px 6px;font-size:10px}
+.search-box{position:relative}
+.search-box svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--dim);pointer-events:none}
+#searchInput{padding:8px 12px 8px 32px;background:var(--s1);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;width:220px;outline:none;transition:border-color .2s;font-family:Inter,sans-serif}
+#searchInput:focus{border-color:var(--green)}
+#searchInput::placeholder{color:var(--dim2)}
+
+/* ── TABLE ───────────────────────────────────────────────── */
+.table-wrap{background:var(--s1);border:1px solid var(--border);border-radius:14px;overflow:auto;margin-bottom:16px}
+table{width:100%;border-collapse:collapse;min-width:840px}
+thead th{padding:11px 14px;text-align:left;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);background:var(--s2);border-bottom:1px solid var(--border);white-space:nowrap}
+thead th:first-child{border-radius:14px 0 0 0}
+thead th:last-child{border-radius:0 14px 0 0}
+tbody td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:rgba(82,183,136,.03)}
+.oid{font-family:monospace;font-size:11px;font-weight:600;color:var(--green);letter-spacing:.3px}
+.cname{font-weight:600;font-size:13px;color:var(--text)}
+.cphone{font-size:11px;color:var(--dim);margin-top:2px}
+.items-cell{font-size:11px;color:var(--dim);max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.total-cell{font-weight:700;font-size:14px;color:var(--gold)}
+.pbadge{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:600;white-space:nowrap}
+.pbadge.cod{background:rgba(245,158,11,.12);color:var(--amber)}
+.pbadge.online{background:rgba(59,130,246,.12);color:var(--blue)}
+.date-cell{font-size:11px;color:var(--dim);white-space:nowrap}
+.empty{text-align:center;padding:64px 16px;color:var(--dim);font-size:14px}
+.loading-row td{padding:48px;text-align:center;color:var(--dim)}
+
+/* Status select */
+.sselect{-webkit-appearance:none;appearance:none;padding:5px 24px 5px 10px;border-radius:20px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%23aaa'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 7px center;transition:opacity .15s}
+.sselect:hover{opacity:.85}
+.sselect option{background:var(--s2);color:var(--text)}
+.ss-pending{background:rgba(245,158,11,.15);color:#f59e0b}
+.ss-confirmed{background:rgba(59,130,246,.15);color:#3b82f6}
+.ss-processing{background:rgba(139,92,246,.15);color:#8b5cf6}
+.ss-shipped{background:rgba(249,115,22,.15);color:#f97316}
+.ss-delivered{background:rgba(34,197,94,.15);color:#22c55e}
+.ss-cancelled{background:rgba(239,68,68,.15);color:#ef4444}
+
+/* ── PAGINATION ──────────────────────────────────────────── */
+.pager{display:flex;justify-content:center;align-items:center;gap:6px;padding:4px 0 8px}
+.pgbtn{padding:6px 13px;background:var(--s1);border:1px solid var(--border);color:var(--text);border-radius:8px;cursor:pointer;font-size:12px;font-family:Inter,sans-serif;transition:all .18s}
+.pgbtn:hover:not(.pgactive):not(:disabled){background:var(--s2);border-color:var(--green)}
+.pgbtn.pgactive{background:var(--gd);border-color:var(--gd);color:#fff}
+.pgbtn:disabled{opacity:.3;cursor:default}
+.pager-info{font-size:12px;color:var(--dim);margin:0 8px}
+
+/* ── TOAST ───────────────────────────────────────────────── */
+#adToast{position:fixed;bottom:24px;right:24px;background:var(--s1);border:1px solid var(--border2);border-radius:12px;padding:12px 18px;font-size:13px;box-shadow:0 8px 32px rgba(0,0,0,.5);transform:translateY(120%);transition:transform .3s;z-index:9999;max-width:300px}
+#adToast.show{transform:translateY(0)}
+#adToast.ok{border-color:rgba(34,197,94,.4);color:#22c55e}
+#adToast.err{border-color:rgba(239,68,68,.4);color:#ef4444}
+
+/* ── MOBILE ──────────────────────────────────────────────── */
+@media(max-width:900px){.stats-grid{grid-template-columns:repeat(2,1fr)}.stats-grid .stat-card:first-child{grid-column:1/-1}main{padding:16px}.hdr-upd{display:none!important}#searchInput{width:180px}}
+@media(max-width:600px){.stats-grid{grid-template-columns:1fr}.stats-grid .stat-card:first-child{grid-column:auto}.toolbar{flex-direction:column;align-items:stretch}.tab .cnt{display:none}#searchInput{width:100%}.brand span{display:none}}
+</style>
 </head>
 <body>
-    <div class="admin-header">
-        <h1>♦️ Moringai — Order Dashboard</h1>
-        <div style="display:flex;align-items:center;gap:16px">
-            <button class="refresh-btn" onclick="loadOrders()">↻ Refresh</button>
-            <a href="/">← Back to Site</a>
-        </div>
+
+<!-- ═══ LOGIN ═══════════════════════════════════════════════ -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="login-logo">🌿 Moringai</div>
+    <div class="login-sub">Admin Portal</div>
+    <input type="password" id="pwInput" placeholder="Enter admin password" autocomplete="current-password">
+    <button class="login-btn" id="loginBtn" onclick="doLogin()">Sign In →</button>
+    <div class="login-err" id="loginErr"></div>
+  </div>
+</div>
+
+<!-- ═══ DASHBOARD ════════════════════════════════════════════ -->
+<div id="dashboard">
+  <header>
+    <div class="brand">🌿 Moringai <span>Order Dashboard</span></div>
+    <div class="hdr-right">
+      <span class="hdr-upd" id="lastUpdated"></span>
+      <button class="hdr-btn" onclick="refresh()">↻ Refresh</button>
+      <button class="hdr-btn" onclick="exportCSV()">↓ Export</button>
+      <a href="/" style="text-decoration:none"><button class="hdr-btn">← Site</button></a>
+      <button class="hdr-btn danger" onclick="logout()">Sign Out</button>
     </div>
-    <div class="admin-body">
-        <div class="stats">
-            <div class="stat-card"><div class="num" id="totalOrders">—</div><div class="lbl">Total Orders</div></div>
-            <div class="stat-card"><div class="num" id="totalRevenue">—</div><div class="lbl">Total Revenue</div></div>
-            <div class="stat-card"><div class="num" id="todayOrders">—</div><div class="lbl">Today's Orders</div></div>
-            <div class="stat-card"><div class="num" id="avgOrder">—</div><div class="lbl">Avg Order Value</div></div>
-        </div>
-        <h2>All Orders</h2>
-        <div class="orders-table">
-            <table>
-                <thead><tr><th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th>Date</th></tr></thead>
-                <tbody id="ordersBody"><tr><td colspan="7" class="empty">Loading orders...</td></tr></tbody>
-            </table>
-        </div>
+  </header>
+
+  <main>
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card gold">
+        <div class="stat-val" id="statRevenue">—</div>
+        <div class="stat-lbl">Total Revenue</div>
+        <div class="stat-badge">💰</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" id="statTotal">—</div>
+        <div class="stat-lbl">All Orders</div>
+        <div class="stat-badge">📦</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" id="statToday">—</div>
+        <div class="stat-lbl">Today</div>
+        <div class="stat-badge">📅</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-val" id="statPending">—</div>
+        <div class="stat-lbl">Pending</div>
+        <div class="stat-badge">⏳</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" id="statAvg">—</div>
+        <div class="stat-lbl">Avg Order</div>
+        <div class="stat-badge">📊</div>
+      </div>
     </div>
-    <script>
-    async function loadOrders() {
-        try {
-            const res = await fetch('/api/orders');
-            const data = await res.json();
-            const orders = (data.orders || []).reverse();
-            const tbody = document.getElementById('ordersBody');
-            if (!orders.length) {
-                tbody.innerHTML = '<tr><td colspan="7" class="empty">No orders yet. 🛒</td></tr>';
-                ['totalOrders','totalRevenue','todayOrders','avgOrder'].forEach(id => document.getElementById(id).textContent = id==='totalRevenue'||id==='avgOrder'?'₹0':'0');
-                return;
-            }
-            const today = new Date().toDateString();
-            const todayCount = orders.filter(o => new Date(o.createdAt).toDateString() === today).length;
-            const totalRev = orders.reduce((s,o) => s + (o.total||0), 0);
-            document.getElementById('totalOrders').textContent = orders.length;
-            document.getElementById('totalRevenue').textContent = '₹' + totalRev.toLocaleString('en-IN');
-            document.getElementById('todayOrders').textContent = todayCount;
-            document.getElementById('avgOrder').textContent = '₹' + Math.round(totalRev / orders.length);
-            tbody.innerHTML = orders.map(o => {
-                const c = o.customer || {};
-                const name = c.name || o.customer || '—';
-                const phone = c.phone || '—';
-                const items = (o.items||[]).map(i => i.name + ' x' + i.qty).join(', ');
-                const date = new Date(o.createdAt).toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
-                return `<tr><td style="font-weight:600;color:#1b4332">${o.id||'—'}</td><td><div style="font-weight:600">${name}</div><div style="color:#888;font-size:12px">${phone}</div></td><td><div class="items-list">${items}</div></td><td style="font-weight:700;color:#1b4332">₹${(o.total||0).toLocaleString('en-IN')}</td><td>${o.paymentMethod==='razorpay'?'💳 Online':'💵 COD'}</td><td><span class="status confirmed">${o.status||'confirmed'}</span></td><td style="color:#888">${date}</td></tr>`;
-            }).join('');
-        } catch(e) {
-            document.getElementById('ordersBody').innerHTML = '<tr><td colspan="7" class="empty">Error loading orders.</td></tr>';
-        }
-    }
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="filter-tabs" id="filterTabs">
+        <button class="tab active" data-s="all" onclick="setFilter('all')">All</button>
+        <button class="tab" data-s="pending" onclick="setFilter('pending')">Pending</button>
+        <button class="tab" data-s="confirmed" onclick="setFilter('confirmed')">Confirmed</button>
+        <button class="tab" data-s="processing" onclick="setFilter('processing')">Processing</button>
+        <button class="tab" data-s="shipped" onclick="setFilter('shipped')">Shipped</button>
+        <button class="tab" data-s="delivered" onclick="setFilter('delivered')">Delivered</button>
+        <button class="tab" data-s="cancelled" onclick="setFilter('cancelled')">Cancelled</button>
+      </div>
+      <div class="search-box">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="search" id="searchInput" placeholder="Search name, phone, ID…" oninput="onSearch()">
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Items</th>
+            <th>Total</th>
+            <th>Payment</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="ordersBody">
+          <tr class="loading-row"><td colspan="7">Loading orders…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pager" id="pager"></div>
+  </main>
+</div>
+
+<div id="adToast"></div>
+
+<script>
+'use strict';
+const PAGE = 50;
+let token = localStorage.getItem('mg_tok');
+let curStatus = 'all';
+let curSearch = '';
+let curPage = 0;
+let totalOrders = 0;
+let sdTimer;
+let allOrdersCache = [];
+
+// ── BOOT ──────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', function(){
+  document.getElementById('pwInput').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
+  if(token && isValidTok(token)) showDash();
+  else showLogin();
+});
+
+function isValidTok(t){
+  try{var[,b]=t.split('.');var p=JSON.parse(atob(b.replace(/-/g,'+').replace(/_/g,'/')));return p.exp>Date.now()/1000;}
+  catch{return false;}
+}
+
+// ── AUTH ──────────────────────────────────────────────────────
+async function doLogin(){
+  var pw=document.getElementById('pwInput').value;
+  var btn=document.getElementById('loginBtn');
+  var err=document.getElementById('loginErr');
+  err.textContent='';
+  if(!pw){err.textContent='Please enter a password';return;}
+  btn.disabled=true;btn.textContent='Signing in…';
+  try{
+    var r=await fetch('/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw})});
+    var d=await r.json();
+    if(!r.ok) throw new Error(d.error||'Login failed');
+    token=d.token;
+    localStorage.setItem('mg_tok',token);
+    showDash();
+  }catch(e){
+    err.textContent=e.message;
+    btn.disabled=false;btn.textContent='Sign In →';
+  }
+}
+
+function logout(){
+  localStorage.removeItem('mg_tok');
+  token=null;
+  showLogin();
+}
+
+function showLogin(){
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('dashboard').style.display='none';
+}
+
+function showDash(){
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('dashboard').style.display='flex';
+  refresh();
+  setInterval(function(){ if(document.getElementById('dashboard').style.display!=='none') refresh(); },60000);
+}
+
+// ── DATA ──────────────────────────────────────────────────────
+async function refresh(){
+  var el=document.getElementById('lastUpdated');
+  if(el){el.style.display='block';el.textContent='Updating…';}
+  await Promise.all([loadStats(), loadOrders()]);
+  if(el) el.textContent='Updated '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+}
+
+async function loadStats(){
+  try{
+    var r=await fetch('/api/admin/stats',{headers:{Authorization:'Bearer '+token}});
+    if(r.status===401){logout();return;}
+    var d=await r.json();
+    document.getElementById('statRevenue').textContent='₹'+(d.revenue||0).toLocaleString('en-IN');
+    document.getElementById('statTotal').textContent=(d.total||0).toLocaleString('en-IN');
+    document.getElementById('statToday').textContent=(d.today||0);
+    document.getElementById('statPending').textContent=(d.pending||0);
+    document.getElementById('statAvg').textContent=d.avg?'₹'+d.avg.toLocaleString('en-IN'):'—';
+    // Update tab badges
+    ['pending','confirmed','processing','shipped','delivered','cancelled'].forEach(function(s){
+      var t=document.querySelector('.tab[data-s="'+s+'"]');
+      if(t){var c=document.querySelector('.tab[data-s="'+s+'"] .cnt');if(!c){c=document.createElement('span');c.className='cnt';t.appendChild(c);}c.textContent=d[s]||0;}
+    });
+  }catch(e){console.error('Stats error',e);}
+}
+
+async function loadOrders(){
+  var tbody=document.getElementById('ordersBody');
+  tbody.innerHTML='<tr class="loading-row"><td colspan="7">Loading…</td></tr>';
+  var p=new URLSearchParams({limit:String(PAGE),offset:String(curPage*PAGE)});
+  if(curStatus!=='all') p.set('status',curStatus);
+  if(curSearch) p.set('search',curSearch);
+  try{
+    var r=await fetch('/api/orders?'+p,{headers:{Authorization:'Bearer '+token}});
+    if(r.status===401){logout();return;}
+    var d=await r.json();
+    allOrdersCache=d.orders||[];
+    renderOrders(allOrdersCache);
+    renderPager(allOrdersCache.length);
+  }catch(e){
+    tbody.innerHTML='<tr><td colspan="7" class="empty">⚠️ Could not load orders. Check your connection.</td></tr>';
+  }
+}
+
+// ── RENDER ────────────────────────────────────────────────────
+function renderOrders(orders){
+  var tbody=document.getElementById('ordersBody');
+  if(!orders.length){
+    tbody.innerHTML='<tr><td colspan="7" class="empty">No orders found.</td></tr>';
+    return;
+  }
+  tbody.innerHTML=orders.map(function(o){
+    var c=o.customer||{};
+    var items=(o.items||[]).map(function(i){return i.name+' ×'+i.qty;}).join(', ');
+    var dt=new Date(o.created_at);
+    var date=dt.toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+    var pm=o.payment_method==='razorpay'
+      ?'<span class="pbadge online">💳 Online</span>'
+      :'<span class="pbadge cod">💵 COD</span>';
+    var sts=['pending','confirmed','processing','shipped','delivered','cancelled'];
+    var opts=sts.map(function(s){return '<option value="'+s+'"'+(o.status===s?' selected':'')+'>'+cap(s)+'</option>';}).join('');
+    return '<tr>'+
+      '<td><div class="oid">'+esc(o.id)+'</div></td>'+
+      '<td><div class="cname">'+esc(c.name||'—')+'</div><div class="cphone">'+esc(c.phone||'')+'</div></td>'+
+      '<td><div class="items-cell" title="'+esc(items)+'">'+esc(items)+'</div></td>'+
+      '<td><div class="total-cell">₹'+(o.total||0).toLocaleString('en-IN')+'</div></td>'+
+      '<td>'+pm+'</td>'+
+      '<td><select class="sselect ss-'+esc(o.status||'pending')+'" onchange="updateStatus(\''+esc(o.id)+'\',this)">'+opts+'</select></td>'+
+      '<td><div class="date-cell">'+date+'</div></td>'+
+    '</tr>';
+  }).join('');
+}
+
+function renderPager(count){
+  var pg=document.getElementById('pager');
+  var total=count<PAGE&&curPage===0?count:(curPage+1)*PAGE+(count===PAGE?PAGE:0);
+  if(count<PAGE&&curPage===0){pg.innerHTML='';return;}
+  var html='';
+  if(curPage>0) html+='<button class="pgbtn" onclick="goPage('+(curPage-1)+')">← Prev</button>';
+  html+='<span class="pager-info">Page '+(curPage+1)+'</span>';
+  if(count===PAGE) html+='<button class="pgbtn" onclick="goPage('+(curPage+1)+')">Next →</button>';
+  pg.innerHTML=html;
+}
+
+// ── CONTROLS ──────────────────────────────────────────────────
+function setFilter(s){
+  curStatus=s;curPage=0;
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('active',t.dataset.s===s);});
+  loadOrders();
+}
+
+function onSearch(){
+  clearTimeout(sdTimer);
+  sdTimer=setTimeout(function(){
+    curSearch=document.getElementById('searchInput').value.trim();
+    curPage=0;
     loadOrders();
-    setInterval(loadOrders, 30000);
-    </script>
+  },320);
+}
+
+function goPage(p){curPage=p;loadOrders();window.scrollTo({top:0,behavior:'smooth'});}
+
+async function updateStatus(id,sel){
+  var nv=sel.value;
+  var oc=Array.from(sel.classList).find(function(c){return c.startsWith('ss-');});
+  sel.className='sselect ss-'+nv;
+  try{
+    var r=await fetch('/api/orders/'+encodeURIComponent(id),{
+      method:'PATCH',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+      body:JSON.stringify({status:nv})
+    });
+    if(!r.ok){var d=await r.json();throw new Error(d.error||'Update failed');}
+    toast('Status updated to '+cap(nv),'ok');
+    loadStats();
+  }catch(e){
+    if(oc) sel.className='sselect '+oc;
+    toast('Failed: '+e.message,'err');
+  }
+}
+
+// ── EXPORT ────────────────────────────────────────────────────
+function exportCSV(){
+  if(!allOrdersCache.length){toast('No orders to export','err');return;}
+  var rows=[['Order ID','Customer','Phone','Email','Items','Total','Shipping','Payment','Status','Date']];
+  allOrdersCache.forEach(function(o){
+    var c=o.customer||{};
+    var items=(o.items||[]).map(function(i){return i.name+' x'+i.qty;}).join(' | ');
+    rows.push([o.id,c.name||'',c.phone||'',c.email||'',items,o.total||0,o.shipping||0,o.payment_method||'cod',o.status||'',o.created_at||'']);
+  });
+  var csv=rows.map(function(r){return r.map(function(f){return'"'+String(f).replace(/"/g,'""')+'"';}).join(',');}).join('\n');
+  var a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download='moringai-orders-'+new Date().toISOString().slice(0,10)+'.csv';
+  a.click();
+  toast('CSV exported','ok');
+}
+
+// ── HELPERS ───────────────────────────────────────────────────
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+var toastTimer;
+function toast(msg,type){
+  clearTimeout(toastTimer);
+  var el=document.getElementById('adToast');
+  el.textContent=msg;el.className='show '+(type||'');
+  toastTimer=setTimeout(function(){el.className='';},3000);
+}
+</script>
 </body>
 </html>

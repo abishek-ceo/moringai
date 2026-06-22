@@ -1,15 +1,26 @@
 {
-  "buildCommand": null,
   "outputDirectory": ".",
-  "installCommand": null,
   "framework": null,
+  "rewrites": [
+    { "source": "/admin", "destination": "/public/admin.html" },
+    { "source": "/shop", "destination": "/public/shop.html" },
+    { "source": "/benefits", "destination": "/public/benefits.html" },
+    { "source": "/story", "destination": "/public/story.html" },
+    { "source": "/reviews", "destination": "/public/reviews.html" }
+  ],
   "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store, no-cache" }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Cache-Control", "value": "public, max-age=3600" }
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
       ]
     }
   ]
