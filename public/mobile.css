@@ -46,12 +46,20 @@ section[id] { scroll-margin-top: 80px; }
   .mobile-nav-link { padding: 14px 16px !important; font-size: 15px !important; }
 
   /* Hero */
-  .hero { padding: 72px 16px 48px !important; min-height: auto !important; }
+  .hero { min-height: auto !important; }
+  .hero-inner { padding: 80px 20px 40px !important; flex-direction: column !important; gap: 36px !important; }
+  .hero-content { text-align: center !important; max-width: 100% !important; }
   .hero-title { font-size: 30px !important; }
-  .hero-subtitle { font-size: 15px !important; margin-bottom: 28px !important; }
-  .hero-cta { flex-direction: column !important; align-items: center !important; gap: 10px !important; }
+  .hero-subtitle { font-size: 15px !important; margin-bottom: 28px !important; margin-left: auto !important; margin-right: auto !important; }
+  .hero-badge-top { margin: 0 auto 28px !important; }
+  .hero-cta { flex-direction: column !important; align-items: center !important; gap: 10px !important; justify-content: center !important; }
   .btn-primary, .btn-secondary { width: 100% !important; max-width: 280px !important; text-align: center !important; }
-  .hero-scroll { font-size: 10px !important; margin-bottom: 24px !important; }
+  .hero-visual { width: 100% !important; justify-content: center !important; }
+  .hero-orb { width: 200px !important; height: 200px !important; }
+  .orb-core { width: 84px !important; height: 84px !important; font-size: 44px !important; }
+  .orb-float-pill { display: none !important; }
+  .hero-stats { justify-content: center !important; padding-top: 24px !important; }
+  .hero-stat { align-items: center !important; }
 
   /* Trust bar */
   .trust-bar-inner {
