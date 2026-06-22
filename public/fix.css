@@ -6,7 +6,8 @@
 .whatsapp-float, .product-card, .add-to-cart, .variant-btn,
 .feature-card, .review-card, .trust-item, .filter-btn,
 .nav-link, .mobile-nav-link, .logo, .nav-logo, .cart-icon-btn,
-.menu-btn, .footer-col a, [class*="btn"], [class*="-card"]
+.menu-btn, .footer-col a, [class*="btn"], [class*="-card"],
+.orb-float-pill, .cert-item, .heritage-item
 { cursor: pointer !important; }
 
 /* ════════════════════════════════════════════
@@ -110,12 +111,17 @@ header { animation: navSlideDown 0.5s cubic-bezier(0.4,0,0.2,1) both; }
 }
 .product-card:hover::before { opacity: 1; }
 
-/* Product badge shimmer */
+/* Product badge shimmer (gold badge) */
 @keyframes badgeShine {
   0%   { background-position: -200% center; }
   100% { background-position: 200% center; }
 }
-.product-badge { background-size: 200% auto !important; animation: badgeShine 3s linear infinite; }
+.product-badge {
+  background: linear-gradient(135deg, #a07c30, #c9a84c, #e8d49d, #c9a84c) !important;
+  background-size: 300% auto !important;
+  color: #060d08 !important;
+  animation: badgeShine 3.5s linear infinite;
+}
 
 /* Add to Cart */
 .add-to-cart { transition: background 0.2s, transform 0.15s !important; }

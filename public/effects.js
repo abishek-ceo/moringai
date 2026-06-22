@@ -1,25 +1,33 @@
-// ── HERO PARTICLES ─────────────────────────────────────────
+// ── HERO PARTICLES (gold + green mix for dark bg) ───────────
 (function(){
   var hero = document.querySelector('.hero');
   if (!hero) return;
-  for (var i = 0; i < 16; i++) {
-    (function(){
+  var colors = [
+    'rgba(201,168,76,0.45)',
+    'rgba(183,228,199,0.35)',
+    'rgba(201,168,76,0.25)',
+    'rgba(116,198,157,0.4)',
+    'rgba(232,212,157,0.3)',
+  ];
+  for (var i = 0; i < 22; i++) {
+    (function(i){
       var d = document.createElement('div');
-      var size = Math.random()*8+3;
+      var size = Math.random()*7+2;
+      var color = colors[Math.floor(Math.random()*colors.length)];
       d.style.cssText = [
         'position:absolute','border-radius:50%',
-        'background:rgba(183,228,199,0.35)',
+        'background:'+color,
         'pointer-events:none',
         'width:'+size+'px','height:'+size+'px',
         'left:'+(Math.random()*100)+'%',
         'top:'+(Math.random()*100)+'%',
-        'animation:heroParticleDrift '+(Math.random()*8+5)+'s linear '+(Math.random()*7)+'s infinite'
+        'animation:heroParticleDrift '+(Math.random()*9+5)+'s linear '+(Math.random()*8)+'s infinite'
       ].join(';');
       hero.appendChild(d);
-    })();
+    })(i);
   }
   var style = document.createElement('style');
-  style.textContent = '@keyframes heroParticleDrift{0%{transform:translateY(0) scale(1);opacity:.6}50%{transform:translateY(-60px) translateX(18px) scale(1.2);opacity:.9}100%{transform:translateY(-120px) translateX(-10px) scale(0.5);opacity:0}}';
+  style.textContent = '@keyframes heroParticleDrift{0%{transform:translateY(0) scale(1);opacity:.7}40%{transform:translateY(-50px) translateX(20px) scale(1.25);opacity:1}100%{transform:translateY(-130px) translateX(-12px) scale(0.4);opacity:0}}';
   document.head.appendChild(style);
 })();
 
@@ -58,23 +66,24 @@
   setInterval(spawnLeaf, 3500);
 })();
 
-// ── AURORA GRADIENT ANIMATION ──────────────────────────────
+// ── AURORA GRADIENT ANIMATION (dark-bg tuned) ──────────────
 (function(){
   var hero = document.querySelector('.hero');
   if (!hero) return;
   var aurora = document.createElement('div');
   aurora.style.cssText = 'position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;border-radius:inherit';
   aurora.innerHTML = [
-    '<div style="position:absolute;width:700px;height:700px;background:radial-gradient(ellipse,rgba(82,183,136,0.2) 0%,transparent 70%);border-radius:50%;top:-200px;left:-150px;animation:auroraDrift1 14s ease-in-out infinite;"></div>',
-    '<div style="position:absolute;width:500px;height:500px;background:radial-gradient(ellipse,rgba(27,67,50,0.25) 0%,transparent 70%);border-radius:50%;bottom:-100px;right:-100px;animation:auroraDrift2 11s ease-in-out infinite;"></div>',
-    '<div style="position:absolute;width:400px;height:400px;background:radial-gradient(ellipse,rgba(183,228,199,0.12) 0%,transparent 70%);border-radius:50%;top:30%;left:40%;animation:auroraDrift3 17s ease-in-out infinite;"></div>'
+    '<div style="position:absolute;width:800px;height:800px;background:radial-gradient(ellipse,rgba(82,183,136,0.14) 0%,transparent 65%);border-radius:50%;top:-260px;left:-180px;animation:auroraDrift1 16s ease-in-out infinite;"></div>',
+    '<div style="position:absolute;width:600px;height:600px;background:radial-gradient(ellipse,rgba(201,168,76,0.07) 0%,transparent 65%);border-radius:50%;bottom:-120px;right:-120px;animation:auroraDrift2 12s ease-in-out infinite;"></div>',
+    '<div style="position:absolute;width:500px;height:500px;background:radial-gradient(ellipse,rgba(27,67,50,0.55) 0%,transparent 65%);border-radius:50%;top:25%;left:38%;animation:auroraDrift3 20s ease-in-out infinite;"></div>',
+    '<div style="position:absolute;width:350px;height:350px;background:radial-gradient(ellipse,rgba(201,168,76,0.06) 0%,transparent 70%);border-radius:50%;top:60%;left:60%;animation:auroraDrift1 22s ease-in-out infinite reverse;"></div>'
   ].join('');
   hero.insertBefore(aurora, hero.firstChild);
   var s = document.createElement('style');
   s.textContent = [
-    '@keyframes auroraDrift1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(70px,-35px) scale(1.12)}66%{transform:translate(-35px,55px) scale(0.94)}}',
-    '@keyframes auroraDrift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-55px,-45px) scale(1.18)}}',
-    '@keyframes auroraDrift3{0%,100%{transform:translate(0,0) scale(1) rotate(0deg)}50%{transform:translate(35px,-25px) scale(1.08) rotate(15deg)}}'
+    '@keyframes auroraDrift1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(80px,-40px) scale(1.14)}66%{transform:translate(-40px,60px) scale(0.92)}}',
+    '@keyframes auroraDrift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-60px,-50px) scale(1.2)}}',
+    '@keyframes auroraDrift3{0%,100%{transform:translate(0,0) scale(1) rotate(0deg)}50%{transform:translate(40px,-28px) scale(1.1) rotate(18deg)}}'
   ].join('');
   document.head.appendChild(s);
 })();
@@ -179,7 +188,7 @@ document.addEventListener('click', function(e){
 
 // ── CONFETTI ON ADD TO CART ────────────────────────────────
 function confettiBurst(x, y) {
-  var colors = ['#2d6a4f','#52b788','#b7e4c7','#d8f3dc','#40916c','#74c69d'];
+  var colors = ['#c9a84c','#e8d49d','#2d6a4f','#52b788','#b7e4c7','#40916c','#a07c30'];
   for (var i = 0; i < 14; i++) {
     (function(i){
       var el = document.createElement('div');
