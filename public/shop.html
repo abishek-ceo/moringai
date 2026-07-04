@@ -8,15 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/fix.css">
-    <link rel="stylesheet" href="/mobile.css">
+    <link rel="stylesheet" href="/public/style.css">
+    <link rel="stylesheet" href="/public/fix.css">
+    <link rel="stylesheet" href="/public/mobile.css">
     <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
 </head>
 <body>
     <header id="mainHeader" class="header">
         <nav class="nav-container">
-            <div class="nav-logo"><a href="/" style="text-decoration:none;display:flex;align-items:center;gap:8px"><span class="logo-icon">♦️</span><span class="logo-text">Moringai</span></a></div>
+            <div class="nav-logo"><a href="/" style="text-decoration:none;display:flex;align-items:center;gap:8px"><img src="/public/logo.svg" class="logo-icon" width="22" height="22" alt=""><span class="logo-text">Moringai</span></a></div>
             <div class="nav-links desktop-only">
                 <a href="/shop" class="nav-link active">Shop</a>
                 <a href="/benefits" class="nav-link">Benefits</a>
@@ -69,9 +69,9 @@
         <div class="buy-bar-info"><span class="buy-bar-count" id="buyBarCount">0 items</span><span class="buy-bar-total" id="buyBarTotal">₹0</span></div>
         <button class="buy-bar-btn" onclick="openCart()">View Cart →</button>
     </div>
-    <script src="/fix-script-tag.js"></script>
-    <script src="/app.js"></script>
-    <script src="/effects.js"></script>
-    <script src="/checkout.js"></script>
+    <script src="/public/fix-script-tag.js"></script>
+    <script src="/public/app.js"></script>
+    <script src="/public/effects.js"></script>
+    <script src="/public/checkout.js"></script>
 </body>
 </html>

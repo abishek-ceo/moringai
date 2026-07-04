@@ -214,6 +214,42 @@ header {
   position: absolute; inset: 0; pointer-events: none; z-index: 0;
 }
 
+/* ── CINEMATIC HERO BACKGROUND ──────────────────────────────
+   Living, motion-driven backdrop (light sweeps + vignette + grain)
+   standing in for real footage — zero load time, zero playback bugs. */
+.hero-cinematic {
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0;
+}
+.hero-sweep {
+  position: absolute; top: -50%; left: -20%;
+  width: 60%; height: 200%;
+  background: linear-gradient(100deg, transparent 40%, rgba(116,198,157,0.10) 48%, rgba(201,168,76,0.08) 52%, transparent 60%);
+  transform: rotate(8deg) translateX(-100%);
+  animation: heroSweepMove 14s ease-in-out infinite;
+}
+.hero-sweep--2 {
+  background: linear-gradient(100deg, transparent 40%, rgba(201,168,76,0.06) 50%, transparent 60%);
+  animation-duration: 19s;
+  animation-delay: 4s;
+}
+@keyframes heroSweepMove {
+  0%   { transform: rotate(8deg) translateX(-120%); }
+  50%  { transform: rotate(8deg) translateX(160%); }
+  100% { transform: rotate(8deg) translateX(-120%); }
+}
+.hero-vignette {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, transparent 45%, rgba(6,13,8,0.55) 100%);
+}
+.hero-grain {
+  position: absolute; inset: -2px;
+  opacity: 0.05; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-sweep { animation: none; display: none; }
+}
+
 /* NEW: hero-inner is the 2-col layout container */
 .hero-inner {
   flex: 1;
@@ -834,6 +870,58 @@ section { padding: 100px 0; }
   font-size: 21px; line-height: 1.92; color: #484848;
   max-width: 720px; margin-bottom: 26px;
   font-weight: 400;
+}
+
+/* ── FOUNDER ─────────────────────────────────────────────── */
+.founder-section { background: var(--white); padding: 100px 0; }
+.founder-grid {
+  display: grid; grid-template-columns: 300px 1fr;
+  gap: 64px; align-items: center;
+}
+.founder-photo-wrap {
+  position: relative; width: 280px; height: 280px; margin: 0 auto;
+}
+.founder-photo {
+  width: 280px; height: 280px; object-fit: cover;
+  border-radius: 50%;
+  box-shadow: var(--shadow-card);
+  border: 4px solid var(--white);
+  position: relative; z-index: 2;
+}
+.founder-photo-ring {
+  position: absolute; inset: -10px; border-radius: 50%;
+  border: 1.5px dashed var(--gold);
+  opacity: 0.55; z-index: 1;
+  animation: founderRingSpin 30s linear infinite;
+}
+@keyframes founderRingSpin { to { transform: rotate(360deg); } }
+.founder-content .section-title { color: var(--black); margin-top: 8px; }
+.founder-quote {
+  font-family: var(--ff-heritage);
+  font-style: italic;
+  font-size: 21px; line-height: 1.75; color: #484848;
+  max-width: 640px; margin: 24px 0 28px;
+  border-left: 3px solid var(--gold);
+  padding-left: 22px;
+}
+.founder-meta { display: flex; flex-direction: column; margin-bottom: 28px; }
+.founder-name { font-family: var(--ff-serif); font-size: 19px; color: var(--deep); }
+.founder-title { font-size: 13px; color: #888; letter-spacing: 0.3px; }
+.founder-whatsapp {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 15px 30px; border-radius: 50px;
+  background: var(--grad-green); color: var(--white);
+  font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
+  text-decoration: none;
+  box-shadow: var(--shadow-green);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.founder-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 24px 56px rgba(27,67,50,0.4); }
+
+@media (max-width: 860px) {
+  .founder-grid { grid-template-columns: 1fr; text-align: center; gap: 32px; }
+  .founder-quote { margin-left: auto; margin-right: auto; text-align: left; }
+  .founder-meta { align-items: center; }
 }
 
 /* ── REVIEWS ─────────────────────────────────────────────── */
