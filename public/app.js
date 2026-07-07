@@ -368,10 +368,10 @@ window.addEventListener('load', function() {
       preloader.classList.add('hidden');
       setTimeout(function() {
         if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
-      }, 650);
+      }, 500);
     }
     document.body.classList.remove('loading');
-  }, 1500);
+  }, 600);
 });
 
 document.addEventListener('DOMContentLoaded', function(){

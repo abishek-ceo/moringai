@@ -1,7 +1,8 @@
 // ── HERO PARTICLES (gold + green mix for dark bg) ───────────
 (function(){
-  var hero = document.querySelector('.hero');
-  if (!hero) return;
+  // Append to #heroParticles (inside .hero-bg) so particles stay behind content
+  var container = document.getElementById('heroParticles') || document.querySelector('.hero-bg') || document.querySelector('.hero');
+  if (!container) return;
   var colors = [
     'rgba(201,168,76,0.45)',
     'rgba(183,228,199,0.35)',
@@ -23,7 +24,7 @@
         'top:'+(Math.random()*100)+'%',
         'animation:heroParticleDrift '+(Math.random()*9+5)+'s linear '+(Math.random()*8)+'s infinite'
       ].join(';');
-      hero.appendChild(d);
+      container.appendChild(d);
     })(i);
   }
   var style = document.createElement('style');

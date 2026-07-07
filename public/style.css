@@ -747,7 +747,7 @@ section { padding: 100px 0; }
   font-size: 12px; font-weight: 500;
   color: rgba(255,255,255,0.72);
 }
-.siddha-quote {
+.heritage-quote {
   font-family: var(--ff-heritage);
   font-size: 20px; font-style: italic;
   color: var(--deep);
@@ -758,7 +758,7 @@ section { padding: 100px 0; }
   margin: 24px 0 40px;
   line-height: 1.65;
 }
-.siddha-quote span {
+.heritage-quote span {
   display: block; margin-top: 10px;
   font-size: 13px; color: #999;
   font-style: normal; font-family: var(--ff-sans);
