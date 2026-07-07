@@ -358,6 +358,8 @@ function showToast(msg) {
 function closeMobileMenu() {
   var menu = document.getElementById('mobileMenu');
   if (menu) menu.classList.remove('open');
+  var overlay = document.getElementById('mobileMenuOverlay');
+  if (overlay) overlay.classList.remove('open');
 }
 
 // ─── PRELOADER ────────────────────────────────────────────
@@ -400,8 +402,12 @@ document.addEventListener('DOMContentLoaded', function(){
   var menuToggle = document.getElementById('menuToggle');
   if (menuToggle) menuToggle.addEventListener('click', function(){
     var menu = document.getElementById('mobileMenu');
+    var overlay = document.getElementById('mobileMenuOverlay');
     if (menu) menu.classList.toggle('open');
+    if (overlay) overlay.classList.toggle('open', menu && menu.classList.contains('open'));
   });
+  var mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+  if (mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 
   // Close mobile menu on any mobile nav link click
   document.querySelectorAll('.mobile-nav-link').forEach(function(a){
