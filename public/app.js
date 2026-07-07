@@ -361,8 +361,14 @@ function closeMobileMenu() {
 }
 
 // ─── PRELOADER ────────────────────────────────────────────
-window.addEventListener('load', function() {
-  setTimeout(function() {
+// Hides on window 'load' (after a short branded delay), with a hard-cap
+// fallback so a slow/blocked third-party resource (fonts, Razorpay, an
+// ad-blocker) can never leave the preloader stuck over the page.
+(function() {
+  var hidden = false;
+  function hidePreloader() {
+    if (hidden) return;
+    hidden = true;
     var preloader = document.getElementById('preloader');
     if (preloader) {
       preloader.classList.add('hidden');
@@ -371,8 +377,10 @@ window.addEventListener('load', function() {
       }, 650);
     }
     document.body.classList.remove('loading');
-  }, 1500);
-});
+  }
+  window.addEventListener('load', function() { setTimeout(hidePreloader, 1500); });
+  setTimeout(hidePreloader, 4500);
+})();
 
 document.addEventListener('DOMContentLoaded', function(){
   var cartToggle = document.getElementById('cartToggle');
