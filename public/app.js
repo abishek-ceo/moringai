@@ -408,11 +408,14 @@ document.addEventListener('DOMContentLoaded', function(){
     a.addEventListener('click', closeMobileMenu);
   });
 
-  // Header scroll shadow
+  // Header scroll shadow — stays on the dark glass background so the
+  // white logo/nav text/cart+menu icons remain legible at every scroll
+  // position (a white background here previously made them invisible).
   var header = document.querySelector('header');
   if (header) window.addEventListener('scroll', function(){
-    header.style.boxShadow = window.scrollY > 10 ? '0 4px 30px rgba(45,106,79,0.12)' : '';
-    header.style.background = window.scrollY > 10 ? 'rgba(255,255,255,0.99)' : '';
+    var scrolled = window.scrollY > 10;
+    header.style.boxShadow = scrolled ? '0 4px 30px rgba(0,0,0,0.28)' : '';
+    header.style.background = scrolled ? 'rgba(6,13,8,0.98)' : '';
   }, {passive:true});
 
   renderProducts();
