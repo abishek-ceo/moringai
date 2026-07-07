@@ -2,20 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Customer Reviews – Moringai. Loved by thousands across India.">
-    <title>Reviews – Moringai</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Real reviews from thousands of Moringai customers across India — 4.9★ average rating for our organic moringa powder, capsules, tea & oil.">
+    <meta name="theme-color" content="#060d08">
+    <link rel="canonical" href="https://moringai.in/reviews">
+    <title>Customer Reviews | Moringai</title>
+
+    <link rel="icon" type="image/svg+xml" href="/public/logo.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/public/icon-192.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://moringai.in/reviews">
+    <meta property="og:title" content="Customer Reviews | Moringai">
+    <meta property="og:description" content="4.9★ average rating. Loved by thousands of customers across India.">
+    <meta property="og:image" content="https://moringai.in/public/og-image.jpg">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/public/style.css">
     <link rel="stylesheet" href="/public/fix.css">
     <link rel="stylesheet" href="/public/mobile.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
 </head>
-<body>
+<body class="loading">
+
+    <!-- ANNOUNCEMENT BAR -->
+    <div class="announcement-bar">
+        <div class="announcement-track">
+            <span>🌿 FREE DELIVERY above ₹499</span><span>·</span>
+            <span>💰 Cash on Delivery Available</span><span>·</span>
+            <span>🏛️ FSSAI Certified</span><span>·</span>
+            <span>📦 Pan India Delivery</span><span>·</span>
+            <span>முருங்கை · தமிழ்நாடு</span><span>·</span>
+            <span>📱 WhatsApp: 9514499924</span><span>·</span>
+            <span>🌿 FREE DELIVERY above ₹499</span><span>·</span>
+            <span>💰 Cash on Delivery Available</span><span>·</span>
+            <span>🏛️ FSSAI Certified</span><span>·</span>
+            <span>📦 Pan India Delivery</span><span>·</span>
+            <span>முருங்கை · தமிழ்நாடு</span><span>·</span>
+            <span>📱 WhatsApp: 9514499924</span><span>·</span>
+        </div>
+    </div>
+
+    <!-- PRELOADER -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <img src="/public/logo.svg" class="preloader-icon" width="46" height="46" alt="">
+                <span class="preloader-text">Moringai</span>
+            </div>
+            <div class="preloader-bar"><div class="preloader-fill"></div></div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
     <header id="mainHeader" class="header">
         <nav class="nav-container">
-            <div class="nav-logo"><a href="/" style="text-decoration:none;display:flex;align-items:center;gap:8px"><img src="/public/logo.svg" class="logo-icon" width="22" height="22" alt=""><span class="logo-text">Moringai</span></a></div>
+            <div class="nav-logo"><a href="/" style="text-decoration:none;display:flex;align-items:center;gap:8px">
+                <img src="/public/logo.svg" class="logo-icon" width="26" height="26" alt="">
+                <span class="logo-text">Moringai</span>
+            </a></div>
             <div class="nav-links desktop-only">
                 <a href="/shop" class="nav-link">Shop</a>
                 <a href="/benefits" class="nav-link">Benefits</a>
@@ -24,20 +73,90 @@
             </div>
             <div class="nav-actions">
                 <button class="cart-icon-btn" id="cartToggle" aria-label="Open Cart">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <path d="M16 10a4 4 0 01-8 0"/>
+                    </svg>
                     <span class="cart-badge" id="cartBadge">0</span>
                 </button>
-                <button class="menu-btn mobile-only" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+                <button class="menu-btn mobile-only" id="menuToggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </nav>
         <div class="mobile-menu" id="mobileMenu">
-            <a href="/shop" class="mobile-nav-link">Shop</a>
-            <a href="/benefits" class="mobile-nav-link">Benefits</a>
-            <a href="/story" class="mobile-nav-link">Our Story</a>
-            <a href="/reviews" class="mobile-nav-link">Reviews</a>
+            <a href="/shop" class="mobile-nav-link" onclick="closeMobileMenu()">Shop</a>
+            <a href="/benefits" class="mobile-nav-link" onclick="closeMobileMenu()">Benefits</a>
+            <a href="/story" class="mobile-nav-link" onclick="closeMobileMenu()">Our Story</a>
+            <a href="/reviews" class="mobile-nav-link" onclick="closeMobileMenu()">Reviews</a>
         </div>
     </header>
-    <section class="reviews-section" style="padding-top:100px">
+
+    <!-- PAGE HERO -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="hero-cinematic" aria-hidden="true">
+                <div class="hero-sweep hero-sweep--1"></div>
+                <div class="hero-sweep hero-sweep--2"></div>
+                <div class="hero-vignette"></div>
+                <div class="hero-grain"></div>
+            </div>
+            <div class="hero-particles" id="heroParticles"></div>
+        </div>
+        <div class="hero-inner">
+            <div class="hero-content" style="max-width:760px">
+                <div class="hero-badge-top">
+                    <span class="badge-dot"></span>
+                    4.9★ AVERAGE RATING
+                </div>
+                <h1 class="hero-title">
+                    Loved by
+                    <em class="hero-italic">Thousands</em> Across India
+                </h1>
+                <p class="hero-subtitle">Real stories from real customers — from Chennai kitchens to Mumbai gyms, here's what people are saying about Moringai.</p>
+                <div class="hero-cta">
+                    <button class="btn-primary" onclick="document.getElementById('reviews-grid-section').scrollIntoView({behavior:'smooth'})">
+                        READ REVIEWS
+                    </button>
+                    <a class="btn-secondary" href="/shop" style="text-decoration:none;display:inline-flex;align-items:center">
+                        SHOP NOW
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-ticker">
+            <div class="ticker-track">
+                <span>🌿 CERTIFIED ORGANIC</span><span>•</span>
+                <span>FREE SHIPPING ABOVE ₹499</span><span>•</span>
+                <span>LAB TESTED PURITY</span><span>•</span>
+                <span>FARM TO TABLE</span><span>•</span>
+                <span>🔬 HEAVY METAL TESTED</span><span>•</span>
+                <span>30-DAY RETURNS</span><span>•</span>
+                <span>🌿 CERTIFIED ORGANIC</span><span>•</span>
+                <span>FREE SHIPPING ABOVE ₹499</span><span>•</span>
+                <span>LAB TESTED PURITY</span><span>•</span>
+                <span>FARM TO TABLE</span><span>•</span>
+                <span>🔬 HEAVY METAL TESTED</span><span>•</span>
+                <span>30-DAY RETURNS</span><span>•</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST BAR -->
+    <div class="trust-bar">
+        <div class="trust-bar-inner">
+            <div class="trust-item"><span>🛡️</span><span>SSL Secured</span></div>
+            <div class="trust-item"><span>🚚</span><span>Free Shipping ₹499+</span></div>
+            <div class="trust-item"><span>🔬</span><span>Lab Tested</span></div>
+            <div class="trust-item"><span>🌿</span><span>100% Organic</span></div>
+            <div class="trust-item"><span>↩️</span><span>30-Day Returns</span></div>
+            <div class="trust-item"><span>💳</span><span>Secure Payments</span></div>
+        </div>
+    </div>
+
+    <!-- REVIEWS -->
+    <section class="reviews-section" id="reviews-grid-section">
         <div class="container">
             <div class="section-label">TESTIMONIALS</div>
             <h2 class="section-title">Loved by thousands<br>across India.</h2>
@@ -45,11 +164,99 @@
             <div style="text-align:center;margin-top:48px"><a href="/shop" class="btn-primary" style="display:inline-block;text-decoration:none">Try Moringai Today →</a></div>
         </div>
     </section>
-    <footer class="footer"><div class="container"><div class="footer-bottom" style="padding:20px 0;text-align:center"><p>© 2026 Moringai. Made with 💚 in Tamil Nadu.</p></div></div></footer>
+
+    <!-- CERTIFICATIONS -->
+    <section class="certs-section">
+        <div class="container">
+            <div class="section-label">TRUST &amp; QUALITY</div>
+            <h2 class="section-title">Every batch. Every promise.<br>Certified &amp; verified.</h2>
+            <div class="certs-grid">
+                <div class="cert-item"><div class="cert-icon">🏛️</div><div class="cert-name">FSSAI Certified</div><div class="cert-desc">Licensed by India's food safety authority</div></div>
+                <div class="cert-item"><div class="cert-icon">🌿</div><div class="cert-name">100% Organic</div><div class="cert-desc">No pesticides, no chemicals, ever</div></div>
+                <div class="cert-item"><div class="cert-icon">🔬</div><div class="cert-name">Lab Tested</div><div class="cert-desc">Heavy metals &amp; microbial tested every batch</div></div>
+                <div class="cert-item"><div class="cert-icon">💰</div><div class="cert-name">Cash on Delivery</div><div class="cert-desc">Pay only when you receive your order</div></div>
+                <div class="cert-item"><div class="cert-icon">↩️</div><div class="cert-name">30-Day Returns</div><div class="cert-desc">Not happy? Full refund, no questions asked</div></div>
+                <div class="cert-item"><div class="cert-icon">🚚</div><div class="cert-name">Pan India Delivery</div><div class="cert-desc">Free shipping on orders above ₹499</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo"><img src="/public/logo.svg" width="24" height="24" alt="" style="vertical-align:-5px;margin-right:6px"> Moringai</div>
+                    <p class="footer-tagline">Pure Green Intelligence of Nature</p>
+                    <p class="footer-origin">Proudly from Tamil Nadu 🇮🇳</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Shop</h4>
+                        <a href="/shop">All Products</a>
+                        <a href="/shop">Moringa Powder</a>
+                        <a href="/shop">Moringa Capsules</a>
+                        <a href="/shop">Gift Sets</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <a href="/story">Our Story</a>
+                        <a href="/story#founder">Our Founder</a>
+                        <a href="/benefits">Benefits</a>
+                        <a href="#">Certifications</a>
+                        <a href="#">Blog</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Support</h4>
+                        <a href="#">Contact Us</a>
+                        <a href="#">Shipping Policy</a>
+                        <a href="#">Return Policy</a>
+                        <a href="#">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Moringai. All rights reserved. Made with 💚 in Tamil Nadu.</p>
+                <div class="footer-badges">
+                    <span>🔒 SSL Secured</span>
+                    <span>💳 Razorpay</span>
+                    <span>🚚 Fast Shipping</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CART DRAWER -->
     <div class="cart-overlay" id="cartOverlay"></div>
-    <div class="cart-drawer" id="cartDrawer"><div class="cart-header"><h3 class="cart-title">Your Cart</h3><button class="cart-close" id="cartClose">&times;</button></div><div class="cart-body" id="cartBody"></div><div class="cart-footer" id="cartFooter"></div></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header"><h3 class="cart-title">Your Cart</h3><button class="cart-close" id="cartClose">&times;</button></div>
+        <div class="cart-body" id="cartBody"></div>
+        <div class="cart-footer" id="cartFooter"></div>
+    </div>
+
+    <!-- CHECKOUT MODAL -->
+    <div class="modal-overlay" id="checkoutOverlay"></div>
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-header">
+            <button class="checkout-back" id="checkoutBack">&larr; Back to Cart</button>
+            <h3>Checkout</h3>
+            <button class="checkout-close" id="checkoutClose">&times;</button>
+        </div>
+        <div class="checkout-body" id="checkoutBody"></div>
+    </div>
+
     <div class="toast" id="toast"></div>
+
+    <a class="whatsapp-float" href="https://wa.me/919514499924?text=Hi%2C%20I%27m%20interested%20in%20Moringai%20products!" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">💬</a>
+
+    <div class="mobile-buy-bar" id="mobileBuyBar">
+        <div class="buy-bar-info"><span class="buy-bar-count" id="buyBarCount">0 items</span><span class="buy-bar-total" id="buyBarTotal">₹0</span></div>
+        <button class="buy-bar-btn" onclick="openCart()">View Cart →</button>
+    </div>
+
     <script src="/public/fix-script-tag.js"></script>
     <script src="/public/app.js"></script>
+    <script src="/public/effects.js"></script>
+    <script src="/public/checkout.js"></script>
 </body>
 </html>
