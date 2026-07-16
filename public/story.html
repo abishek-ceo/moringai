@@ -21,7 +21,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Catamaran:wght@400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/public/style.css">
     <link rel="stylesheet" href="/public/fix.css">
     <link rel="stylesheet" href="/public/mobile.css">
@@ -32,16 +32,16 @@
     <!-- ANNOUNCEMENT BAR -->
     <div class="announcement-bar">
         <div class="announcement-track">
-            <span>🌿 FREE DELIVERY above ₹499</span><span>·</span>
-            <span>💰 Cash on Delivery Available</span><span>·</span>
-            <span>🏛️ FSSAI Certified</span><span>·</span>
-            <span>📦 Pan India Delivery</span><span>·</span>
+            <span data-i18n="ann.free_delivery">🌿 FREE DELIVERY above ₹499</span><span>·</span>
+            <span data-i18n="ann.cod">💰 Cash on Delivery Available</span><span>·</span>
+            <span data-i18n="ann.fssai">🏛️ FSSAI Certified</span><span>·</span>
+            <span data-i18n="ann.pan_india">📦 Pan India Delivery</span><span>·</span>
             <span>முருங்கை · தமிழ்நாடு</span><span>·</span>
             <span>📱 WhatsApp: 9514499924</span><span>·</span>
-            <span>🌿 FREE DELIVERY above ₹499</span><span>·</span>
-            <span>💰 Cash on Delivery Available</span><span>·</span>
-            <span>🏛️ FSSAI Certified</span><span>·</span>
-            <span>📦 Pan India Delivery</span><span>·</span>
+            <span data-i18n="ann.free_delivery">🌿 FREE DELIVERY above ₹499</span><span>·</span>
+            <span data-i18n="ann.cod">💰 Cash on Delivery Available</span><span>·</span>
+            <span data-i18n="ann.fssai">🏛️ FSSAI Certified</span><span>·</span>
+            <span data-i18n="ann.pan_india">📦 Pan India Delivery</span><span>·</span>
             <span>முருங்கை · தமிழ்நாடு</span><span>·</span>
             <span>📱 WhatsApp: 9514499924</span><span>·</span>
         </div>
@@ -66,12 +66,13 @@
                 <span class="logo-text">Moringai</span>
             </a></div>
             <div class="nav-links desktop-only">
-                <a href="/shop" class="nav-link">Shop</a>
-                <a href="/benefits" class="nav-link">Benefits</a>
-                <a href="/story" class="nav-link active">Our Story</a>
-                <a href="/reviews" class="nav-link">Reviews</a>
+                <a href="/shop" class="nav-link" data-i18n="nav.shop">Shop</a>
+                <a href="/benefits" class="nav-link" data-i18n="nav.benefits">Benefits</a>
+                <a href="/story" class="nav-link active" data-i18n="nav.story">Our Story</a>
+                <a href="/reviews" class="nav-link" data-i18n="nav.reviews">Reviews</a>
             </div>
             <div class="nav-actions">
+                <button class="lang-toggle desktop-only" aria-label="Switch to Tamil">தமிழ்</button>
                 <button class="cart-icon-btn" id="cartToggle" aria-label="Open Cart">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
@@ -90,10 +91,11 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
         <div class="mobile-menu" id="mobileMenu">
-            <a href="/shop" class="mobile-nav-link" onclick="closeMobileMenu()">Shop</a>
-            <a href="/benefits" class="mobile-nav-link" onclick="closeMobileMenu()">Benefits</a>
-            <a href="/story" class="mobile-nav-link" onclick="closeMobileMenu()">Our Story</a>
-            <a href="/reviews" class="mobile-nav-link" onclick="closeMobileMenu()">Reviews</a>
+            <a href="/shop" class="mobile-nav-link" data-i18n="nav.shop" onclick="closeMobileMenu()">Shop</a>
+            <a href="/benefits" class="mobile-nav-link" data-i18n="nav.benefits" onclick="closeMobileMenu()">Benefits</a>
+            <a href="/story" class="mobile-nav-link" data-i18n="nav.story" onclick="closeMobileMenu()">Our Story</a>
+            <a href="/reviews" class="mobile-nav-link" data-i18n="nav.reviews" onclick="closeMobileMenu()">Reviews</a>
+            <button class="lang-toggle lang-toggle--mobile" aria-label="Switch to Tamil">தமிழ்</button>
         </div>
 
     <!-- PAGE HERO -->
@@ -111,18 +113,18 @@
             <div class="hero-content" style="max-width:760px">
                 <div class="hero-badge-top">
                     <span class="badge-dot"></span>
-                    BORN IN TAMIL NADU
+                    <span data-i18n="story.hero.badge">BORN IN TAMIL NADU</span>
                 </div>
-                <h1 class="hero-title">
+                <h1 class="hero-title" data-i18n-html="story.hero.title">
                     Rooted in Tradition,
                     <em class="hero-italic">Driven</em> by Science
                 </h1>
-                <p class="hero-subtitle">Every packet of Moringai is a promise — 100% organic, lab-tested, ethically sourced, and delivered fresh from the farm to your table. No middlemen. No compromises.</p>
+                <p class="hero-subtitle" data-i18n="story.hero.subtitle">Every packet of Moringai is a promise — 100% organic, lab-tested, ethically sourced, and delivered fresh from the farm to your table. No middlemen. No compromises.</p>
                 <div class="hero-cta">
-                    <button class="btn-primary" onclick="document.getElementById('founder').scrollIntoView({behavior:'smooth'})">
+                    <button class="btn-primary" data-i18n="story.hero.cta1" onclick="document.getElementById('founder').scrollIntoView({behavior:'smooth'})">
                         MEET THE FOUNDER
                     </button>
-                    <a class="btn-secondary" href="/shop" style="text-decoration:none;display:inline-flex;align-items:center">
+                    <a class="btn-secondary" href="/shop" data-i18n="story.hero.cta2" style="text-decoration:none;display:inline-flex;align-items:center">
                         SHOP NOW
                     </a>
                 </div>
@@ -149,15 +151,15 @@
     <!-- OUR STORY -->
     <section class="story-section">
         <div class="container">
-            <div class="section-label">OUR STORY</div>
-            <h2 class="section-title">Rooted in tradition,<br>driven by science.</h2>
-            <p class="story-text">Moringai was born from a simple belief — that the ancient wisdom of Tamil Nadu's farmers holds the key to modern wellness. For generations, murungai (moringa) has been a staple of South Indian kitchens, revered for its extraordinary healing properties.</p>
-            <p class="story-text">We work directly with small-scale organic farmers across Tamil Nadu and Andhra Pradesh, ensuring fair prices, sustainable farming practices, and the purest possible product for you.</p>
-            <p class="story-text">Every packet of Moringai is a promise — 100% organic, lab-tested, ethically sourced, and delivered fresh from the farm to your table. No middlemen. No compromises.</p>
+            <div class="section-label" data-i18n="story.label">OUR STORY</div>
+            <h2 class="section-title" data-i18n-html="story.title">Rooted in tradition,<br>driven by science.</h2>
+            <p class="story-text" data-i18n="story.p1">Moringai was born from a simple belief — that the ancient wisdom of Tamil Nadu's farmers holds the key to modern wellness. For generations, murungai (moringa) has been a staple of South Indian kitchens, revered for its extraordinary healing properties.</p>
+            <p class="story-text" data-i18n="story.p2">We work directly with small-scale organic farmers across Tamil Nadu and Andhra Pradesh, ensuring fair prices, sustainable farming practices, and the purest possible product for you.</p>
+            <p class="story-text" data-i18n="story.p3">Every packet of Moringai is a promise — 100% organic, lab-tested, ethically sourced, and delivered fresh from the farm to your table. No middlemen. No compromises.</p>
             <div class="features-grid" style="margin-top:48px">
-                <div class="feature-card"><div class="feature-icon">🤝</div><h3 class="feature-title">200+ Farmers</h3><p class="feature-desc">Direct farm partnerships across Tamil Nadu and Andhra Pradesh.</p></div>
-                <div class="feature-card"><div class="feature-icon">🌍</div><h3 class="feature-title">Zero Middlemen</h3><p class="feature-desc">Farm to your door — we cut out every middleman for freshness and fairness.</p></div>
-                <div class="feature-card"><div class="feature-icon">♻️</div><h3 class="feature-title">Sustainable</h3><p class="feature-desc">Carbon-neutral delivery, eco packaging, and zero plastic policy.</p></div>
+                <div class="feature-card"><div class="feature-icon">🤝</div><h3 class="feature-title" data-i18n="story.f1.title">200+ Farmers</h3><p class="feature-desc" data-i18n="story.f1.desc">Direct farm partnerships across Tamil Nadu and Andhra Pradesh.</p></div>
+                <div class="feature-card"><div class="feature-icon">🌍</div><h3 class="feature-title" data-i18n="story.f2.title">Zero Middlemen</h3><p class="feature-desc" data-i18n="story.f2.desc">Farm to your door — we cut out every middleman for freshness and fairness.</p></div>
+                <div class="feature-card"><div class="feature-icon">♻️</div><h3 class="feature-title" data-i18n="story.f3.title">Sustainable</h3><p class="feature-desc" data-i18n="story.f3.desc">Carbon-neutral delivery, eco packaging, and zero plastic policy.</p></div>
             </div>
         </div>
     </section>
@@ -168,8 +170,8 @@
             <div class="heritage-grid">
                 <div class="tamil-card">
                     <div class="tamil-big-word">முருங்கை</div>
-                    <div class="tamil-subtitle">Murungai — Tamil Nadu's Gift to the World</div>
-                    <p class="tamil-desc">For over 5,000 years, Siddha medicine has celebrated முருங்கை as a divine healer — "the tree that never dies." Every part of this sacred tree nourishes body, mind, and soul.</p>
+                    <div class="tamil-subtitle" data-i18n="heritage.subtitle">Murungai — Tamil Nadu's Gift to the World</div>
+                    <p class="tamil-desc" data-i18n="heritage.desc">For over 5,000 years, Siddha medicine has celebrated முருங்கை as a divine healer — "the tree that never dies." Every part of this sacred tree nourishes body, mind, and soul.</p>
                     <div class="tamil-districts">
                         <span>📍 Dindigul</span>
                         <span>📍 Namakkal</span>
@@ -178,21 +180,21 @@
                     </div>
                 </div>
                 <div class="heritage-facts">
-                    <div class="section-label">ROOTED IN TRADITION</div>
-                    <h2 class="section-title" style="margin-top:8px">5,000 years of<br>Siddha wisdom.</h2>
-                    <blockquote class="siddha-quote">"முருங்கை இலை உண்டால் மூப்பு தோன்றாது"<br><span>— Siddha Proverb: Eat moringa leaves, age shall not appear.</span></blockquote>
+                    <div class="section-label" data-i18n="heritage.label">ROOTED IN TRADITION</div>
+                    <h2 class="section-title" style="margin-top:8px" data-i18n-html="heritage.title">5,000 years of<br>Siddha wisdom.</h2>
+                    <blockquote class="siddha-quote">"முருங்கை இலை உண்டால் மூப்பு தோன்றாது"<br><span data-i18n="heritage.quote_sub">— Siddha Proverb: Eat moringa leaves, age shall not appear.</span></blockquote>
                     <div class="heritage-items">
                         <div class="heritage-item">
                             <div class="heritage-icon">🌿</div>
-                            <div><strong>Ancient Healing</strong><p>Used in Siddha medicine to treat 300+ ailments since 5000 BCE.</p></div>
+                            <div><strong data-i18n="heritage.h1.title">Ancient Healing</strong><p data-i18n="heritage.h1.desc">Used in Siddha medicine to treat 300+ ailments since 5000 BCE.</p></div>
                         </div>
                         <div class="heritage-item">
                             <div class="heritage-icon">👨‍🌾</div>
-                            <div><strong>Farmer First</strong><p>Direct sourcing from 200+ small-scale farmers across Tamil Nadu.</p></div>
+                            <div><strong data-i18n="heritage.h2.title">Farmer First</strong><p data-i18n="heritage.h2.desc">Direct sourcing from 200+ small-scale farmers across Tamil Nadu.</p></div>
                         </div>
                         <div class="heritage-item">
                             <div class="heritage-icon">🏆</div>
-                            <div><strong>Globally Recognized</strong><p>UN FAO calls moringa "the most nutritious plant on Earth."</p></div>
+                            <div><strong data-i18n="heritage.h3.title">Globally Recognized</strong><p data-i18n="heritage.h3.desc">UN FAO calls moringa "the most nutritious plant on Earth."</p></div>
                         </div>
                     </div>
                 </div>
@@ -209,16 +211,16 @@
                     <div class="founder-photo-ring"></div>
                 </div>
                 <div class="founder-content">
-                    <div class="section-label">FROM OUR FOUNDER</div>
-                    <h2 class="section-title">A promise, made<br>in Tamil Nadu.</h2>
-                    <p class="founder-quote">"Moringai started with a simple idea — bring the same murungai our grandmothers trusted for generations to every home in India, without compromise. Every batch we ship is one I'd give my own family."</p>
+                    <div class="section-label" data-i18n="founder.label">FROM OUR FOUNDER</div>
+                    <h2 class="section-title" data-i18n-html="founder.title">A promise, made<br>in Tamil Nadu.</h2>
+                    <p class="founder-quote" data-i18n="founder.quote">"Moringai started with a simple idea — bring the same murungai our grandmothers trusted for generations to every home in India, without compromise. Every batch we ship is one I'd give my own family."</p>
                     <div class="founder-meta">
                         <strong class="founder-name">Abishek Raj</strong>
-                        <span class="founder-title">Founder, Moringai</span>
+                        <span class="founder-title" data-i18n="founder.title_role">Founder, Moringai</span>
                     </div>
                     <a class="founder-whatsapp" href="https://wa.me/919514499924?text=Hi%20Abishek%2C%20I%27d%20like%20to%20know%20more%20about%20Moringai!" target="_blank" rel="noopener noreferrer">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.79-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.26-.28.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.58.81 2 .88 2.15.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.2 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.28.36-.23.61-.14.24.09 1.56.74 1.83.87.26.14.44.2.5.32.07.12.07.68-.17 1.36z"/></svg>
-                        Chat with the Founder
+                        <span data-i18n="founder.whatsapp">Chat with the Founder</span>
                     </a>
                 </div>
             </div>
@@ -226,45 +228,46 @@
     </section>
 
     <!-- FOOTER -->
+    <div class="kolam-divider" aria-hidden="true"></div>
     <footer class="footer">
         <div class="container">
             <div class="footer-top">
                 <div class="footer-brand">
                     <div class="footer-logo"><img src="/public/logo.svg" width="24" height="24" alt="" style="vertical-align:-5px;margin-right:6px"> Moringai</div>
-                    <p class="footer-tagline">Pure Green Intelligence of Nature</p>
-                    <p class="footer-origin">Proudly from Tamil Nadu 🇮🇳</p>
+                    <p class="footer-tagline" data-i18n="footer.tagline">Pure Green Intelligence of Nature</p>
+                    <p class="footer-origin" data-i18n="footer.origin">Proudly from Tamil Nadu 🇮🇳</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-col">
-                        <h4>Shop</h4>
-                        <a href="/shop">All Products</a>
-                        <a href="/shop">Moringa Powder</a>
-                        <a href="/shop">Moringa Capsules</a>
-                        <a href="/shop">Gift Sets</a>
+                        <h4 data-i18n="footer.shop">Shop</h4>
+                        <a href="/shop" data-i18n="footer.all_products">All Products</a>
+                        <a href="/shop" data-i18n="footer.powder">Moringa Powder</a>
+                        <a href="/shop" data-i18n="footer.capsules">Moringa Capsules</a>
+                        <a href="/shop" data-i18n="footer.gift_sets">Gift Sets</a>
                     </div>
                     <div class="footer-col">
-                        <h4>Company</h4>
-                        <a href="/story">Our Story</a>
-                        <a href="/story#founder">Our Founder</a>
-                        <a href="/benefits">Benefits</a>
-                        <a href="#">Certifications</a>
-                        <a href="#">Blog</a>
+                        <h4 data-i18n="footer.company">Company</h4>
+                        <a href="/story" data-i18n="footer.our_story">Our Story</a>
+                        <a href="/story#founder" data-i18n="footer.our_founder">Our Founder</a>
+                        <a href="/benefits" data-i18n="footer.benefits">Benefits</a>
+                        <a href="#" data-i18n="footer.certifications">Certifications</a>
+                        <a href="#" data-i18n="footer.blog">Blog</a>
                     </div>
                     <div class="footer-col">
-                        <h4>Support</h4>
-                        <a href="#">Contact Us</a>
-                        <a href="#">Shipping Policy</a>
-                        <a href="#">Return Policy</a>
-                        <a href="#">Privacy Policy</a>
+                        <h4 data-i18n="footer.support">Support</h4>
+                        <a href="#" data-i18n="footer.contact">Contact Us</a>
+                        <a href="#" data-i18n="footer.shipping_policy">Shipping Policy</a>
+                        <a href="#" data-i18n="footer.return_policy">Return Policy</a>
+                        <a href="#" data-i18n="footer.privacy_policy">Privacy Policy</a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2026 Moringai. All rights reserved. Made with 💚 in Tamil Nadu.</p>
+                <p data-i18n="footer.copyright">© 2026 Moringai. All rights reserved. Made with 💚 in Tamil Nadu.</p>
                 <div class="footer-badges">
-                    <span>🔒 SSL Secured</span>
-                    <span>💳 Razorpay</span>
-                    <span>🚚 Fast Shipping</span>
+                    <span data-i18n="footer.ssl">🔒 SSL Secured</span>
+                    <span data-i18n="footer.razorpay">💳 Razorpay</span>
+                    <span data-i18n="footer.fast_shipping">🚚 Fast Shipping</span>
                 </div>
             </div>
         </div>
@@ -273,7 +276,7 @@
     <!-- CART DRAWER -->
     <div class="cart-overlay" id="cartOverlay"></div>
     <div class="cart-drawer" id="cartDrawer">
-        <div class="cart-header"><h3 class="cart-title">Your Cart</h3><button class="cart-close" id="cartClose">&times;</button></div>
+        <div class="cart-header"><h3 class="cart-title" data-i18n="cart.title">Your Cart</h3><button class="cart-close" id="cartClose">&times;</button></div>
         <div class="cart-body" id="cartBody"></div>
         <div class="cart-footer" id="cartFooter"></div>
     </div>
@@ -282,8 +285,8 @@
     <div class="modal-overlay" id="checkoutOverlay"></div>
     <div class="checkout-modal" id="checkoutModal">
         <div class="checkout-header">
-            <button class="checkout-back" id="checkoutBack">&larr; Back to Cart</button>
-            <h3>Checkout</h3>
+            <button class="checkout-back" id="checkoutBack" data-i18n="checkout.back">&larr; Back to Cart</button>
+            <h3 data-i18n="checkout.title">Checkout</h3>
             <button class="checkout-close" id="checkoutClose">&times;</button>
         </div>
         <div class="checkout-body" id="checkoutBody"></div>
@@ -295,11 +298,12 @@
 
     <div class="mobile-buy-bar" id="mobileBuyBar">
         <div class="buy-bar-info"><span class="buy-bar-count" id="buyBarCount">0 items</span><span class="buy-bar-total" id="buyBarTotal">₹0</span></div>
-        <button class="buy-bar-btn" onclick="openCart()">View Cart →</button>
+        <button class="buy-bar-btn" data-i18n="buybar.view_cart" onclick="openCart()">View Cart →</button>
     </div>
 
     <script src="/public/fix-script-tag.js"></script>
     <script src="/public/app.js"></script>
+    <script src="/public/i18n.js"></script>
     <script src="/public/effects.js"></script>
     <script src="/public/checkout.js"></script>
 </body>

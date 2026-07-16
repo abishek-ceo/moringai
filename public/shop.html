@@ -21,7 +21,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Catamaran:wght@400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/public/style.css">
     <link rel="stylesheet" href="/public/fix.css">
     <link rel="stylesheet" href="/public/mobile.css">
@@ -32,16 +32,16 @@
     <!-- ANNOUNCEMENT BAR -->
     <div class="announcement-bar">
         <div class="announcement-track">
-            <span>🌿 FREE DELIVERY above ₹499</span><span>·</span>
-            <span>💰 Cash on Delivery Available</span><span>·</span>
-            <span>🏛️ FSSAI Certified</span><span>·</span>
-            <span>📦 Pan India Delivery</span><span>·</span>
+            <span data-i18n="ann.free_delivery">🌿 FREE DELIVERY above ₹499</span><span>·</span>
+            <span data-i18n="ann.cod">💰 Cash on Delivery Available</span><span>·</span>
+            <span data-i18n="ann.fssai">🏛️ FSSAI Certified</span><span>·</span>
+            <span data-i18n="ann.pan_india">📦 Pan India Delivery</span><span>·</span>
             <span>முருங்கை · தமிழ்நாடு</span><span>·</span>
             <span>📱 WhatsApp: 9514499924</span><span>·</span>
-            <span>🌿 FREE DELIVERY above ₹499</span><span>·</span>
-            <span>💰 Cash on Delivery Available</span><span>·</span>
-            <span>🏛️ FSSAI Certified</span><span>·</span>
-            <span>📦 Pan India Delivery</span><span>·</span>
+            <span data-i18n="ann.free_delivery">🌿 FREE DELIVERY above ₹499</span><span>·</span>
+            <span data-i18n="ann.cod">💰 Cash on Delivery Available</span><span>·</span>
+            <span data-i18n="ann.fssai">🏛️ FSSAI Certified</span><span>·</span>
+            <span data-i18n="ann.pan_india">📦 Pan India Delivery</span><span>·</span>
             <span>முருங்கை · தமிழ்நாடு</span><span>·</span>
             <span>📱 WhatsApp: 9514499924</span><span>·</span>
         </div>
@@ -66,12 +66,13 @@
                 <span class="logo-text">Moringai</span>
             </a></div>
             <div class="nav-links desktop-only">
-                <a href="/shop" class="nav-link active">Shop</a>
-                <a href="/benefits" class="nav-link">Benefits</a>
-                <a href="/story" class="nav-link">Our Story</a>
-                <a href="/reviews" class="nav-link">Reviews</a>
+                <a href="/shop" class="nav-link active" data-i18n="nav.shop">Shop</a>
+                <a href="/benefits" class="nav-link" data-i18n="nav.benefits">Benefits</a>
+                <a href="/story" class="nav-link" data-i18n="nav.story">Our Story</a>
+                <a href="/reviews" class="nav-link" data-i18n="nav.reviews">Reviews</a>
             </div>
             <div class="nav-actions">
+                <button class="lang-toggle desktop-only" aria-label="Switch to Tamil">தமிழ்</button>
                 <button class="cart-icon-btn" id="cartToggle" aria-label="Open Cart">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
@@ -90,10 +91,11 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
         <div class="mobile-menu" id="mobileMenu">
-            <a href="/shop" class="mobile-nav-link" onclick="closeMobileMenu()">Shop</a>
-            <a href="/benefits" class="mobile-nav-link" onclick="closeMobileMenu()">Benefits</a>
-            <a href="/story" class="mobile-nav-link" onclick="closeMobileMenu()">Our Story</a>
-            <a href="/reviews" class="mobile-nav-link" onclick="closeMobileMenu()">Reviews</a>
+            <a href="/shop" class="mobile-nav-link" data-i18n="nav.shop" onclick="closeMobileMenu()">Shop</a>
+            <a href="/benefits" class="mobile-nav-link" data-i18n="nav.benefits" onclick="closeMobileMenu()">Benefits</a>
+            <a href="/story" class="mobile-nav-link" data-i18n="nav.story" onclick="closeMobileMenu()">Our Story</a>
+            <a href="/reviews" class="mobile-nav-link" data-i18n="nav.reviews" onclick="closeMobileMenu()">Reviews</a>
+            <button class="lang-toggle lang-toggle--mobile" aria-label="Switch to Tamil">தமிழ்</button>
         </div>
 
     <!-- PAGE HERO -->
@@ -111,18 +113,18 @@
             <div class="hero-content" style="max-width:760px">
                 <div class="hero-badge-top">
                     <span class="badge-dot"></span>
-                    THE FULL COLLECTION
+                    <span data-i18n="shop.hero.badge">THE FULL COLLECTION</span>
                 </div>
-                <h1 class="hero-title">
+                <h1 class="hero-title" data-i18n-html="shop.hero.title">
                     Shop Pure
                     <em class="hero-italic">Moringa</em>
                 </h1>
-                <p class="hero-subtitle">Powder, capsules, tea, oil, gift sets &amp; seeds — every product lab tested, FSSAI certified, and sourced direct from 200+ organic farms across Tamil Nadu.</p>
+                <p class="hero-subtitle" data-i18n-html="shop.hero.subtitle">Powder, capsules, tea, oil, gift sets &amp; seeds — every product lab tested, FSSAI certified, and sourced direct from 200+ organic farms across Tamil Nadu.</p>
                 <div class="hero-cta">
-                    <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+                    <button class="btn-primary" data-i18n="shop.hero.cta1" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
                         BROWSE PRODUCTS
                     </button>
-                    <a class="btn-secondary" href="/story" style="text-decoration:none;display:inline-flex;align-items:center">
+                    <a class="btn-secondary" href="/story" data-i18n="shop.hero.cta2" style="text-decoration:none;display:inline-flex;align-items:center">
                         OUR STORY
                     </a>
                 </div>
@@ -149,28 +151,28 @@
     <!-- TRUST BAR -->
     <div class="trust-bar">
         <div class="trust-bar-inner">
-            <div class="trust-item"><span>🛡️</span><span>SSL Secured</span></div>
-            <div class="trust-item"><span>🚚</span><span>Free Shipping ₹499+</span></div>
-            <div class="trust-item"><span>🔬</span><span>Lab Tested</span></div>
-            <div class="trust-item"><span>🌿</span><span>100% Organic</span></div>
-            <div class="trust-item"><span>↩️</span><span>30-Day Returns</span></div>
-            <div class="trust-item"><span>💳</span><span>Secure Payments</span></div>
+            <div class="trust-item"><span>🛡️</span><span data-i18n="trust.ssl">SSL Secured</span></div>
+            <div class="trust-item"><span>🚚</span><span data-i18n="trust.shipping">Free Shipping ₹499+</span></div>
+            <div class="trust-item"><span>🔬</span><span data-i18n="trust.lab">Lab Tested</span></div>
+            <div class="trust-item"><span>🌿</span><span data-i18n="trust.organic">100% Organic</span></div>
+            <div class="trust-item"><span>↩️</span><span data-i18n="trust.returns">30-Day Returns</span></div>
+            <div class="trust-item"><span>💳</span><span data-i18n="trust.payments">Secure Payments</span></div>
         </div>
     </div>
 
     <!-- PRODUCTS -->
     <section class="products-section" id="products">
         <div class="container">
-            <div class="section-label">THE COLLECTION</div>
-            <h2 class="section-title">Curated for your<br>wellness journey.</h2>
+            <div class="section-label" data-i18n="products.label">THE COLLECTION</div>
+            <h2 class="section-title" data-i18n-html="products.title">Curated for your<br>wellness journey.</h2>
             <div class="filter-bar" id="filterBar">
-                <button class="filter-btn active" data-filter="all" onclick="filterProducts('all')">All</button>
-                <button class="filter-btn" data-filter="powder" onclick="filterProducts('powder')">Powder</button>
-                <button class="filter-btn" data-filter="capsules" onclick="filterProducts('capsules')">Capsules</button>
-                <button class="filter-btn" data-filter="tea" onclick="filterProducts('tea')">Tea</button>
-                <button class="filter-btn" data-filter="oil" onclick="filterProducts('oil')">Oil</button>
-                <button class="filter-btn" data-filter="gift" onclick="filterProducts('gift')">Gift Sets</button>
-                <button class="filter-btn" data-filter="seeds" onclick="filterProducts('seeds')">Seeds</button>
+                <button class="filter-btn active" data-filter="all" data-i18n="filter.all" onclick="filterProducts('all')">All</button>
+                <button class="filter-btn" data-filter="powder" data-i18n="filter.powder" onclick="filterProducts('powder')">Powder</button>
+                <button class="filter-btn" data-filter="capsules" data-i18n="filter.capsules" onclick="filterProducts('capsules')">Capsules</button>
+                <button class="filter-btn" data-filter="tea" data-i18n="filter.tea" onclick="filterProducts('tea')">Tea</button>
+                <button class="filter-btn" data-filter="oil" data-i18n="filter.oil" onclick="filterProducts('oil')">Oil</button>
+                <button class="filter-btn" data-filter="gift" data-i18n="filter.gift" onclick="filterProducts('gift')">Gift Sets</button>
+                <button class="filter-btn" data-filter="seeds" data-i18n="filter.seeds" onclick="filterProducts('seeds')">Seeds</button>
             </div>
             <div class="products-grid" id="productsGrid"></div>
         </div>
@@ -179,59 +181,60 @@
     <!-- CERTIFICATIONS -->
     <section class="certs-section">
         <div class="container">
-            <div class="section-label">TRUST &amp; QUALITY</div>
-            <h2 class="section-title">Every batch. Every promise.<br>Certified &amp; verified.</h2>
+            <div class="section-label" data-i18n-html="certs.label">TRUST &amp; QUALITY</div>
+            <h2 class="section-title" data-i18n-html="certs.title">Every batch. Every promise.<br>Certified &amp; verified.</h2>
             <div class="certs-grid">
-                <div class="cert-item"><div class="cert-icon">🏛️</div><div class="cert-name">FSSAI Certified</div><div class="cert-desc">Licensed by India's food safety authority</div></div>
-                <div class="cert-item"><div class="cert-icon">🌿</div><div class="cert-name">100% Organic</div><div class="cert-desc">No pesticides, no chemicals, ever</div></div>
-                <div class="cert-item"><div class="cert-icon">🔬</div><div class="cert-name">Lab Tested</div><div class="cert-desc">Heavy metals &amp; microbial tested every batch</div></div>
-                <div class="cert-item"><div class="cert-icon">💰</div><div class="cert-name">Cash on Delivery</div><div class="cert-desc">Pay only when you receive your order</div></div>
-                <div class="cert-item"><div class="cert-icon">↩️</div><div class="cert-name">30-Day Returns</div><div class="cert-desc">Not happy? Full refund, no questions asked</div></div>
-                <div class="cert-item"><div class="cert-icon">🚚</div><div class="cert-name">Pan India Delivery</div><div class="cert-desc">Free shipping on orders above ₹499</div></div>
+                <div class="cert-item"><div class="cert-icon">🏛️</div><div class="cert-name" data-i18n="certs.c1.name">FSSAI Certified</div><div class="cert-desc" data-i18n="certs.c1.desc">Licensed by India's food safety authority</div></div>
+                <div class="cert-item"><div class="cert-icon">🌿</div><div class="cert-name" data-i18n="certs.c2.name">100% Organic</div><div class="cert-desc" data-i18n="certs.c2.desc">No pesticides, no chemicals, ever</div></div>
+                <div class="cert-item"><div class="cert-icon">🔬</div><div class="cert-name" data-i18n="certs.c3.name">Lab Tested</div><div class="cert-desc" data-i18n-html="certs.c3.desc">Heavy metals &amp; microbial tested every batch</div></div>
+                <div class="cert-item"><div class="cert-icon">💰</div><div class="cert-name" data-i18n="certs.c4.name">Cash on Delivery</div><div class="cert-desc" data-i18n="certs.c4.desc">Pay only when you receive your order</div></div>
+                <div class="cert-item"><div class="cert-icon">↩️</div><div class="cert-name" data-i18n="certs.c5.name">30-Day Returns</div><div class="cert-desc" data-i18n="certs.c5.desc">Not happy? Full refund, no questions asked</div></div>
+                <div class="cert-item"><div class="cert-icon">🚚</div><div class="cert-name" data-i18n="certs.c6.name">Pan India Delivery</div><div class="cert-desc" data-i18n="certs.c6.desc">Free shipping on orders above ₹499</div></div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
+    <div class="kolam-divider" aria-hidden="true"></div>
     <footer class="footer">
         <div class="container">
             <div class="footer-top">
                 <div class="footer-brand">
                     <div class="footer-logo"><img src="/public/logo.svg" width="24" height="24" alt="" style="vertical-align:-5px;margin-right:6px"> Moringai</div>
-                    <p class="footer-tagline">Pure Green Intelligence of Nature</p>
-                    <p class="footer-origin">Proudly from Tamil Nadu 🇮🇳</p>
+                    <p class="footer-tagline" data-i18n="footer.tagline">Pure Green Intelligence of Nature</p>
+                    <p class="footer-origin" data-i18n="footer.origin">Proudly from Tamil Nadu 🇮🇳</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-col">
-                        <h4>Shop</h4>
-                        <a href="/shop">All Products</a>
-                        <a href="/shop">Moringa Powder</a>
-                        <a href="/shop">Moringa Capsules</a>
-                        <a href="/shop">Gift Sets</a>
+                        <h4 data-i18n="footer.shop">Shop</h4>
+                        <a href="/shop" data-i18n="footer.all_products">All Products</a>
+                        <a href="/shop" data-i18n="footer.powder">Moringa Powder</a>
+                        <a href="/shop" data-i18n="footer.capsules">Moringa Capsules</a>
+                        <a href="/shop" data-i18n="footer.gift_sets">Gift Sets</a>
                     </div>
                     <div class="footer-col">
-                        <h4>Company</h4>
-                        <a href="/story">Our Story</a>
-                        <a href="/story#founder">Our Founder</a>
-                        <a href="/benefits">Benefits</a>
-                        <a href="#">Certifications</a>
-                        <a href="#">Blog</a>
+                        <h4 data-i18n="footer.company">Company</h4>
+                        <a href="/story" data-i18n="footer.our_story">Our Story</a>
+                        <a href="/story#founder" data-i18n="footer.our_founder">Our Founder</a>
+                        <a href="/benefits" data-i18n="footer.benefits">Benefits</a>
+                        <a href="#" data-i18n="footer.certifications">Certifications</a>
+                        <a href="#" data-i18n="footer.blog">Blog</a>
                     </div>
                     <div class="footer-col">
-                        <h4>Support</h4>
-                        <a href="#">Contact Us</a>
-                        <a href="#">Shipping Policy</a>
-                        <a href="#">Return Policy</a>
-                        <a href="#">Privacy Policy</a>
+                        <h4 data-i18n="footer.support">Support</h4>
+                        <a href="#" data-i18n="footer.contact">Contact Us</a>
+                        <a href="#" data-i18n="footer.shipping_policy">Shipping Policy</a>
+                        <a href="#" data-i18n="footer.return_policy">Return Policy</a>
+                        <a href="#" data-i18n="footer.privacy_policy">Privacy Policy</a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2026 Moringai. All rights reserved. Made with 💚 in Tamil Nadu.</p>
+                <p data-i18n="footer.copyright">© 2026 Moringai. All rights reserved. Made with 💚 in Tamil Nadu.</p>
                 <div class="footer-badges">
-                    <span>🔒 SSL Secured</span>
-                    <span>💳 Razorpay</span>
-                    <span>🚚 Fast Shipping</span>
+                    <span data-i18n="footer.ssl">🔒 SSL Secured</span>
+                    <span data-i18n="footer.razorpay">💳 Razorpay</span>
+                    <span data-i18n="footer.fast_shipping">🚚 Fast Shipping</span>
                 </div>
             </div>
         </div>
@@ -240,7 +243,7 @@
     <!-- CART DRAWER -->
     <div class="cart-overlay" id="cartOverlay"></div>
     <div class="cart-drawer" id="cartDrawer">
-        <div class="cart-header"><h3 class="cart-title">Your Cart</h3><button class="cart-close" id="cartClose">&times;</button></div>
+        <div class="cart-header"><h3 class="cart-title" data-i18n="cart.title">Your Cart</h3><button class="cart-close" id="cartClose">&times;</button></div>
         <div class="cart-body" id="cartBody"></div>
         <div class="cart-footer" id="cartFooter"></div>
     </div>
@@ -249,8 +252,8 @@
     <div class="modal-overlay" id="checkoutOverlay"></div>
     <div class="checkout-modal" id="checkoutModal">
         <div class="checkout-header">
-            <button class="checkout-back" id="checkoutBack">&larr; Back to Cart</button>
-            <h3>Checkout</h3>
+            <button class="checkout-back" id="checkoutBack" data-i18n="checkout.back">&larr; Back to Cart</button>
+            <h3 data-i18n="checkout.title">Checkout</h3>
             <button class="checkout-close" id="checkoutClose">&times;</button>
         </div>
         <div class="checkout-body" id="checkoutBody"></div>
@@ -262,11 +265,12 @@
 
     <div class="mobile-buy-bar" id="mobileBuyBar">
         <div class="buy-bar-info"><span class="buy-bar-count" id="buyBarCount">0 items</span><span class="buy-bar-total" id="buyBarTotal">₹0</span></div>
-        <button class="buy-bar-btn" onclick="openCart()">View Cart →</button>
+        <button class="buy-bar-btn" data-i18n="buybar.view_cart" onclick="openCart()">View Cart →</button>
     </div>
 
     <script src="/public/fix-script-tag.js"></script>
     <script src="/public/app.js"></script>
+    <script src="/public/i18n.js"></script>
     <script src="/public/effects.js"></script>
     <script src="/public/checkout.js"></script>
 </body>

@@ -442,25 +442,33 @@ document.addEventListener('DOMContentLoaded', function(){
 
 // ─── PRODUCTS DATA ────────────────────────────────────────
 var PRODUCTS = [
-  { name:'Moringa Leaf Powder', emoji:'\ud83c\udf3f', category:'powder', price:299, oldPrice:399, badge:'BESTSELLER',
+  { name:'Moringa Leaf Powder', nameTa:'\u0bae\u0bca\u0bb0\u0bbf\u0b99\u0bcd\u0b95\u0bc8 \u0b87\u0bb2\u0bc8\u0baa\u0bcd \u0baa\u0bca\u0b9f\u0bbf', emoji:'\ud83c\udf3f', category:'powder', price:299, oldPrice:399, badge:'BESTSELLER', badgeTa:'\u0b9a\u0bbf\u0bb1\u0ba8\u0bcd\u0ba4 \u0bb5\u0bbf\u0bb1\u0bcd\u0baa\u0ba9\u0bc8',
     desc:'100% pure sun-dried moringa leaf powder. Cold processed to retain maximum nutrients.',
+    descTa:'100% \u0ba4\u0bc2\u0baf \u0bb5\u0bc6\u0baf\u0bbf\u0bb2\u0bbf\u0bb2\u0bcd \u0b89\u0bb2\u0bb0\u0bcd\u0ba4\u0bcd\u0ba4\u0baa\u0bcd\u0baa\u0b9f\u0bcd\u0b9f \u0bae\u0bca\u0bb0\u0bbf\u0b99\u0bcd\u0b95\u0bc8 \u0b87\u0bb2\u0bc8\u0baa\u0bcd \u0baa\u0bca\u0b9f\u0bbf. \u0b85\u0ba4\u0bbf\u0b95\u0baa\u0b9f\u0bcd\u0b9a \u0b8a\u0b9f\u0bcd\u0b9f\u0b9a\u0bcd\u0b9a\u0ba4\u0bcd\u0ba4\u0bc8 \u0ba4\u0b95\u0bcd\u0b95\u0bb5\u0bc8\u0b95\u0bcd\u0b95 \u0b95\u0bc1\u0bb3\u0bbf\u0bb0\u0bcd \u0bae\u0bc1\u0bb1\u0bc8\u0baf\u0bbf\u0bb2\u0bcd \u0ba4\u0baf\u0bbe\u0bb0\u0bbf\u0b95\u0bcd\u0b95\u0baa\u0bcd\u0baa\u0b9f\u0bcd\u0b9f\u0ba4\u0bc1.',
     variants:['100g','200g','500g'], rating:4.8, reviews:1247 },
-  { name:'Moringa Capsules', emoji:'\ud83d\udc8a', category:'capsules', price:399, oldPrice:499, badge:'NEW',
+  { name:'Moringa Capsules', nameTa:'\u0bae\u0bca\u0bb0\u0bbf\u0b99\u0bcd\u0b95\u0bc8 \u0b95\u0bbe\u0baa\u0bcd\u0b9a\u0bc2\u0bb2\u0bcd\u0b95\u0bb3\u0bcd', emoji:'\ud83d\udc8a', category:'capsules', price:399, oldPrice:499, badge:'NEW', badgeTa:'\u0baa\u0bc1\u0ba4\u0bbf\u0baf\u0ba4\u0bc1',
     desc:'500mg pure moringa per capsule. 60 caps per bottle. Easy daily wellness routine.',
+    descTa:'\u0b92\u0bb0\u0bc1 \u0b95\u0bbe\u0baa\u0bcd\u0b9a\u0bc2\u0bb2\u0bc1\u0b95\u0bcd\u0b95\u0bc1 500mg \u0ba4\u0bc2\u0baf \u0bae\u0bca\u0bb0\u0bbf\u0b99\u0bcd\u0b95\u0bc8. \u0b92\u0bb0\u0bc1 \u0baa\u0bbe\u0b9f\u0bcd\u0b9f\u0bbf\u0bb2\u0bbf\u0bb2\u0bcd 60 \u0b95\u0bbe\u0baa\u0bcd\u0b9a\u0bc2\u0bb2\u0bcd\u0b95\u0bb3\u0bcd. \u0ba4\u0bbf\u0ba9\u0b9a\u0bb0\u0bbf \u0b86\u0bb0\u0bcb\u0b95\u0bcd\u0b95\u0bbf\u0baf\u0ba4\u0bcd\u0ba4\u0bbf\u0bb1\u0bcd\u0b95\u0bc1 \u0b8e\u0bb3\u0bbf\u0ba4\u0bbe\u0ba9 \u0bb5\u0bb4\u0bbf.',
     variants:['60 caps','120 caps'], rating:4.7, reviews:863 },
-  { name:'Moringa Tea Blend', emoji:'\ud83c\udf75', category:'tea', price:249, oldPrice:329, badge:'SALE',
+  { name:'Moringa Tea Blend', nameTa:'\u0bae\u0bca\u0bb0\u0bbf\u0b99\u0bcd\u0b95\u0bc8 \u0ba4\u0bc7\u0ba8\u0bc0\u0bb0\u0bcd \u0b95\u0bb2\u0bb5\u0bc8', emoji:'\ud83c\udf75', category:'tea', price:249, oldPrice:329, badge:'SALE', badgeTa:'\u0b9a\u0bb2\u0bc1\u0b95\u0bc8',
     desc:'Soothing moringa green tea blend with tulsi and ginger. 20 biodegradable bags.',
+    descTa:'\u0ba4\u0bc1\u0bb3\u0b9a\u0bbf \u0bae\u0bb1\u0bcd\u0bb1\u0bc1\u0bae\u0bcd \u0b87\u0b9e\u0bcd\u0b9a\u0bbf\u0baf\u0bc1\u0b9f\u0ba9\u0bcd \u0b95\u0bc2\u0b9f\u0bbf\u0baf \u0b87\u0ba4\u0bae\u0bbe\u0ba9 \u0bae\u0bca\u0bb0\u0bbf\u0b99\u0bcd\u0b95\u0bc8 \u0baa\u0b9a\u0bcd\u0b9a\u0bc8 \u0ba4\u0bc7\u0ba8\u0bc0\u0bb0\u0bcd \u0b95\u0bb2\u0bb5\u0bc8. 20 \u0bae\u0ba3\u0bcd \u0bae\u0bb1\u0bc8\u0baf\u0bc1\u0bae\u0bcd \u0baa\u0bc8\u0b95\u0bb3\u0bcd.',
     variants:['20 bags','40 bags'], rating:4.9, reviews:512 },
-  { name:'Moringa Seed Oil', emoji:'\u2728', category:'oil', price:549, oldPrice:699, badge:'PREMIUM',
+  { name:'Moringa Seed Oil', nameTa:'\u0bae\u0bca\u0bb0\u0bbf\u0b99\u0bcd\u0b95\u0bc8 \u0bb5\u0bbf\u0ba4\u0bc8 \u0b8e\u0ba3\u0bcd\u0ba3\u0bc6\u0baf\u0bcd', emoji:'\u2728', category:'oil', price:549, oldPrice:699, badge:'PREMIUM', badgeTa:'\u0baa\u0bbf\u0bb0\u0bc0\u0bae\u0bbf\u0baf\u0bae\u0bcd',
     desc:'Cold-pressed moringa seed oil for skin & hair. Rich in oleic acid and antioxidants.',
+    descTa:'\u0ba4\u0bcb\u0bb2\u0bcd & \u0bae\u0bc1\u0b9f\u0bbf\u0b95\u0bcd\u0b95\u0bbe\u0ba9 \u0b95\u0bc1\u0bb3\u0bbf\u0bb0\u0bcd \u0b85\u0bb4\u0bc1\u0ba4\u0bcd\u0ba4\u0baa\u0bcd\u0baa\u0b9f\u0bcd\u0b9f \u0bae\u0bca\u0bb0\u0bbf\u0b99\u0bcd\u0b95\u0bc8 \u0bb5\u0bbf\u0ba4\u0bc8 \u0b8e\u0ba3\u0bcd\u0ba3\u0bc6\u0baf\u0bcd. \u0b92\u0bb2\u0bbf\u0b95\u0bcd \u0b85\u0bae\u0bbf\u0bb2\u0bae\u0bcd \u0bae\u0bb1\u0bcd\u0bb1\u0bc1\u0bae\u0bcd \u0b86\u0ba9\u0bcd\u0b9f\u0bbf\u0b86\u0b95\u0bcd\u0bb8\u0bbf\u0b9f\u0ba9\u0bcd\u0b9f\u0bcd \u0ba8\u0bbf\u0bb1\u0bc8\u0ba8\u0bcd\u0ba4\u0ba4\u0bc1.',
     variants:['30ml','60ml','100ml'], rating:4.8, reviews:341 },
-  { name:'Moringa Gift Set', emoji:'\ud83c\udf81', category:'gift', price:799, oldPrice:999, badge:'GIFT',
+  { name:'Moringa Gift Set', nameTa:'\u0bae\u0bca\u0bb0\u0bbf\u0b99\u0bcd\u0b95\u0bc8 \u0baa\u0bb0\u0bbf\u0b9a\u0bc1 \u0ba4\u0bca\u0b95\u0bc1\u0baa\u0bcd\u0baa\u0bc1', emoji:'\ud83c\udf81', category:'gift', price:799, oldPrice:999, badge:'GIFT', badgeTa:'\u0baa\u0bb0\u0bbf\u0b9a\u0bc1',
     desc:'Curated gift set: Powder + Capsules + Tea. Perfect for gifting wellness.',
+    descTa:'\u0ba4\u0bc7\u0bb0\u0bcd\u0ba8\u0bcd\u0ba4\u0bc6\u0b9f\u0bc1\u0b95\u0bcd\u0b95\u0baa\u0bcd\u0baa\u0b9f\u0bcd\u0b9f \u0baa\u0bb0\u0bbf\u0b9a\u0bc1 \u0ba4\u0bca\u0b95\u0bc1\u0baa\u0bcd\u0baa\u0bc1: \u0baa\u0bca\u0b9f\u0bbf + \u0b95\u0bbe\u0baa\u0bcd\u0b9a\u0bc2\u0bb2\u0bcd\u0b95\u0bb3\u0bcd + \u0ba4\u0bc7\u0ba8\u0bc0\u0bb0\u0bcd. \u0b86\u0bb0\u0bcb\u0b95\u0bcd\u0b95\u0bbf\u0baf\u0ba4\u0bcd\u0ba4\u0bc8 \u0baa\u0bb0\u0bbf\u0b9a\u0bbe\u0b95 \u0b85\u0bb3\u0bbf\u0b95\u0bcd\u0b95 \u0b9a\u0bbf\u0bb1\u0ba8\u0bcd\u0ba4\u0ba4\u0bc1.',
     variants:['Standard','Premium'], rating:5.0, reviews:198 },
-  { name:'Raw Moringa Seeds', emoji:'\ud83c\udf31', category:'seeds', price:199, oldPrice:249, badge:'ORGANIC',
+  { name:'Raw Moringa Seeds', nameTa:'\u0bae\u0bca\u0bb0\u0bbf\u0b99\u0bcd\u0b95\u0bc8 \u0bae\u0bc2\u0bb2 \u0bb5\u0bbf\u0ba4\u0bc8\u0b95\u0bb3\u0bcd', emoji:'\ud83c\udf31', category:'seeds', price:199, oldPrice:249, badge:'ORGANIC', badgeTa:'\u0b87\u0baf\u0bb1\u0bcd\u0b95\u0bc8',
     desc:'Hand-picked raw moringa seeds for planting or direct consumption.',
+    descTa:'\u0ba8\u0b9f\u0bb5\u0bc1 \u0b9a\u0bc6\u0baf\u0bcd\u0baf \u0b85\u0bb2\u0bcd\u0bb2\u0ba4\u0bc1 \u0ba8\u0bc7\u0bb0\u0b9f\u0bbf\u0baf\u0bbe\u0b95 \u0b89\u0ba3\u0bcd\u0ba3 \u0b95\u0bc8\u0ba4\u0bcd\u0ba4\u0bc7\u0bb0\u0bcd\u0bb5\u0bc1 \u0b9a\u0bc6\u0baf\u0bcd\u0baf\u0baa\u0bcd\u0baa\u0b9f\u0bcd\u0b9f \u0bae\u0bc2\u0bb2 \u0bae\u0bca\u0bb0\u0bbf\u0b99\u0bcd\u0b95\u0bc8 \u0bb5\u0bbf\u0ba4\u0bc8\u0b95\u0bb3\u0bcd.',
     variants:['50g','100g','250g'], rating:4.6, reviews:427 }
 ];
+
+var PRODUCT_CATEGORY_TA = { powder:'\u0baa\u0bca\u0b9f\u0bbf', capsules:'\u0b95\u0bbe\u0baa\u0bcd\u0b9a\u0bc2\u0bb2\u0bcd\u0b95\u0bb3\u0bcd', tea:'\u0ba4\u0bc7\u0ba8\u0bc0\u0bb0\u0bcd', oil:'\u0b8e\u0ba3\u0bcd\u0ba3\u0bc6\u0baf\u0bcd', gift:'\u0baa\u0bb0\u0bbf\u0b9a\u0bc1', seeds:'\u0bb5\u0bbf\u0ba4\u0bc8\u0b95\u0bb3\u0bcd' };
 
 var REVIEWS = [
   { name:'Priya S.', location:'Chennai', rating:5, text:'Amazing product! My energy levels have improved so much after using Moringai powder for just 3 weeks.', avatar:'\ud83d\udc69' },
@@ -474,24 +482,33 @@ var REVIEWS = [
 function renderProducts() {
   var grid = document.getElementById('productsGrid');
   if (!grid) return;
+  var lang = (window.MoringaiI18N && window.MoringaiI18N.getLang()) || 'en';
+  var isTa = lang === 'ta';
   grid.innerHTML = PRODUCTS.map(function(p){
     var stars = '\u2b50'.repeat(Math.floor(p.rating));
     var variantBtns = p.variants.map(function(v, i){
       return '<button class="variant-btn' + (i===0?' active':'') + '" onclick="selectVariant(this)">' + v + '</button>';
     }).join('');
     var save = Math.round(((p.oldPrice - p.price)/p.oldPrice)*100);
+    // Cart identity always uses the English name so switching language mid-session never splits cart lines
     var safeName = p.name.replace(/'/g,"\\'");
     var safeEmoji = p.emoji;
+    var displayName = (isTa && p.nameTa) ? p.nameTa : p.name;
+    var displayDesc = (isTa && p.descTa) ? p.descTa : p.desc;
+    var displayBadge = (isTa && p.badgeTa) ? p.badgeTa : p.badge;
+    var displayCategory = (isTa && PRODUCT_CATEGORY_TA[p.category]) ? PRODUCT_CATEGORY_TA[p.category] : p.category.toUpperCase();
+    var addLabel = isTa ? '\ud83d\uded2 \u0b9a\u0bc7\u0bb0\u0bcd' : '\ud83d\uded2 Add';
+    var offLabel = isTa ? '% \u0ba4\u0bb3\u0bcd\u0bb3\u0bc1\u0baa\u0b9f\u0bbf' : '% off';
     return '<div class="product-card fade-in" data-name="' + p.name + '" data-category="' + p.category + '">' +
-      '<div class="product-img"><span class="product-emoji">' + safeEmoji + '</span><span class="product-badge">' + p.badge + '</span></div>' +
+      '<div class="product-img"><span class="product-emoji">' + safeEmoji + '</span><span class="product-badge">' + displayBadge + '</span></div>' +
       '<div class="product-info">' +
-        '<div class="product-meta"><span class="product-category">' + p.category.toUpperCase() + '</span><span class="product-rating">' + stars + ' (' + p.reviews + ')</span></div>' +
-        '<h3 class="product-name">' + p.name + '</h3>' +
-        '<p class="product-desc">' + p.desc + '</p>' +
+        '<div class="product-meta"><span class="product-category">' + displayCategory + '</span><span class="product-rating">' + stars + ' (' + p.reviews + ')</span></div>' +
+        '<h3 class="product-name">' + displayName + '</h3>' +
+        '<p class="product-desc">' + displayDesc + '</p>' +
         '<div class="product-variants">' + variantBtns + '</div>' +
         '<div class="product-footer">' +
-          '<div class="product-price"><span class="price-current">\u20b9' + p.price + '</span><span class="price-old">\u20b9' + p.oldPrice + '</span><span class="price-save">' + save + '% off</span></div>' +
-          '<button class="add-to-cart" onclick="addToCart(\'' + safeName + '\',' + p.price + ',\'' + safeEmoji + '\',getActiveVariant(this))">\ud83d\uded2 Add</button>' +
+          '<div class="product-price"><span class="price-current">\u20b9' + p.price + '</span><span class="price-old">\u20b9' + p.oldPrice + '</span><span class="price-save">' + save + offLabel + '</span></div>' +
+          '<button class="add-to-cart" onclick="addToCart(\'' + safeName + '\',' + p.price + ',\'' + safeEmoji + '\',getActiveVariant(this))">' + addLabel + '</button>' +
         '</div>' +
       '</div>' +
     '</div>';
