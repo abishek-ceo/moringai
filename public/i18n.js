@@ -183,7 +183,23 @@ var I18N = {
     'reviews.hero.title': 'Loved by <em class="hero-italic">Thousands</em> Across India',
     'reviews.hero.subtitle': 'Real stories from real customers — from Chennai kitchens to Mumbai gyms, here\'s what people are saying about Moringai.',
     'reviews.hero.cta1': 'READ REVIEWS',
-    'reviews.hero.cta2': 'SHOP NOW'
+    'reviews.hero.cta2': 'SHOP NOW',
+
+    'story.cinematic.label': 'TAMIL NADU, WHERE IT BEGINS',
+    'story.cinematic.title': 'From red soil to your doorstep.',
+    'story.cinematic.desc': 'Every leaf is hand-picked at dawn across our partner farms in Dindigul, Namakkal, and Madurai — then dried, milled, and packed within hours to lock in every nutrient.',
+
+    'shop.cinematic.label': 'THE PROCESS',
+    'shop.cinematic.title': 'From leaf to powder, nothing added.',
+    'shop.cinematic.desc': 'Sun-dried, stone-milled, and triple-sieved — the way Tamil Nadu households have made murungai podi for generations.',
+
+    'reels.label': 'THE RITUAL',
+    'reels.title': 'A daily habit,<br>reimagined.',
+    'reels.sub': 'How our community brings Moringai into their morning — a little inspiration for your own ritual.',
+    'reels.c1': 'Blend it into your morning smoothie',
+    'reels.c2': 'Whisk it into a wellness shot',
+    'reels.c3': 'Steep it as an evening tea',
+    'reels.c4': 'Two capsules, twice a day'
   },
   ta: {
     'nav.shop': 'கடை',
@@ -362,7 +378,23 @@ var I18N = {
     'reviews.hero.title': 'இந்தியா முழுவதும் <em class="hero-italic">ஆயிரக்கணக்கானோர்</em> விரும்புகிறார்கள்',
     'reviews.hero.subtitle': 'உண்மையான வாடிக்கையாளர்களின் உண்மையான கதைகள் — சென்னை சமையலறைகள் முதல் மும்பை ஜிம்கள் வரை, மொரிங்கை பற்றி மக்கள் என்ன சொல்கிறார்கள் என்பதைப் பார்க்கவும்.',
     'reviews.hero.cta1': 'மதிப்புரைகளைப் படிக்க',
-    'reviews.hero.cta2': 'இப்போது வாங்க'
+    'reviews.hero.cta2': 'இப்போது வாங்க',
+
+    'story.cinematic.label': 'தமிழ்நாடு, தொடக்கம் இங்கே',
+    'story.cinematic.title': 'சிவப்பு மண்ணிலிருந்து உங்கள் வீடு வரை.',
+    'story.cinematic.desc': 'திண்டுக்கல், நாமக்கல், மதுரையில் உள்ள எங்கள் கூட்டு பண்ணைகளில் ஒவ்வொரு இலையும் அதிகாலையில் கையால் பறிக்கப்படுகிறது — பின்னர் மணிநேரங்களில் உலர்த்தி, அரைத்து, பேக் செய்யப்படுகிறது.',
+
+    'shop.cinematic.label': 'செயல்முறை',
+    'shop.cinematic.title': 'இலையிலிருந்து பொடி வரை, எதுவும் சேர்க்கப்படவில்லை.',
+    'shop.cinematic.desc': 'வெயிலில் உலர்த்தப்பட்டு, கல்லில் அரைக்கப்பட்டு, மூன்று முறை சலிக்கப்பட்டது — தலைமுறைகளாக தமிழ்நாடு வீடுகள் முருங்கை பொடி தயாரிக்கும் முறையில்.',
+
+    'reels.label': 'தினசரி பழக்கம்',
+    'reels.title': 'ஒரு தினசரி பழக்கம்,<br>புதிதாக.',
+    'reels.sub': 'எங்கள் சமூகம் மொரிங்கையை தங்கள் காலையில் எப்படி சேர்க்கிறார்கள் — உங்கள் சொந்த பழக்கத்திற்கு சிறு உத்வேகம்.',
+    'reels.c1': 'காலை ஸ்மூத்தியில் கலக்கவும்',
+    'reels.c2': 'ஆரோக்கிய ஷாட்டாக கலக்கவும்',
+    'reels.c3': 'மாலை தேநீராக ஊற வையுங்கள்',
+    'reels.c4': 'இரண்டு காப்சூல்கள், நாளொன்றுக்கு இருமுறை'
   }
 };
 
