@@ -39,7 +39,7 @@
     <meta name="twitter:image:alt" content="Moringai – Premium Organic Moringa Products from Tamil Nadu">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Catamaran:wght@400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="public/style.css">
     <link rel="stylesheet" href="public/fix.css">
     <link rel="stylesheet" href="public/mobile.css">
@@ -50,16 +50,16 @@
     <!-- ANNOUNCEMENT BAR -->
     <div class="announcement-bar">
         <div class="announcement-track">
-            <span>🌿 FREE DELIVERY above ₹499</span><span>·</span>
-            <span>💰 Cash on Delivery Available</span><span>·</span>
-            <span>🏛️ FSSAI Certified</span><span>·</span>
-            <span>📦 Pan India Delivery</span><span>·</span>
+            <span data-i18n="ann.free_delivery">🌿 FREE DELIVERY above ₹499</span><span>·</span>
+            <span data-i18n="ann.cod">💰 Cash on Delivery Available</span><span>·</span>
+            <span data-i18n="ann.fssai">🏛️ FSSAI Certified</span><span>·</span>
+            <span data-i18n="ann.pan_india">📦 Pan India Delivery</span><span>·</span>
             <span>முருங்கை · தமிழ்நாடு</span><span>·</span>
             <span>📱 WhatsApp: 9514499924</span><span>·</span>
-            <span>🌿 FREE DELIVERY above ₹499</span><span>·</span>
-            <span>💰 Cash on Delivery Available</span><span>·</span>
-            <span>🏛️ FSSAI Certified</span><span>·</span>
-            <span>📦 Pan India Delivery</span><span>·</span>
+            <span data-i18n="ann.free_delivery">🌿 FREE DELIVERY above ₹499</span><span>·</span>
+            <span data-i18n="ann.cod">💰 Cash on Delivery Available</span><span>·</span>
+            <span data-i18n="ann.fssai">🏛️ FSSAI Certified</span><span>·</span>
+            <span data-i18n="ann.pan_india">📦 Pan India Delivery</span><span>·</span>
             <span>முருங்கை · தமிழ்நாடு</span><span>·</span>
             <span>📱 WhatsApp: 9514499924</span><span>·</span>
         </div>
@@ -84,12 +84,13 @@
                 <span class="logo-text">Moringai</span>
             </div>
             <div class="nav-links desktop-only">
-                <a href="/shop" class="nav-link">Shop</a>
-                <a href="/benefits" class="nav-link">Benefits</a>
-                <a href="/story" class="nav-link">Our Story</a>
-                <a href="/reviews" class="nav-link">Reviews</a>
+                <a href="/shop" class="nav-link" data-i18n="nav.shop">Shop</a>
+                <a href="/benefits" class="nav-link" data-i18n="nav.benefits">Benefits</a>
+                <a href="/story" class="nav-link" data-i18n="nav.story">Our Story</a>
+                <a href="/reviews" class="nav-link" data-i18n="nav.reviews">Reviews</a>
             </div>
             <div class="nav-actions">
+                <button class="lang-toggle desktop-only" aria-label="Switch to Tamil">தமிழ்</button>
                 <button class="cart-icon-btn" id="cartToggle" aria-label="Open Cart">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
@@ -103,14 +104,17 @@
                 </button>
             </div>
         </nav>
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="/shop" class="mobile-nav-link" onclick="closeMobileMenu()">Shop</a>
-            <a href="/benefits" class="mobile-nav-link" onclick="closeMobileMenu()">Benefits</a>
-            <a href="/story" class="mobile-nav-link" onclick="closeMobileMenu()">Our Story</a>
-            <a href="/reviews" class="mobile-nav-link" onclick="closeMobileMenu()">Reviews</a>
-        </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="/shop" class="mobile-nav-link" data-i18n="nav.shop" onclick="closeMobileMenu()">Shop</a>
+            <a href="/benefits" class="mobile-nav-link" data-i18n="nav.benefits" onclick="closeMobileMenu()">Benefits</a>
+            <a href="/story" class="mobile-nav-link" data-i18n="nav.story" onclick="closeMobileMenu()">Our Story</a>
+            <a href="/reviews" class="mobile-nav-link" data-i18n="nav.reviews" onclick="closeMobileMenu()">Reviews</a>
+            <button class="lang-toggle lang-toggle--mobile" aria-label="Switch to Tamil">தமிழ்</button>
+        </div>
 
     <!-- HERO -->
     <section class="hero" id="home">
@@ -127,31 +131,31 @@
             <div class="hero-content">
                 <div class="hero-badge-top">
                     <span class="badge-dot"></span>
-                    100% ORGANIC · FROM THE HEART OF INDIA
+                    <span data-i18n="hero.badge">100% ORGANIC · FROM THE HEART OF INDIA</span>
                 </div>
-                <h1 class="hero-title">
+                <h1 class="hero-title" data-i18n-html="hero.title">
                     Pure Green
                     <em class="hero-italic">Intelligence</em>
                     of Nature
                 </h1>
-                <p class="hero-subtitle">Discover முருங்கை — Tamil Nadu's ancient superfood, now perfected for modern wellness. Ethically sourced from 200+ organic farms across Dindigul, Namakkal &amp; Madurai.</p>
+                <p class="hero-subtitle" data-i18n-html="hero.subtitle">Discover முருங்கை — Tamil Nadu's ancient superfood, now perfected for modern wellness. Ethically sourced from 200+ organic farms across Dindigul, Namakkal &amp; Madurai.</p>
                 <div class="hero-cta">
-                    <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+                    <button class="btn-primary" data-i18n="hero.cta_shop" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
                         SHOP COLLECTION
                     </button>
-                    <button class="btn-secondary" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">
+                    <button class="btn-secondary" data-i18n="hero.cta_story" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">
                         OUR STORY
                     </button>
                 </div>
                 <div class="hero-stats">
-                    <div class="hero-stat"><strong>4.9★</strong><span>Customer Rating</span></div>
-                    <div class="hero-stat"><strong>10K+</strong><span>Happy Customers</span></div>
-                    <div class="hero-stat"><strong>100%</strong><span>Pure Organic</span></div>
-                    <div class="hero-stat"><strong>200+</strong><span>Partner Farmers</span></div>
+                    <div class="hero-stat"><strong>4.9★</strong><span data-i18n="hero.stat1">Customer Rating</span></div>
+                    <div class="hero-stat"><strong>10K+</strong><span data-i18n="hero.stat2">Happy Customers</span></div>
+                    <div class="hero-stat"><strong>100%</strong><span data-i18n="hero.stat3">Pure Organic</span></div>
+                    <div class="hero-stat"><strong>200+</strong><span data-i18n="hero.stat4">Partner Farmers</span></div>
                 </div>
                 <div class="hero-scroll">
                     <span class="scroll-line"></span>
-                    SCROLL TO EXPLORE
+                    <span data-i18n="hero.scroll">SCROLL TO EXPLORE</span>
                 </div>
             </div>
             <div class="hero-visual" aria-hidden="true">
@@ -160,9 +164,9 @@
                     <div class="orb-ring r1"></div>
                     <div class="orb-ring r2"></div>
                     <div class="orb-ring r3"></div>
-                    <div class="orb-float-pill fp1">✓ 90+ Nutrients</div>
-                    <div class="orb-float-pill fp2">✓ Zero Chemicals</div>
-                    <div class="orb-float-pill fp3">✓ FSSAI Certified</div>
+                    <div class="orb-float-pill fp1" data-i18n="hero.pill1">✓ 90+ Nutrients</div>
+                    <div class="orb-float-pill fp2" data-i18n="hero.pill2">✓ Zero Chemicals</div>
+                    <div class="orb-float-pill fp3" data-i18n="hero.pill3">✓ FSSAI Certified</div>
                 </div>
             </div>
         </div>
@@ -199,40 +203,40 @@
     <!-- TRUST BAR -->
     <div class="trust-bar">
         <div class="trust-bar-inner">
-            <div class="trust-item"><span>🛡️</span><span>SSL Secured</span></div>
-            <div class="trust-item"><span>🚚</span><span>Free Shipping ₹499+</span></div>
-            <div class="trust-item"><span>🔬</span><span>Lab Tested</span></div>
-            <div class="trust-item"><span>🌿</span><span>100% Organic</span></div>
-            <div class="trust-item"><span>↩️</span><span>30-Day Returns</span></div>
-            <div class="trust-item"><span>💳</span><span>Secure Payments</span></div>
+            <div class="trust-item"><span>🛡️</span><span data-i18n="trust.ssl">SSL Secured</span></div>
+            <div class="trust-item"><span>🚚</span><span data-i18n="trust.shipping">Free Shipping ₹499+</span></div>
+            <div class="trust-item"><span>🔬</span><span data-i18n="trust.lab">Lab Tested</span></div>
+            <div class="trust-item"><span>🌿</span><span data-i18n="trust.organic">100% Organic</span></div>
+            <div class="trust-item"><span>↩️</span><span data-i18n="trust.returns">30-Day Returns</span></div>
+            <div class="trust-item"><span>💳</span><span data-i18n="trust.payments">Secure Payments</span></div>
         </div>
     </div>
 
     <!-- WHY MORINGAI -->
     <section class="why-section" id="benefits">
         <div class="container">
-            <div class="section-label">WHY MORINGAI</div>
-            <h2 class="section-title">Nature's most powerful<br>superfood, perfected.</h2>
+            <div class="section-label" data-i18n="why.label">WHY MORINGAI</div>
+            <h2 class="section-title" data-i18n-html="why.title">Nature's most powerful<br>superfood, perfected.</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🌾</div>
-                    <h3 class="feature-title">Farm to Table</h3>
-                    <p class="feature-desc">Direct partnerships with 200+ organic farmers in Tamil Nadu ensuring freshness and fair trade practices.</p>
+                    <h3 class="feature-title" data-i18n="why.f1.title">Farm to Table</h3>
+                    <p class="feature-desc" data-i18n="why.f1.desc">Direct partnerships with 200+ organic farmers in Tamil Nadu ensuring freshness and fair trade practices.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔬</div>
-                    <h3 class="feature-title">Lab Certified</h3>
-                    <p class="feature-desc">Every batch tested for heavy metals, pesticides, and microbial contamination. Certificate available on request.</p>
+                    <h3 class="feature-title" data-i18n="why.f2.title">Lab Certified</h3>
+                    <p class="feature-desc" data-i18n="why.f2.desc">Every batch tested for heavy metals, pesticides, and microbial contamination. Certificate available on request.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">❤️</div>
-                    <h3 class="feature-title">Nutrient Dense</h3>
-                    <p class="feature-desc">Contains 90+ nutrients, 46 antioxidants, all 9 essential amino acids, vitamins A, C, E and minerals.</p>
+                    <h3 class="feature-title" data-i18n="why.f3.title">Nutrient Dense</h3>
+                    <p class="feature-desc" data-i18n="why.f3.desc">Contains 90+ nutrients, 46 antioxidants, all 9 essential amino acids, vitamins A, C, E and minerals.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📦</div>
-                    <h3 class="feature-title">Eco Packaging</h3>
-                    <p class="feature-desc">100% recyclable kraft paper packaging. Zero plastic policy. Carbon-neutral delivery partners.</p>
+                    <h3 class="feature-title" data-i18n="why.f4.title">Eco Packaging</h3>
+                    <p class="feature-desc" data-i18n="why.f4.desc">100% recyclable kraft paper packaging. Zero plastic policy. Carbon-neutral delivery partners.</p>
                 </div>
             </div>
         </div>
@@ -241,16 +245,16 @@
     <!-- PRODUCTS -->
     <section class="products-section" id="products">
         <div class="container">
-            <div class="section-label">THE COLLECTION</div>
-            <h2 class="section-title">Curated for your<br>wellness journey.</h2>
+            <div class="section-label" data-i18n="products.label">THE COLLECTION</div>
+            <h2 class="section-title" data-i18n-html="products.title">Curated for your<br>wellness journey.</h2>
             <div class="filter-bar" id="filterBar">
-                <button class="filter-btn active" data-filter="all" onclick="filterProducts('all')">All</button>
-                <button class="filter-btn" data-filter="powder" onclick="filterProducts('powder')">Powder</button>
-                <button class="filter-btn" data-filter="capsules" onclick="filterProducts('capsules')">Capsules</button>
-                <button class="filter-btn" data-filter="tea" onclick="filterProducts('tea')">Tea</button>
-                <button class="filter-btn" data-filter="oil" onclick="filterProducts('oil')">Oil</button>
-                <button class="filter-btn" data-filter="gift" onclick="filterProducts('gift')">Gift Sets</button>
-                <button class="filter-btn" data-filter="seeds" onclick="filterProducts('seeds')">Seeds</button>
+                <button class="filter-btn active" data-filter="all" data-i18n="filter.all" onclick="filterProducts('all')">All</button>
+                <button class="filter-btn" data-filter="powder" data-i18n="filter.powder" onclick="filterProducts('powder')">Powder</button>
+                <button class="filter-btn" data-filter="capsules" data-i18n="filter.capsules" onclick="filterProducts('capsules')">Capsules</button>
+                <button class="filter-btn" data-filter="tea" data-i18n="filter.tea" onclick="filterProducts('tea')">Tea</button>
+                <button class="filter-btn" data-filter="oil" data-i18n="filter.oil" onclick="filterProducts('oil')">Oil</button>
+                <button class="filter-btn" data-filter="gift" data-i18n="filter.gift" onclick="filterProducts('gift')">Gift Sets</button>
+                <button class="filter-btn" data-filter="seeds" data-i18n="filter.seeds" onclick="filterProducts('seeds')">Seeds</button>
             </div>
             <div class="products-grid" id="productsGrid"></div>
         </div>
@@ -265,20 +269,20 @@
                         <span class="orb-icon">🌿</span>
                         <div class="orb-rings"></div>
                     </div>
-                    <div class="benefit-stat"><span class="stat-num">90+</span><span class="stat-lbl">Nutrients</span></div>
-                    <div class="benefit-stat"><span class="stat-num">46</span><span class="stat-lbl">Antioxidants</span></div>
-                    <div class="benefit-stat"><span class="stat-num">9</span><span class="stat-lbl">Amino Acids</span></div>
+                    <div class="benefit-stat"><span class="stat-num">90+</span><span class="stat-lbl" data-i18n="benefits.stat1">Nutrients</span></div>
+                    <div class="benefit-stat"><span class="stat-num">46</span><span class="stat-lbl" data-i18n="benefits.stat2">Antioxidants</span></div>
+                    <div class="benefit-stat"><span class="stat-num">9</span><span class="stat-lbl" data-i18n="benefits.stat3">Amino Acids</span></div>
                 </div>
                 <div class="benefits-content">
-                    <div class="section-label">HEALTH BENEFITS</div>
-                    <h2 class="section-title">One plant,<br>infinite wellness.</h2>
+                    <div class="section-label" data-i18n="benefits.label">HEALTH BENEFITS</div>
+                    <h2 class="section-title" data-i18n-html="benefits.title">One plant,<br>infinite wellness.</h2>
                     <div class="benefits-list">
-                        <div class="benefit-item">💪 Boosts immunity &amp; energy levels naturally</div>
-                        <div class="benefit-item">🧠 Enhances cognitive function &amp; mental clarity</div>
-                        <div class="benefit-item">🩸 Supports healthy blood sugar &amp; cholesterol</div>
-                        <div class="benefit-item">✨ Promotes radiant skin, hair &amp; nail growth</div>
-                        <div class="benefit-item">💤 Improves sleep quality &amp; reduces fatigue</div>
-                        <div class="benefit-item">🌱 Anti-inflammatory &amp; detoxifying properties</div>
+                        <div class="benefit-item" data-i18n-html="benefits.b1">💪 Boosts immunity &amp; energy levels naturally</div>
+                        <div class="benefit-item" data-i18n-html="benefits.b2">🧠 Enhances cognitive function &amp; mental clarity</div>
+                        <div class="benefit-item" data-i18n-html="benefits.b3">🩸 Supports healthy blood sugar &amp; cholesterol</div>
+                        <div class="benefit-item" data-i18n-html="benefits.b4">✨ Promotes radiant skin, hair &amp; nail growth</div>
+                        <div class="benefit-item" data-i18n-html="benefits.b5">💤 Improves sleep quality &amp; reduces fatigue</div>
+                        <div class="benefit-item" data-i18n-html="benefits.b6">🌱 Anti-inflammatory &amp; detoxifying properties</div>
                     </div>
                 </div>
             </div>
@@ -291,8 +295,8 @@
             <div class="heritage-grid">
                 <div class="tamil-card">
                     <div class="tamil-big-word">முருங்கை</div>
-                    <div class="tamil-subtitle">Murungai — Tamil Nadu's Gift to the World</div>
-                    <p class="tamil-desc">For over 5,000 years, Siddha medicine has celebrated முருங்கை as a divine healer — "the tree that never dies." Every part of this sacred tree nourishes body, mind, and soul.</p>
+                    <div class="tamil-subtitle" data-i18n="heritage.subtitle">Murungai — Tamil Nadu's Gift to the World</div>
+                    <p class="tamil-desc" data-i18n-html="heritage.desc">For over 5,000 years, Siddha medicine has celebrated முருங்கை as a divine healer — "the tree that never dies." Every part of this sacred tree nourishes body, mind, and soul.</p>
                     <div class="tamil-districts">
                         <span>📍 Dindigul</span>
                         <span>📍 Namakkal</span>
@@ -301,29 +305,29 @@
                     </div>
                 </div>
                 <div class="heritage-facts">
-                    <div class="section-label">ROOTED IN TRADITION</div>
-                    <h2 class="section-title" style="margin-top:8px">5,000 years of<br>Siddha wisdom.</h2>
-                    <blockquote class="siddha-quote">"முருங்கை இலை உண்டால் மூப்பு தோன்றாது"<br><span>— Siddha Proverb: Eat moringa leaves, age shall not appear.</span></blockquote>
+                    <div class="section-label" data-i18n="heritage.label">ROOTED IN TRADITION</div>
+                    <h2 class="section-title" style="margin-top:8px" data-i18n-html="heritage.title">5,000 years of<br>Siddha wisdom.</h2>
+                    <blockquote class="siddha-quote">"முருங்கை இலை உண்டால் மூப்பு தோன்றாது"<br><span data-i18n="heritage.quote_sub">— Siddha Proverb: Eat moringa leaves, age shall not appear.</span></blockquote>
                     <div class="heritage-items">
                         <div class="heritage-item">
                             <div class="heritage-icon">🌿</div>
                             <div>
-                                <strong>Ancient Healing</strong>
-                                <p>Used in Siddha medicine to treat 300+ ailments since 5000 BCE.</p>
+                                <strong data-i18n="heritage.h1.title">Ancient Healing</strong>
+                                <p data-i18n="heritage.h1.desc">Used in Siddha medicine to treat 300+ ailments since 5000 BCE.</p>
                             </div>
                         </div>
                         <div class="heritage-item">
                             <div class="heritage-icon">👨‍🌾</div>
                             <div>
-                                <strong>Farmer First</strong>
-                                <p>Direct sourcing from 200+ small-scale farmers across Tamil Nadu.</p>
+                                <strong data-i18n="heritage.h2.title">Farmer First</strong>
+                                <p data-i18n="heritage.h2.desc">Direct sourcing from 200+ small-scale farmers across Tamil Nadu.</p>
                             </div>
                         </div>
                         <div class="heritage-item">
                             <div class="heritage-icon">🏆</div>
                             <div>
-                                <strong>Globally Recognized</strong>
-                                <p>UN FAO calls moringa "the most nutritious plant on Earth."</p>
+                                <strong data-i18n="heritage.h3.title">Globally Recognized</strong>
+                                <p data-i18n="heritage.h3.desc">UN FAO calls moringa "the most nutritious plant on Earth."</p>
                             </div>
                         </div>
                     </div>
@@ -335,29 +339,29 @@
     <!-- HOW TO USE -->
     <section class="howto-section">
         <div class="container">
-            <div class="section-label">HOW TO USE</div>
-            <h2 class="section-title">Three simple ways<br>to transform your health.</h2>
+            <div class="section-label" data-i18n="howto.label">HOW TO USE</div>
+            <h2 class="section-title" data-i18n-html="howto.title">Three simple ways<br>to transform your health.</h2>
             <div class="howto-grid">
                 <div class="howto-step">
                     <div class="howto-num">01</div>
                     <div class="howto-icon">☀️</div>
-                    <h3 class="howto-title">Morning Wellness Drink</h3>
-                    <p class="howto-desc">Add 1 tsp of Moringai powder to warm water, coconut water, or your morning smoothie. Best consumed on an empty stomach for maximum absorption.</p>
-                    <div class="howto-tip">💡 Pro tip: Add lemon &amp; honey for taste</div>
+                    <h3 class="howto-title" data-i18n="howto.s1.title">Morning Wellness Drink</h3>
+                    <p class="howto-desc" data-i18n="howto.s1.desc">Add 1 tsp of Moringai powder to warm water, coconut water, or your morning smoothie. Best consumed on an empty stomach for maximum absorption.</p>
+                    <div class="howto-tip" data-i18n-html="howto.s1.tip">💡 Pro tip: Add lemon &amp; honey for taste</div>
                 </div>
                 <div class="howto-step howto-step--featured">
                     <div class="howto-num">02</div>
                     <div class="howto-icon">🍲</div>
-                    <h3 class="howto-title">Tamil Cooking Magic</h3>
-                    <p class="howto-desc">The traditional way — stir into sambar, kuzhambu, kootu, or rice. Our grandmothers knew best. Blend into chutneys or sprinkle over meals.</p>
-                    <div class="howto-tip">💡 Heritage recipe included with every order</div>
+                    <h3 class="howto-title" data-i18n="howto.s2.title">Tamil Cooking Magic</h3>
+                    <p class="howto-desc" data-i18n="howto.s2.desc">The traditional way — stir into sambar, kuzhambu, kootu, or rice. Our grandmothers knew best. Blend into chutneys or sprinkle over meals.</p>
+                    <div class="howto-tip" data-i18n="howto.s2.tip">💡 Heritage recipe included with every order</div>
                 </div>
                 <div class="howto-step">
                     <div class="howto-num">03</div>
                     <div class="howto-icon">💊</div>
-                    <h3 class="howto-title">Daily Capsule Routine</h3>
-                    <p class="howto-desc">Take 2 capsules with water after breakfast and dinner. Our 500mg capsules are the most convenient way to get your daily moringa dose.</p>
-                    <div class="howto-tip">💡 Consistent use shows results in 3–4 weeks</div>
+                    <h3 class="howto-title" data-i18n="howto.s3.title">Daily Capsule Routine</h3>
+                    <p class="howto-desc" data-i18n="howto.s3.desc">Take 2 capsules with water after breakfast and dinner. Our 500mg capsules are the most convenient way to get your daily moringa dose.</p>
+                    <div class="howto-tip" data-i18n="howto.s3.tip">💡 Consistent use shows results in 3–4 weeks</div>
                 </div>
             </div>
         </div>
@@ -366,10 +370,10 @@
     <!-- OUR STORY -->
     <section class="story-section" id="story">
         <div class="container">
-            <div class="section-label">OUR STORY</div>
-            <h2 class="section-title">Rooted in tradition,<br>driven by science.</h2>
-            <p class="story-text">Moringai was born from a simple belief — that the ancient wisdom of Tamil Nadu's farmers holds the key to modern wellness. For generations, murungai (moringa) has been a staple of South Indian kitchens, revered for its extraordinary healing properties.</p>
-            <p class="story-text">We work directly with small-scale organic farmers across Tamil Nadu and Andhra Pradesh, ensuring fair prices, sustainable farming practices, and the purest possible product for you.</p>
+            <div class="section-label" data-i18n="story.label">OUR STORY</div>
+            <h2 class="section-title" data-i18n-html="story.title">Rooted in tradition,<br>driven by science.</h2>
+            <p class="story-text" data-i18n="story.p1">Moringai was born from a simple belief — that the ancient wisdom of Tamil Nadu's farmers holds the key to modern wellness. For generations, murungai (moringa) has been a staple of South Indian kitchens, revered for its extraordinary healing properties.</p>
+            <p class="story-text" data-i18n="story.p2">We work directly with small-scale organic farmers across Tamil Nadu and Andhra Pradesh, ensuring fair prices, sustainable farming practices, and the purest possible product for you.</p>
         </div>
     </section>
 
@@ -382,16 +386,16 @@
                     <div class="founder-photo-ring"></div>
                 </div>
                 <div class="founder-content">
-                    <div class="section-label">FROM OUR FOUNDER</div>
-                    <h2 class="section-title">A promise, made<br>in Tamil Nadu.</h2>
-                    <p class="founder-quote">"Moringai started with a simple idea — bring the same murungai our grandmothers trusted for generations to every home in India, without compromise. Every batch we ship is one I'd give my own family."</p>
+                    <div class="section-label" data-i18n="founder.label">FROM OUR FOUNDER</div>
+                    <h2 class="section-title" data-i18n-html="founder.title">A promise, made<br>in Tamil Nadu.</h2>
+                    <p class="founder-quote" data-i18n="founder.quote">"Moringai started with a simple idea — bring the same murungai our grandmothers trusted for generations to every home in India, without compromise. Every batch we ship is one I'd give my own family."</p>
                     <div class="founder-meta">
                         <strong class="founder-name">Abishek Raj</strong>
-                        <span class="founder-title">Founder, Moringai</span>
+                        <span class="founder-title" data-i18n="founder.title_role">Founder, Moringai</span>
                     </div>
                     <a class="founder-whatsapp" href="https://wa.me/919514499924?text=Hi%20Abishek%2C%20I%27d%20like%20to%20know%20more%20about%20Moringai!" target="_blank" rel="noopener noreferrer">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.79-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.26-.28.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.58.81 2 .88 2.15.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.2 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.28.36-.23.61-.14.24.09 1.56.74 1.83.87.26.14.44.2.5.32.07.12.07.68-.17 1.36z"/></svg>
-                        Chat with the Founder
+                        <span data-i18n="founder.whatsapp">Chat with the Founder</span>
                     </a>
                 </div>
             </div>
@@ -401,8 +405,8 @@
     <!-- REVIEWS -->
     <section class="reviews-section" id="reviews">
         <div class="container">
-            <div class="section-label">TESTIMONIALS</div>
-            <h2 class="section-title">Loved by thousands<br>across India.</h2>
+            <div class="section-label" data-i18n="reviews.label">TESTIMONIALS</div>
+            <h2 class="section-title" data-i18n-html="reviews.title">Loved by thousands<br>across India.</h2>
             <div class="reviews-grid" id="reviewsGrid"></div>
         </div>
     </section>
@@ -410,38 +414,38 @@
     <!-- CERTIFICATIONS -->
     <section class="certs-section">
         <div class="container">
-            <div class="section-label">TRUST &amp; QUALITY</div>
-            <h2 class="section-title">Every batch. Every promise.<br>Certified &amp; verified.</h2>
+            <div class="section-label" data-i18n-html="certs.label">TRUST &amp; QUALITY</div>
+            <h2 class="section-title" data-i18n-html="certs.title">Every batch. Every promise.<br>Certified &amp; verified.</h2>
             <div class="certs-grid">
                 <div class="cert-item">
                     <div class="cert-icon">🏛️</div>
-                    <div class="cert-name">FSSAI Certified</div>
-                    <div class="cert-desc">Licensed by India's food safety authority</div>
+                    <div class="cert-name" data-i18n="certs.c1.name">FSSAI Certified</div>
+                    <div class="cert-desc" data-i18n="certs.c1.desc">Licensed by India's food safety authority</div>
                 </div>
                 <div class="cert-item">
                     <div class="cert-icon">🌿</div>
-                    <div class="cert-name">100% Organic</div>
-                    <div class="cert-desc">No pesticides, no chemicals, ever</div>
+                    <div class="cert-name" data-i18n="certs.c2.name">100% Organic</div>
+                    <div class="cert-desc" data-i18n="certs.c2.desc">No pesticides, no chemicals, ever</div>
                 </div>
                 <div class="cert-item">
                     <div class="cert-icon">🔬</div>
-                    <div class="cert-name">Lab Tested</div>
-                    <div class="cert-desc">Heavy metals &amp; microbial tested every batch</div>
+                    <div class="cert-name" data-i18n="certs.c3.name">Lab Tested</div>
+                    <div class="cert-desc" data-i18n-html="certs.c3.desc">Heavy metals &amp; microbial tested every batch</div>
                 </div>
                 <div class="cert-item">
                     <div class="cert-icon">💰</div>
-                    <div class="cert-name">Cash on Delivery</div>
-                    <div class="cert-desc">Pay only when you receive your order</div>
+                    <div class="cert-name" data-i18n="certs.c4.name">Cash on Delivery</div>
+                    <div class="cert-desc" data-i18n="certs.c4.desc">Pay only when you receive your order</div>
                 </div>
                 <div class="cert-item">
                     <div class="cert-icon">↩️</div>
-                    <div class="cert-name">30-Day Returns</div>
-                    <div class="cert-desc">Not happy? Full refund, no questions asked</div>
+                    <div class="cert-name" data-i18n="certs.c5.name">30-Day Returns</div>
+                    <div class="cert-desc" data-i18n="certs.c5.desc">Not happy? Full refund, no questions asked</div>
                 </div>
                 <div class="cert-item">
                     <div class="cert-icon">🚚</div>
-                    <div class="cert-name">Pan India Delivery</div>
-                    <div class="cert-desc">Free shipping on orders above ₹499</div>
+                    <div class="cert-name" data-i18n="certs.c6.name">Pan India Delivery</div>
+                    <div class="cert-desc" data-i18n="certs.c6.desc">Free shipping on orders above ₹499</div>
                 </div>
             </div>
         </div>
@@ -490,45 +494,46 @@
     </section>
 
     <!-- FOOTER -->
+    <div class="kolam-divider" aria-hidden="true"></div>
     <footer class="footer">
         <div class="container">
             <div class="footer-top">
                 <div class="footer-brand">
                     <div class="footer-logo"><img src="public/logo.svg" width="24" height="24" alt="" style="vertical-align:-5px;margin-right:6px"> Moringai</div>
-                    <p class="footer-tagline">Pure Green Intelligence of Nature</p>
-                    <p class="footer-origin">Proudly from Tamil Nadu 🇮🇳</p>
+                    <p class="footer-tagline" data-i18n="footer.tagline">Pure Green Intelligence of Nature</p>
+                    <p class="footer-origin" data-i18n="footer.origin">Proudly from Tamil Nadu 🇮🇳</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-col">
-                        <h4>Shop</h4>
-                        <a href="#products">All Products</a>
-                        <a href="#products">Moringa Powder</a>
-                        <a href="#products">Moringa Capsules</a>
-                        <a href="#products">Gift Sets</a>
+                        <h4 data-i18n="footer.shop">Shop</h4>
+                        <a href="#products" data-i18n="footer.all_products">All Products</a>
+                        <a href="#products" data-i18n="footer.powder">Moringa Powder</a>
+                        <a href="#products" data-i18n="footer.capsules">Moringa Capsules</a>
+                        <a href="#products" data-i18n="footer.gift_sets">Gift Sets</a>
                     </div>
                     <div class="footer-col">
-                        <h4>Company</h4>
-                        <a href="#story">Our Story</a>
-                        <a href="#founder">Our Founder</a>
-                        <a href="#benefits">Benefits</a>
-                        <a href="#">Certifications</a>
-                        <a href="#">Blog</a>
+                        <h4 data-i18n="footer.company">Company</h4>
+                        <a href="#story" data-i18n="footer.our_story">Our Story</a>
+                        <a href="#founder" data-i18n="footer.our_founder">Our Founder</a>
+                        <a href="#benefits" data-i18n="footer.benefits">Benefits</a>
+                        <a href="#" data-i18n="footer.certifications">Certifications</a>
+                        <a href="#" data-i18n="footer.blog">Blog</a>
                     </div>
                     <div class="footer-col">
-                        <h4>Support</h4>
-                        <a href="#">Contact Us</a>
-                        <a href="#">Shipping Policy</a>
-                        <a href="#">Return Policy</a>
-                        <a href="#">Privacy Policy</a>
+                        <h4 data-i18n="footer.support">Support</h4>
+                        <a href="#" data-i18n="footer.contact">Contact Us</a>
+                        <a href="#" data-i18n="footer.shipping_policy">Shipping Policy</a>
+                        <a href="#" data-i18n="footer.return_policy">Return Policy</a>
+                        <a href="#" data-i18n="footer.privacy_policy">Privacy Policy</a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2026 Moringai. All rights reserved. Made with 💚 in Tamil Nadu.</p>
+                <p data-i18n="footer.copyright">© 2026 Moringai. All rights reserved. Made with 💚 in Tamil Nadu.</p>
                 <div class="footer-badges">
-                    <span>🔒 SSL Secured</span>
-                    <span>💳 Razorpay</span>
-                    <span>🚚 Fast Shipping</span>
+                    <span data-i18n="footer.ssl">🔒 SSL Secured</span>
+                    <span data-i18n="footer.razorpay">💳 Razorpay</span>
+                    <span data-i18n="footer.fast_shipping">🚚 Fast Shipping</span>
                 </div>
             </div>
         </div>
@@ -538,7 +543,7 @@
     <div class="cart-overlay" id="cartOverlay"></div>
     <div class="cart-drawer" id="cartDrawer">
         <div class="cart-header">
-            <h3 class="cart-title">Your Cart</h3>
+            <h3 class="cart-title" data-i18n="cart.title">Your Cart</h3>
             <button class="cart-close" id="cartClose">&times;</button>
         </div>
         <div class="cart-body" id="cartBody"></div>
@@ -549,8 +554,8 @@
     <div class="modal-overlay" id="checkoutOverlay"></div>
     <div class="checkout-modal" id="checkoutModal">
         <div class="checkout-header">
-            <button class="checkout-back" id="checkoutBack">&larr; Back to Cart</button>
-            <h3>Checkout</h3>
+            <button class="checkout-back" id="checkoutBack" data-i18n="checkout.back">&larr; Back to Cart</button>
+            <h3 data-i18n="checkout.title">Checkout</h3>
             <button class="checkout-close" id="checkoutClose">&times;</button>
         </div>
         <div class="checkout-body" id="checkoutBody"></div>
@@ -568,11 +573,12 @@
             <span class="buy-bar-count" id="buyBarCount">0 items</span>
             <span class="buy-bar-total" id="buyBarTotal">₹0</span>
         </div>
-        <button class="buy-bar-btn" onclick="openCart()">View Cart →</button>
+        <button class="buy-bar-btn" data-i18n="buybar.view_cart" onclick="openCart()">View Cart →</button>
     </div>
 
     <script src="public/fix-script-tag.js"></script>
     <script src="public/app.js"></script>
+    <script src="public/i18n.js"></script>
     <script src="public/effects.js"></script>
     <script src="public/checkout.js"></script>
 
