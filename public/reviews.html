@@ -21,7 +21,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Catamaran:wght@400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Catamaran:wght@400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Catamaran:wght@400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Catamaran:wght@400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="/public/style.css">
     <link rel="stylesheet" href="/public/fix.css">
     <link rel="stylesheet" href="/public/mobile.css">
@@ -66,10 +68,10 @@
                 <span class="logo-text">Moringai</span>
             </a></div>
             <div class="nav-links desktop-only">
-                <a href="/shop" class="nav-link" data-i18n="nav.shop">Shop</a>
-                <a href="/benefits" class="nav-link" data-i18n="nav.benefits">Benefits</a>
-                <a href="/story" class="nav-link" data-i18n="nav.story">Our Story</a>
-                <a href="/reviews" class="nav-link active" data-i18n="nav.reviews">Reviews</a>
+                <a href="/shop#products" class="nav-link" data-i18n="nav.shop">Shop</a>
+                <a href="/benefits#benefits-detail" class="nav-link" data-i18n="nav.benefits">Benefits</a>
+                <a href="/story#story-section" class="nav-link" data-i18n="nav.story">Our Story</a>
+                <a href="/reviews#reviews-grid-section" class="nav-link active" data-i18n="nav.reviews">Reviews</a>
             </div>
             <div class="nav-actions">
                 <button class="lang-toggle desktop-only" aria-label="Switch to Tamil">தமிழ்</button>
@@ -91,10 +93,10 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
         <div class="mobile-menu" id="mobileMenu">
-            <a href="/shop" class="mobile-nav-link" data-i18n="nav.shop" onclick="closeMobileMenu()">Shop</a>
-            <a href="/benefits" class="mobile-nav-link" data-i18n="nav.benefits" onclick="closeMobileMenu()">Benefits</a>
-            <a href="/story" class="mobile-nav-link" data-i18n="nav.story" onclick="closeMobileMenu()">Our Story</a>
-            <a href="/reviews" class="mobile-nav-link" data-i18n="nav.reviews" onclick="closeMobileMenu()">Reviews</a>
+            <a href="/shop#products" class="mobile-nav-link" data-i18n="nav.shop" onclick="closeMobileMenu()">Shop</a>
+            <a href="/benefits#benefits-detail" class="mobile-nav-link" data-i18n="nav.benefits" onclick="closeMobileMenu()">Benefits</a>
+            <a href="/story#story-section" class="mobile-nav-link" data-i18n="nav.story" onclick="closeMobileMenu()">Our Story</a>
+            <a href="/reviews#reviews-grid-section" class="mobile-nav-link" data-i18n="nav.reviews" onclick="closeMobileMenu()">Reviews</a>
             <button class="lang-toggle lang-toggle--mobile" aria-label="Switch to Tamil">தமிழ்</button>
         </div>
 
@@ -173,28 +175,28 @@
             <p class="section-sub" data-i18n="reels.sub">How our community brings Moringai into their morning — a little inspiration for your own ritual.</p>
             <div class="reels-track">
                 <div class="reel-card">
-                    <video autoplay muted loop playsinline preload="none" poster="/public/videos/reel-blend-smoothie-poster.jpg" aria-hidden="true">
+                    <video class="lazy-video" muted loop playsinline preload="none" data-lazy-video poster="/public/videos/reel-blend-smoothie-poster.jpg" aria-hidden="true">
                         <source src="/public/videos/reel-blend-smoothie.webm" type="video/webm">
                 <source src="/public/videos/reel-blend-smoothie.mp4" type="video/mp4">
                     </video>
                     <div class="reel-card-overlay"><span class="reel-card-caption" data-i18n="reels.c1">Blend it into your morning smoothie</span></div>
                 </div>
                 <div class="reel-card">
-                    <video autoplay muted loop playsinline preload="none" poster="/public/videos/reel-smoothie-drink-poster.jpg" aria-hidden="true">
+                    <video class="lazy-video" muted loop playsinline preload="none" data-lazy-video poster="/public/videos/reel-smoothie-drink-poster.jpg" aria-hidden="true">
                         <source src="/public/videos/reel-smoothie-drink.webm" type="video/webm">
                 <source src="/public/videos/reel-smoothie-drink.mp4" type="video/mp4">
                     </video>
                     <div class="reel-card-overlay"><span class="reel-card-caption" data-i18n="reels.c2">Whisk it into a wellness shot</span></div>
                 </div>
                 <div class="reel-card">
-                    <video autoplay muted loop playsinline preload="none" poster="/public/videos/reel-tea-pour-poster.jpg" aria-hidden="true">
+                    <video class="lazy-video" muted loop playsinline preload="none" data-lazy-video poster="/public/videos/reel-tea-pour-poster.jpg" aria-hidden="true">
                         <source src="/public/videos/reel-tea-pour.webm" type="video/webm">
                 <source src="/public/videos/reel-tea-pour.mp4" type="video/mp4">
                     </video>
                     <div class="reel-card-overlay"><span class="reel-card-caption" data-i18n="reels.c3">Steep it as an evening tea</span></div>
                 </div>
                 <div class="reel-card">
-                    <video autoplay muted loop playsinline preload="none" poster="/public/videos/reel-capsule-close-poster.jpg" aria-hidden="true">
+                    <video class="lazy-video" muted loop playsinline preload="none" data-lazy-video poster="/public/videos/reel-capsule-close-poster.jpg" aria-hidden="true">
                         <source src="/public/videos/reel-capsule-close.webm" type="video/webm">
                 <source src="/public/videos/reel-capsule-close.mp4" type="video/mp4">
                     </video>

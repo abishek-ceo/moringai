@@ -376,12 +376,30 @@ function closeMobileMenu() {
       preloader.classList.add('hidden');
       setTimeout(function() {
         if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
-      }, 650);
+      }, 350);
     }
     document.body.classList.remove('loading');
   }
-  window.addEventListener('load', function() { setTimeout(hidePreloader, 1500); });
-  setTimeout(hidePreloader, 4500);
+  window.addEventListener('load', function() { setTimeout(hidePreloader, 300); });
+  setTimeout(hidePreloader, 2500);
+
+  // The preloader's overflow:hidden on <body> swallows the browser's
+  // native scroll-to-#hash on initial page load (it never retries once
+  // lifted). Correct it ourselves as soon as the target section exists in
+  // the DOM — scrollIntoView still works under overflow:hidden, it's just
+  // invisible until the preloader fades, so we don't need to wait for
+  // hidePreloader (which itself can lag on a slow connection).
+  if (window.location.hash) {
+    document.addEventListener('DOMContentLoaded', function() {
+      var target = document.querySelector(window.location.hash);
+      // 'instant' (not 'auto') is required here: the global CSS
+      // scroll-behavior:smooth would otherwise turn this correction into
+      // a slow animated scroll, so the visitor still sees the hero drift
+      // past before landing — the exact "wrong section shows first" bug
+      // this is fixing.
+      if (target) target.scrollIntoView({behavior: 'instant', block: 'start'});
+    });
+  }
 })();
 
 document.addEventListener('DOMContentLoaded', function(){

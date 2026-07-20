@@ -42,6 +42,17 @@
 /* ── RESET ───────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+/* Anchor targets: offset for the sticky header so nav links land on the
+   section itself instead of hiding its top edge behind the header. */
+#products, #benefits-detail, #story-section, #reviews-grid-section, #founder {
+  scroll-margin-top: 96px;
+}
+@media (max-width: 768px) {
+  #products, #benefits-detail, #story-section, #reviews-grid-section, #founder {
+    scroll-margin-top: 84px;
+  }
+}
 body {
   font-family: var(--ff-sans);
   color: #1a1a1a;
@@ -87,7 +98,7 @@ body.loading { overflow: hidden; }
   position: fixed; inset: 0; z-index: 99999;
   background: var(--grad-hero);
   display: flex; align-items: center; justify-content: center;
-  transition: opacity 0.7s ease;
+  transition: opacity 0.35s ease;
 }
 .preloader.hidden { opacity: 0; pointer-events: none; }
 .preloader-content { text-align: center; }

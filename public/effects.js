@@ -312,3 +312,28 @@ document.addEventListener('click', function(e){
     }
   });
 })();
+
+// ── LAZY VIDEO PLAYBACK ────────────────────────────────────
+// Below-the-fold videos (cinematic banners, reels) only fetch/decode
+// once scrolled near, and pause again once scrolled away — keeps pages
+// with several video elements light instead of decoding all of them
+// the moment the page loads.
+(function(){
+  var videos = document.querySelectorAll('.lazy-video');
+  if (!videos.length) return;
+  if (!('IntersectionObserver' in window)) {
+    videos.forEach(function(v){ v.play().catch(function(){}); });
+    return;
+  }
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var v = e.target;
+      if (e.isIntersecting) {
+        v.play().catch(function(){});
+      } else {
+        v.pause();
+      }
+    });
+  }, {rootMargin: '150px 0px'});
+  videos.forEach(function(v){ obs.observe(v); });
+})();
