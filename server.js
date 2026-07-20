@@ -25,6 +25,7 @@ route(app, 'patch','/api/orders/:id',  (req, res) => { req.query.id = req.params
 route(app, 'post', '/api/payments/create-order', require('./api/payments/create-order'));
 route(app, 'post', '/api/payments/verify',        require('./api/payments/verify'));
 route(app, 'post', '/api/payments/webhook',       require('./api/payments/webhook'));
+route(app, 'post', '/api/chat',                   require('./api/chat'));
 
 // Page routes
 ['shop', 'benefits', 'story', 'reviews', 'admin'].forEach(page => {
