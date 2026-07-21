@@ -1,12 +1,22 @@
 'use strict';
 // Local development server — mirrors Vercel serverless functions
 const express = require('express');
+const compression = require('compression');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(compression());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '.')));
+app.use(express.static(path.join(__dirname, '.'), {
+  setHeaders(res, filePath) {
+    if (/\.(mp4|webm|jpg|jpeg|png|svg|woff2?)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400');
+    } else if (/\.(css|js)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'public, max-age=3600, stale-while-revalidate=3600');
+    }
+  }
+}));
 
 // Mount API routes (each handler is a Vercel-compatible function)
 function route(app, method, path, handler) {
