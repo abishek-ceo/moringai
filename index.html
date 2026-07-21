@@ -18,6 +18,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="public/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="public/icon-192.png">
+    <link rel="manifest" href="public/manifest.json">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -39,7 +40,9 @@
     <meta name="twitter:image:alt" content="Moringai – Premium Organic Moringa Products from Tamil Nadu">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Catamaran:wght@400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Catamaran:wght@400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Catamaran:wght@400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Catamaran:wght@400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="public/style.css">
     <link rel="stylesheet" href="public/fix.css">
     <link rel="stylesheet" href="public/mobile.css">
@@ -84,10 +87,10 @@
                 <span class="logo-text">Moringai</span>
             </div>
             <div class="nav-links desktop-only">
-                <a href="/shop" class="nav-link" data-i18n="nav.shop">Shop</a>
-                <a href="/benefits" class="nav-link" data-i18n="nav.benefits">Benefits</a>
-                <a href="/story" class="nav-link" data-i18n="nav.story">Our Story</a>
-                <a href="/reviews" class="nav-link" data-i18n="nav.reviews">Reviews</a>
+                <a href="/shop#products" class="nav-link" data-i18n="nav.shop">Shop</a>
+                <a href="/benefits#benefits-detail" class="nav-link" data-i18n="nav.benefits">Benefits</a>
+                <a href="/story#story-section" class="nav-link" data-i18n="nav.story">Our Story</a>
+                <a href="/reviews#reviews-grid-section" class="nav-link" data-i18n="nav.reviews">Reviews</a>
             </div>
             <div class="nav-actions">
                 <button class="lang-toggle desktop-only" aria-label="Switch to Tamil">தமிழ்</button>
@@ -109,16 +112,21 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
         <div class="mobile-menu" id="mobileMenu">
-            <a href="/shop" class="mobile-nav-link" data-i18n="nav.shop" onclick="closeMobileMenu()">Shop</a>
-            <a href="/benefits" class="mobile-nav-link" data-i18n="nav.benefits" onclick="closeMobileMenu()">Benefits</a>
-            <a href="/story" class="mobile-nav-link" data-i18n="nav.story" onclick="closeMobileMenu()">Our Story</a>
-            <a href="/reviews" class="mobile-nav-link" data-i18n="nav.reviews" onclick="closeMobileMenu()">Reviews</a>
+            <a href="/shop#products" class="mobile-nav-link" data-i18n="nav.shop" onclick="closeMobileMenu()">Shop</a>
+            <a href="/benefits#benefits-detail" class="mobile-nav-link" data-i18n="nav.benefits" onclick="closeMobileMenu()">Benefits</a>
+            <a href="/story#story-section" class="mobile-nav-link" data-i18n="nav.story" onclick="closeMobileMenu()">Our Story</a>
+            <a href="/reviews#reviews-grid-section" class="mobile-nav-link" data-i18n="nav.reviews" onclick="closeMobileMenu()">Reviews</a>
             <button class="lang-toggle lang-toggle--mobile" aria-label="Switch to Tamil">தமிழ்</button>
         </div>
 
     <!-- HERO -->
     <section class="hero" id="home">
         <div class="hero-bg">
+            <video class="hero-video-bg" autoplay muted loop playsinline preload="auto" poster="/public/videos/hero-moringa-rain-poster.jpg" aria-hidden="true">
+                <source src="/public/videos/hero-moringa-rain.webm" type="video/webm">
+                <source src="/public/videos/hero-moringa-rain.mp4" type="video/mp4">
+            </video>
+            <div class="hero-video-overlay" aria-hidden="true"></div>
             <div class="hero-cinematic" aria-hidden="true">
                 <div class="hero-sweep hero-sweep--1"></div>
                 <div class="hero-sweep hero-sweep--2"></div>
@@ -575,8 +583,6 @@
         </div>
         <button class="buy-bar-btn" data-i18n="buybar.view_cart" onclick="openCart()">View Cart →</button>
     </div>
-
-    <script src="public/fix-script-tag.js"></script>
     <script src="public/app.js"></script>
     <script src="public/i18n.js"></script>
     <script src="public/effects.js"></script>
