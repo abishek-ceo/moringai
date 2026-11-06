@@ -4,7 +4,7 @@ const { getStats } = require('../../lib/db');
 const { setCORS } = require('../../lib/utils');
 
 module.exports = async (req, res) => {
-  setCORS(res, 'GET, OPTIONS');
+  setCORS(req, res, 'GET, OPTIONS');
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (!requireAuth(req, res)) return;
 
