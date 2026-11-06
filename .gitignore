@@ -3,3 +3,9 @@ node_modules/
 data/orders.json
 *.log
 .DS_Store
+
+# Generated builds and local configuration
+dist/
+.vercel/
+.env.*
+!.env.example

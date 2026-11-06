@@ -3,7 +3,7 @@ const { signToken, checkPassword } = require('../../lib/auth');
 const { readBody, setCORS } = require('../../lib/utils');
 
 module.exports = async (req, res) => {
-  setCORS(res, 'POST, OPTIONS');
+  setCORS(req, res, 'POST, OPTIONS');
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 

@@ -1,8 +1,9 @@
 'use strict';
 const { generateOrderId, readBody, setCORS } = require('../../lib/utils');
+const { priceCart } = require('../../lib/products');
 
 module.exports = async (req, res) => {
-  setCORS(res, 'POST, OPTIONS');
+  setCORS(req, res, 'POST, OPTIONS');
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
@@ -14,14 +15,17 @@ module.exports = async (req, res) => {
     }
 
     const { parsed } = await readBody(req);
-    const { items } = parsed;
-    if (!Array.isArray(items) || !items.length) {
-      return res.status(400).json({ error: 'No items provided' });
-    }
 
-    const subtotal = items.reduce((s, i) => s + (i.price * i.qty), 0);
-    const shipping = subtotal >= 499 ? 0 : 49;
-    const totalPaise = (subtotal + shipping) * 100;
+    // Authoritative pricing: recompute from the server-side catalog so the
+    // Razorpay order is always created for the real amount, never whatever
+    // price the client happened to submit.
+    let priced;
+    try {
+      priced = priceCart(parsed.items);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+    const totalPaise = priced.total * 100;
 
     const rzpRes = await fetch('https://api.razorpay.com/v1/orders', {
       method: 'POST',

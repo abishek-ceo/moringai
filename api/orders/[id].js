@@ -6,7 +6,7 @@ const { readBody, setCORS } = require('../../lib/utils');
 const VALID_STATUSES = ['pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled'];
 
 module.exports = async (req, res) => {
-  setCORS(res, 'GET, PATCH, OPTIONS');
+  setCORS(req, res, 'GET, PATCH, OPTIONS');
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (!requireAuth(req, res)) return;
 
