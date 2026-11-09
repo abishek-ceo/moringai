@@ -7,8 +7,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(compression());
-app.use(express.json());
-app.use(express.static(path.join(__dirname, '.'), {
+app.use(express.json({ limit: '64kb', verify(req, res, buffer) { req.rawBody = Buffer.from(buffer); } }));
+app.use('/public', express.static(path.join(__dirname, 'public'), {
   setHeaders(res, filePath) {
     if (/\.(mp4|webm|jpg|jpeg|png|svg|woff2?)$/i.test(filePath)) {
       res.setHeader('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400');
@@ -17,6 +17,11 @@ app.use(express.static(path.join(__dirname, '.'), {
     }
   }
 }));
+
+// Only intentional root files are public; never serve backend source or package metadata.
+['robots.txt', 'sitemap.xml'].forEach(file => {
+  app.get('/' + file, (req, res) => res.sendFile(path.join(__dirname, file)));
+});
 
 // Mount API routes (each handler is a Vercel-compatible function)
 function route(app, method, path, handler) {
@@ -37,7 +42,7 @@ route(app, 'post', '/api/payments/verify',        require('./api/payments/verify
 route(app, 'post', '/api/payments/webhook',       require('./api/payments/webhook'));
 
 // Page routes
-['shop', 'benefits', 'story', 'reviews', 'admin'].forEach(page => {
+['shop', 'benefits', 'story', 'reviews', 'admin', 'privacy-policy', 'terms', 'shipping-policy', 'refund-policy', 'contact'].forEach(page => {
   app.get('/' + page, (req, res) => {
     const file = path.join(__dirname, 'public', page + '.html');
     const fs = require('fs');
@@ -46,6 +51,17 @@ route(app, 'post', '/api/payments/webhook',       require('./api/payments/webhoo
   });
 });
 
+const PRODUCT_SLUGS = ['moringa-leaf-powder', 'moringa-capsules', 'moringa-tea-blend', 'moringa-seed-oil', 'moringa-gift-set', 'raw-moringa-seeds'];
+app.get('/products/:slug', (req, res) => {
+  const fs = require('fs');
+  if (!PRODUCT_SLUGS.includes(req.params.slug)) return res.status(404).sendFile(path.join(__dirname, '404.html'));
+  const file = path.join(__dirname, 'public', 'products', req.params.slug + '.html');
+  if (fs.existsSync(file)) res.sendFile(file);
+  else res.status(404).sendFile(path.join(__dirname, '404.html'));
+});
+
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
+
+app.use((req, res) => res.status(404).sendFile(path.join(__dirname, '404.html')));
 
 app.listen(PORT, () => console.log(`Moringai running at http://localhost:${PORT}`));

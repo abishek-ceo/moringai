@@ -1,39 +1,141 @@
 {
-  "outputDirectory": ".",
+  "outputDirectory": "dist",
   "framework": null,
+  "redirects": [
+    {
+      "source": "/public/index.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
-    { "source": "/admin", "destination": "/public/admin.html" },
-    { "source": "/shop", "destination": "/public/shop.html" },
-    { "source": "/benefits", "destination": "/public/benefits.html" },
-    { "source": "/story", "destination": "/public/story.html" },
-    { "source": "/reviews", "destination": "/public/reviews.html" }
+    {
+      "source": "/admin",
+      "destination": "/public/admin.html"
+    },
+    {
+      "source": "/shop",
+      "destination": "/public/shop.html"
+    },
+    {
+      "source": "/benefits",
+      "destination": "/public/benefits.html"
+    },
+    {
+      "source": "/story",
+      "destination": "/public/story.html"
+    },
+    {
+      "source": "/reviews",
+      "destination": "/public/reviews.html"
+    },
+    {
+      "source": "/products/moringa-leaf-powder",
+      "destination": "/public/products/moringa-leaf-powder.html"
+    },
+    {
+      "source": "/products/moringa-capsules",
+      "destination": "/public/products/moringa-capsules.html"
+    },
+    {
+      "source": "/products/moringa-tea-blend",
+      "destination": "/public/products/moringa-tea-blend.html"
+    },
+    {
+      "source": "/products/moringa-seed-oil",
+      "destination": "/public/products/moringa-seed-oil.html"
+    },
+    {
+      "source": "/products/moringa-gift-set",
+      "destination": "/public/products/moringa-gift-set.html"
+    },
+    {
+      "source": "/products/raw-moringa-seeds",
+      "destination": "/public/products/raw-moringa-seeds.html"
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/public/privacy-policy.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/public/terms.html"
+    },
+    {
+      "source": "/shipping-policy",
+      "destination": "/public/shipping-policy.html"
+    },
+    {
+      "source": "/refund-policy",
+      "destination": "/public/refund-policy.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/public/contact.html"
+    }
   ],
   "headers": [
     {
       "source": "/api/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "no-store, no-cache" }
+        {
+          "key": "Cache-Control",
+          "value": "no-store, no-cache"
+        }
       ]
     },
     {
       "source": "/public/(.*).(mp4|webm|jpg|jpeg|png|svg|woff|woff2)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=86400"
+        }
       ]
     },
     {
       "source": "/public/(.*).(css|js)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=3600" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=3600"
+        }
       ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=(self \"https://checkout.razorpay.com\")"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        }
+      ]
+    },
+    {
+      "source": "/admin",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
       ]
     }
-  ]
+  ],
+  "buildCommand": "npm run build"
 }
