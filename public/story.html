@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="The Moringai story — born in Tamil Nadu from a promise to bring pure, honest murungai to every home. Meet founder Abishek Raj and the farming families behind every batch.">
-    <meta name="keywords" content="Moringai brand story, moringa farms Tamil Nadu, Dindigul moringa farmers, Namakkal moringa, Madurai moringa, Abishek Raj founder Moringai, sustainable moringa sourcing India, murungai heritage Tamil Nadu">
+    <meta name="description" content="The Moringai story: born in Tamil Nadu to bring honest murungai to every home. Meet founder Abishek Raj and the farming families behind every batch.">
     <meta name="author" content="Moringai">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="geo.region" content="IN-TN">
     <meta name="geo.placename" content="Tamil Nadu, India">
     <meta name="theme-color" content="#060d08">
@@ -36,14 +35,10 @@
     <meta name="twitter:image" content="https://moringai.in/public/og-image.jpg">
     <meta name="twitter:image:alt" content="Moringai – Our Story, Founder & Farms in Tamil Nadu">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Catamaran:wght@400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Catamaran:wght@400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Catamaran:wght@400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="/public/style.css">
-    <link rel="stylesheet" href="/public/fix.css">
-    <link rel="stylesheet" href="/public/mobile.css">
+    <link rel="preload" href="/public/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/public/fonts/playfair.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/public/videos/hero-moringa-rain-poster.webp" as="image" type="image/webp" fetchpriority="high">
+    <link rel="stylesheet" href="/public/site.css">
 </head>
 <body class="loading">
 
@@ -121,7 +116,7 @@
     <!-- PAGE HERO -->
     <section class="hero" id="home">
         <div class="hero-bg">
-            <video class="hero-video-bg" autoplay muted loop playsinline preload="auto" poster="/public/videos/hero-moringa-rain-poster.jpg" aria-hidden="true">
+            <video class="hero-video-bg" muted loop playsinline preload="none" poster="/public/videos/hero-moringa-rain-poster.webp" aria-hidden="true">
                 <source src="/public/videos/hero-moringa-rain.webm" type="video/webm">
                 <source src="/public/videos/hero-moringa-rain.mp4" type="video/mp4">
             </video>
@@ -175,7 +170,7 @@
 
     <!-- CINEMATIC FARM BANNER -->
     <section class="cinematic-banner">
-        <video class="cinematic-banner-video lazy-video" muted loop playsinline preload="none" data-lazy-video poster="/public/videos/heritage-farm-poster.jpg" aria-hidden="true">
+        <video class="cinematic-banner-video lazy-video" muted loop playsinline preload="none" data-lazy-video poster="/public/videos/heritage-farm-poster.webp" aria-hidden="true">
             <source src="/public/videos/heritage-farm.webm" type="video/webm">
                 <source src="/public/videos/heritage-farm.mp4" type="video/mp4">
         </video>
@@ -246,7 +241,7 @@
         <div class="container">
             <div class="founder-grid">
                 <div class="founder-photo-wrap">
-                    <img src="/public/images/founder-abishek-raj.jpg" alt="Abishek Raj, Founder of Moringai" class="founder-photo" width="360" height="360" loading="lazy">
+                    <img src="/public/images/founder-abishek-raj.webp" alt="Abishek Raj, Founder of Moringai" class="founder-photo" width="360" height="360" loading="lazy">
                     <div class="founder-photo-ring"></div>
                 </div>
                 <div class="founder-content">
@@ -282,9 +277,12 @@
                     <div class="footer-col">
                         <h3 data-i18n="footer.shop">Shop</h3>
                         <a href="/shop" data-i18n="footer.all_products">All Products</a>
-                        <a href="/shop" data-i18n="footer.powder">Moringa Powder</a>
-                        <a href="/shop" data-i18n="footer.capsules">Moringa Capsules</a>
-                        <a href="/shop" data-i18n="footer.gift_sets">Gift Sets</a>
+                        <a href="/products/moringa-leaf-powder" data-i18n="footer.powder">Moringa Powder</a>
+                        <a href="/products/moringa-capsules" data-i18n="footer.capsules">Moringa Capsules</a>
+                        <a href="/products/moringa-tea-blend">Moringa Tea</a>
+                        <a href="/products/moringa-seed-oil">Moringa Seed Oil</a>
+                        <a href="/products/moringa-gift-set" data-i18n="footer.gift_sets">Gift Sets</a>
+                        <a href="/products/raw-moringa-seeds">Raw Moringa Seeds</a>
                     </div>
                     <div class="footer-col">
                         <h3 data-i18n="footer.company">Company</h3>

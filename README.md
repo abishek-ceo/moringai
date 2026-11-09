@@ -1,22 +1,35 @@
-# MoringaPure 🌿
+# Moringai
 
-A mobile-friendly e-commerce website for premium organic Moringa powder.
+Storefront for [moringai.in](https://moringai.in): moringa powder, capsules, tea, oil, gift sets and seeds, shipped across India.
 
-## Features
-- Fully responsive (mobile + desktop)
-- Sticky navbar with mobile hamburger menu
-- Hero section with product visual
-- Benefits, product pricing, and add-to-cart
-- Customer reviews section
-- Contact form
-- Clean green-themed UI
+Static pages in `public/` and `index.html`, served by Vercel, with serverless functions in `api/` (orders, Razorpay payments, admin) backed by Supabase.
 
-## Files
-| File | Description |
-|------|-------------|
-| `index.html` | Main website structure |
-| `styles.css` | All styling and responsive layout |
-| `script.js` | Cart, form, and menu interactions |
+## Layout
+| Path | What it is |
+|---|---|
+| `index.html`, `public/*.html` | Pages (home, shop, story, benefits, reviews, policies) |
+| `public/products/*.html` | One page per product (`/products/<slug>`) |
+| `public/site.css`, `public/*.js` | Bundled CSS and scripts (minified) |
+| `public/icons.svg` | Icon set and product illustrations |
+| `public/fonts/` | Self-hosted, subsetted WOFF2 fonts |
+| `api/`, `lib/` | Serverless API and shared server code |
+| `lib/products.js` | Server-side price catalogue (source of truth for checkout) |
+| `scripts/` | `build.cjs`, `check.cjs`, `prerender.cjs` |
+| `tests/` | Backend tests |
 
-## Live URL
-https://abishek-ceo.github.io/moringai
+## Commands
+```bash
+npm install
+npm run dev        # local server on :3000
+npm run check      # syntax-check all JS
+npm test           # backend tests
+npm run prerender  # refresh the product grid baked into index.html and shop.html
+npm run build      # produce dist/ (versioned assets; backend excluded)
+```
+
+## Configuration
+Copy `.env.example` and set the variables in Vercel. Without them, checkout and admin login fail closed by design.
+
+## Docs
+- `MORINGAI_OWNER_INPUT_REQUIRED.md`: business facts and accounts the site still needs
+- `docs/MORINGAI_PRODUCTION_AUDIT.md`: what was changed and why
