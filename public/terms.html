@@ -38,22 +38,21 @@
 
     <style>
         .legal-content h1{font-family:var(--ff-serif,serif);color:var(--deep,#1b4332);font-size:clamp(28px,4vw,38px);margin-bottom:8px}
-        .legal-content .legal-updated{color:#888;font-size:13px;margin-bottom:32px}
+        .legal-content .legal-updated{color:#5f5f5f;font-size:13px;margin-bottom:32px}
         .legal-content h2{font-family:var(--ff-serif,serif);color:var(--deep,#1b4332);font-size:20px;margin:32px 0 12px}
         .legal-content p, .legal-content li{font-size:15px;line-height:1.7;color:#333}
         .legal-content ul, .legal-content ol{padding-left:22px;margin-bottom:12px}
-        .legal-content a{color:var(--mid,#2d6a4f)}
-        .owner-pending{background:#fdf6e3;border:1px dashed #d8c48a;border-radius:10px;padding:14px 18px;font-size:13.5px;color:#6b5a2a;margin:8px 0 20px}
+        .legal-content a{color:var(--mid,#2d6a4f);text-decoration:underline;text-underline-offset:3px}
     </style>
 
 <body class="loading">
     <div class="announcement-bar">
         <div class="announcement-track">
-            <span data-i18n="ann.free_delivery">🌿 FREE DELIVERY above ₹499</span><span>·</span>
-            <span data-i18n="ann.cod">💰 Cash on Delivery Available</span><span>·</span>
-            <span data-i18n="ann.fssai">🏛️ FSSAI Licensed</span><span>·</span>
-            <span data-i18n="ann.pan_india">📦 Pan India Delivery</span><span>·</span>
-            <span>📱 WhatsApp: 9514499924</span><span>·</span>
+            <span data-i18n="ann.free_delivery">FREE DELIVERY above ₹499</span><span>·</span>
+            <span data-i18n="ann.cod">Cash on Delivery Available</span><span>·</span>
+            <span data-i18n="ann.fssai">FSSAI Licensed</span><span>·</span>
+            <span data-i18n="ann.pan_india">Pan India Delivery</span><span>·</span>
+            <span>WhatsApp: 9514499924</span><span>·</span>
         </div>
     </div>
     <header id="mainHeader" class="header">
@@ -121,10 +120,6 @@
                 <h2>Governing law</h2>
                 <p>These terms are governed by the laws of India.</p>
 
-                <div class="owner-pending">
-                    Our registered legal entity name, GSTIN, and registered business address will be added here once supplied. See <code>MORINGAI_OWNER_INPUT_REQUIRED.md</code>.
-                </div>
-
                 <h2>Contact</h2>
                 <p>Questions about these terms? Reach us on WhatsApp at <a href="https://wa.me/919514499924">+91 95144 99924</a>.</p>
             </div>
@@ -142,7 +137,7 @@
                 <div class="footer-brand">
                     <div class="footer-logo"><img src="/public/logo.svg" width="24" height="24" alt="" style="vertical-align:-5px;margin-right:6px"> Moringai</div>
                     <p class="footer-tagline">Pure Green Intelligence of Nature</p>
-                    <p class="footer-origin">Proudly from Tamil Nadu 🇮🇳</p>
+                    <p class="footer-origin">Proudly from Tamil Nadu</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-col">
@@ -170,11 +165,11 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2026 Moringai. All rights reserved. Made with 💚 in Tamil Nadu.</p>
+                <p>© 2026 Moringai. All rights reserved. Made with love in Tamil Nadu.</p>
                 <div class="footer-badges">
-                    <span>🔒 SSL Secured</span>
-                    <span>💳 Razorpay</span>
-                    <span>🚚 Fast Shipping</span>
+                    <span>SSL Secured</span>
+                    <span>Razorpay</span>
+                    <span>Fast Shipping</span>
                 </div>
             </div>
         </div>
@@ -197,12 +192,11 @@
     </div>
 
     <div class="toast" id="toast"></div>
-    <a class="whatsapp-float" href="https://wa.me/919514499924?text=Hi%2C%20I%27m%20interested%20in%20Moringai%20products!" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">💬</a>
+    <a class="whatsapp-float" href="https://wa.me/919514499924?text=Hi%2C%20I%27m%20interested%20in%20Moringai%20products!" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp"><svg class="ico ico-wa" aria-hidden="true"><use href="/public/icons.svg#i-whatsapp"/></svg></a>
     <div class="mobile-buy-bar" id="mobileBuyBar">
         <div class="buy-bar-info"><span class="buy-bar-count" id="buyBarCount">0 items</span><span class="buy-bar-total" id="buyBarTotal">₹0</span></div>
         <button class="buy-bar-btn" onclick="openCart()">View Cart →</button>
     </div>
-    <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
     <script src="/public/app.js"></script>
     <script src="/public/i18n.js"></script>
     <script src="/public/effects.js"></script>

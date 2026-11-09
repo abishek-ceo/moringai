@@ -68,13 +68,12 @@ information already on the site.
 ## Product content
 
 9. **Real product photography** (packaging/label shots).
-   Every product currently uses a stylized emoji tile as its visual
-   (`public/products/*.html`, product cards) — this was a deliberate choice
-   to avoid fabricating photography that doesn't exist, per the audit
-   brief. Real photos will materially improve conversion and are close to
-   required for Google Merchant Center. When available, add them as the
-   `image` field in each product's JSON-LD (`Product.image`) and as the
-   `.pdp-gallery` visual.
+   Products currently use a custom line-art illustration per category
+   (`public/icons.svg`, `art-*` symbols) — a deliberate choice to avoid
+   fabricating photography that doesn't exist. Real photos will materially
+   improve conversion and are close to required for Google Merchant Center.
+   When available, add them as the `image` field in each product's JSON-LD
+   (`Product.image`) and swap them into the product card and `.pdp-gallery`.
 
 10. **Nutrition panel data** (lab-verified, per pack) if you want to make
     specific quantified nutrient claims beyond the general "moringa is a
