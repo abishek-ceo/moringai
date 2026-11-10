@@ -9,6 +9,6 @@ function visit(dir) { for (const entry of fs.readdirSync(path.join(root, dir), {
  if (entry.isDirectory()) visit(name);
  else if (/\.(js|cjs)$/.test(name)) files.push(name);
 } }
-for (const dir of ['api','lib','public','scripts','tests']) visit(dir);
+for (const dir of ['api','lib','site/public','scripts','tests']) visit(dir);
 for (const file of files) { const r=spawnSync(process.execPath,['--check',path.join(root,file)],{stdio:'inherit'}); if(r.status) process.exit(r.status); }
 console.log(`Syntax checks passed for ${files.length} JavaScript files.`);

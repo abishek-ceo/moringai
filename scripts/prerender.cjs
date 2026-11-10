@@ -1,6 +1,6 @@
 'use strict';
-// Injects the server-rendered product grid into index.html and public/shop.html
-// by running the real renderProducts() from public/app.js against a stub DOM,
+// Injects the server-rendered product grid into site/index.html and site/public/shop.html
+// by running the real renderProducts() from site/public/app.js against a stub DOM,
 // so the static markup always matches what the browser renders.
 const fs = require('node:fs');
 const path = require('node:path');
@@ -20,11 +20,11 @@ const sandbox = {
   setTimeout: noop, clearTimeout: noop
 };
 vm.createContext(sandbox);
-vm.runInContext(fs.readFileSync(path.join(root, 'public/app.js'), 'utf8'), sandbox);
+vm.runInContext(fs.readFileSync(path.join(root, 'site/public/app.js'), 'utf8'), sandbox);
 vm.runInContext('renderProducts()', sandbox);
 if (!grid.innerHTML.includes('/products/')) throw new Error('prerender produced no product links');
 const re = /(<div class="products-grid" id="productsGrid">)[\s\S]*?(<\/div>\s*<\/div>\s*<\/section>)/;
-for (const f of ['index.html', 'public/shop.html']) {
+for (const f of ['site/index.html', 'site/public/shop.html']) {
   const p = path.join(root, f);
   const html = fs.readFileSync(p, 'utf8');
   if (!re.test(html)) throw new Error('productsGrid not found in ' + f);
